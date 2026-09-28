@@ -61,7 +61,7 @@ If we simply state that each agent chooses the model with the highest utility wh
 
 We model this interaction as a \textbf{sequential resource-allocation game}. In this setting, agents arrive or request model selection in a sequence. An arriving agent chooses a model using best-response reasoning given the remaining budget, its cost is deducted from the shared budget, and the next agent chooses from whatever budget remains. This formulation reflects realistic asynchronous API request pipelines and allows us to rigorously study how agent ordering affects individual payoffs, resource starvation, and overall social welfare. 
 
-We compare this decentralized sequential decision-making process with centralized global optimization to understand the efficiency loss (price of anarchy) caused by decentralized behavior under a shared resource constraint. For evaluating software-related tasks, we plan to use controlled simulations and programming benchmarks such as HumanEval, which evaluates the functional correctness of generated programs \cite{chen2021evaluating}.
+We compare this decentralized sequential decision-making process with centralized global optimization to understand the efficiency loss (price of anarchy) caused by decentralized behavior under a shared resource constraint. 
 
 \section{Preliminaries} 
 
@@ -200,6 +200,13 @@ Because each agent's feasible choice set is bounded by the residual budget left 
     \item \textbf{First-Mover Disparity and Starvation}: We quantify the degree to which early agents monopolize the budget by choosing premium models, and measure how frequently late-arriving agents experience resource starvation or are forced onto low-capability fallback models.
 \end{enumerate}
 
+\subsection{Utility Function Engineering}
+To incentivize selfish agents to self-regulate under budget pressure, we will test advanced local utility formulations against the baseline quasi-linear utility ($U_i(m) = Q_{i,m} - \lambda C_m$):
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Scarcity-Adaptive Shadow Pricing}: The cost penalty dynamically increases as the remaining budget shrinks, using an endogenous shadow price $p(B_k)$: $U_i(m) = Q_{i,m} - p(B_k) C_m$.
+    \item \textbf{Submodular Marginal ROI}: Agents optimize for incremental return on investment rather than total quality: $\arg\max \frac{\Delta U_i(m)}{\Delta C_i(m)}$.
+\end{enumerate}
+
 \subsection{Optional Learning Extension} 
 
 In the baseline setting, we assume the expected task quality $q_{i,m}$ and model cost $c_m$ are \textbf{known} to the agents. However, in this learning extension, the expected quality $q_{i,m}$ is \textbf{unknown} in advance and agents initially have incomplete knowledge of model performance. After selecting a model and observing the task outcome, an agent updates its estimate of that model's performance. A simple empirical estimate or Upper Confidence Bound (UCB) strategy can be used to balance exploration and exploitation. The learning process will be: 
@@ -212,24 +219,16 @@ This extension will allow us to investigate the effect of uncertain model perfor
 
 \subsection{Experimental Setup} 
 
-The primary experiments will use a controlled simulation containing software-engineering tasks such as: 
+To obtain realistic empirical measurements for task complexity, expected quality ($q_{i,m}$), and latency/cost ($c_m$) without requiring live API expenditures, we will utilize open-source cost-aware routing datasets such as \textbf{LLMRouterBench} and \textbf{TwinRouterBench}. These datasets provide over 400,000 query-model instances with exact performance-cost trade-offs across 33 different models. 
+
+We will systematically evaluate the algorithms by varying: 
 
 \begin{itemize}[leftmargin=*] 
-    \item code generation, 
-    \item bug fixing, 
-    \item code explanation, 
-    \item test generation, and 
-    \item code optimization. 
-\end{itemize} 
-
-Tasks will be assigned different difficulty levels and each model will have different cost and expected performance. If feasible, real programming benchmarks such as HumanEval will be used to obtain realistic task-model performance measurements \cite{chen2021evaluating}. We will vary: 
-
-\begin{itemize}[leftmargin=*] 
-    \item number of agents, 
-    \item total available budget, 
-    \item task difficulty, 
-    \item model costs and performance differences, and 
-    \item agent arrival ordering policies (random permutations, difficulty-based priority, and marginal-return ordering). 
+    \item number of agents ($N \in \{5, 10, 20, 50\}$), 
+    \item total available budget ($B$), 
+    \item task difficulty mix (uniform, easy-heavy, hard-heavy), 
+    \item model cost-performance disparities, and 
+    \item agent arrival ordering policies. 
 \end{itemize} 
 
 \subsection{Evaluation Metrics} 
@@ -258,18 +257,18 @@ The project will be divided among the group members as follows.
 
 \begin{table}[h] 
 \centering 
-\begin{tabular}{l p{8cm}} 
+\begin{tabular}{l p{10cm}} 
 \toprule 
 \textbf{Member} & \textbf{Responsibility} \\ 
 \midrule 
-Chauhan Mitesh & Responsibility \\ 
-Rathod Yuvraj  &Responsibility \\ 
-Solanki Viraj  & Responsibility \\ 
-Sunay Desai    & Responsibility \\ 
+Chauhan Mitesh & Task 1 \& 2: Mathematical formulation, benchmark dataset integration, and implementation of the Centralized MCKP Optimal Solver. \\ 
+Rathod Yuvraj  & Task 3: Implementation of the Decentralized Sequential Game simulator, state-tracking for remaining budget, and FCFS policies. \\ 
+Solanki Viraj  & Task 4: Engineering advanced utility functions (Scarcity-Adaptive Shadow Pricing and Submodular Marginal ROI). \\ 
+Sunay Desai    & Task 5: Development of the Learning Extension, executing evaluation permutations, calculating Price of Anarchy, and fairness metrics. \\ 
 \bottomrule 
 \end{tabular} 
 \vspace{0.5cm}
-\caption{Planned division of project responsibilities.} 
+\caption{Planned division of project responsibilities mapped to core tasks.} 
 \label{tab:responsibilities}
 \end{table}
 
@@ -278,6 +277,9 @@ The exact allocation of tasks will be adjusted according to the number of member
 \section{Expected Outcome} 
 
 The project will provide an experimental comparison between centralized and decentralized AI-model allocation under a shared budget. By modeling the decentralized interaction as a sequential resource-allocation game, we expect the experiments to reveal how agent arrival ordering, resource depletion rates, and individual best-response strategies interact. The main outcome will be an analysis of when decentralized sequential decision-making can approach centralized optimal welfare, the severity of the first-mover advantage under constrained budgets, and which agent ordering policies best balance overall efficiency, budget utilization, and fairness. 
+
+\textbf{Anticipated Challenges and Limitations:} 
+A successful outcome will mathematically quantify the Price of Anarchy between centralized knapsack solvers and decentralized sequential routing. A primary anticipated challenge is tuning the hyper-parameters of the dynamic shadow pricing mechanism; if the scarcity penalty scales too aggressively, it may trigger an artificial "budget freeze" where late-arriving agents refuse to execute even when funds are available.
 
 \bibliographystyle{unsrt} 
 \bibliography{references} 

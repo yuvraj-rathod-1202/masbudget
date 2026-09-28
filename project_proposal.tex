@@ -1,0 +1,285 @@
+\documentclass{article}
+
+\usepackage{PRIMEarxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{lipsum}
+\usepackage{fancyhdr}       % header
+\usepackage{graphicx}       % graphics
+\usepackage{enumitem}       % list formatting
+\graphicspath{{media/}}     % organize your images and other figures under media/ folder
+
+% Header
+\pagestyle{fancy}
+\thispagestyle{empty}
+\rhead{ \textit{ }} 
+
+% Update your Headers here
+\fancyhead[LO]{Multi-Agent Model/API Selection Under a Shared Budget}
+% \fancyhead[RE]{Firstauthor and Secondauthor} % Firstauthor et al. if more than 2 - must use \documentclass[twoside]{article}
+
+%% Title
+\title{Multi-Agent Model/API Selection Under a Shared Budget
+%%%% Cite as
+%%%% Update your official citation here when published 
+% \thanks{\textit{\underline{Citation}}: 
+% \textbf{Authors. Title. Pages.... DOI:000000/11111.}} 
+}
+
+\author{
+  Chauhan Mitesh, Rathod Yuvraj, Solanki Viraj, Sunay Desai \\
+  % Affiliation \\
+  % Univ \\
+  % City\\
+  \texttt{\{chauhan.mitesh, yuvraj.rathod, viraj.solanki, 24110361\}@iitgn.ac.in} \\
+}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Modern AI applications can choose among multiple language models with different costs and capabilities. When multiple autonomous agents share a limited budget, independently selecting the most capable model can lead to inefficient resource usage. This project studies AI model selection as a multi-agent resource allocation problem. We compare a centralized allocation strategy, which has global information about all agents and tasks, with a decentralized sequential resource-allocation game where agents arrive, select models via best-response reasoning from the remaining budget, and deduct costs sequentially. We investigate how the number of agents, available budget, task difficulty, model cost-performance trade-offs, and agent arrival ordering affect overall task quality, social welfare, individual fairness, and allocation efficiency.
+\end{abstract}
+
+% keywords can be removed
+% \keywords{First keyword \and Second keyword \and More}
+
+\section{Introduction}
+
+Large language models (LLMs) differ substantially in their capabilities, inference costs, and performance on different tasks. Consequently, selecting an appropriate model for each task is an important problem in cost-constrained AI systems. Recent work has studied cost-aware routing of queries among different LLMs. For example, MTRouter investigates multi-turn LLM routing under a fixed cost budget, while MasRouter studies LLM routing in multi-agent systems and explicitly considers the cost of constructing and operating multi-agent systems \cite{zhang2026mtrouter,yue2025masrouter}. 
+
+However, when several autonomous agents simultaneously use a common model pool, the problem becomes a multi-agent resource allocation problem. Each agent wants to obtain high-quality results for its own task, but all agents consume from the same limited budget. Thus, an agent's model-selection decision directly impacts the resources available to other agents. 
+
+If we simply state that each agent chooses the model with the highest utility while checking the remaining budget, a fundamental conflict arises: who gets to claim the remaining budget first? For instance, suppose the remaining budget is \$6, and two agents both desire an expensive model costing \$6. If Agent 1 selects it first, Agent 2 is left empty-handed; conversely, if Agent 2 selects it first, Agent 1 cannot. Rather than assuming that all agents simultaneously and magically coordinate on the remaining budget without contention, the interaction must be defined carefully through an explicit allocation mechanism. 
+
+We model this interaction as a \textbf{sequential resource-allocation game}. In this setting, agents arrive or request model selection in a sequence. An arriving agent chooses a model using best-response reasoning given the remaining budget, its cost is deducted from the shared budget, and the next agent chooses from whatever budget remains. This formulation reflects realistic asynchronous API request pipelines and allows us to rigorously study how agent ordering affects individual payoffs, resource starvation, and overall social welfare. 
+
+We compare this decentralized sequential decision-making process with centralized global optimization to understand the efficiency loss (price of anarchy) caused by decentralized behavior under a shared resource constraint. For evaluating software-related tasks, we plan to use controlled simulations and programming benchmarks such as HumanEval, which evaluates the functional correctness of generated programs \cite{chen2021evaluating}.
+
+\section{Preliminaries} 
+
+Let $\mathcal{N}=\{1,\ldots,N\}$ denote the set of agents and let $\mathcal{M}=\{1,\ldots,M\}$ denote the set of available AI models. Each agent $i\in\mathcal{N}$ receives one task $t_i$. An action of agent $i$ is the selection of a model $m_i\in\mathcal{M}$. Each model $m$ has an associated cost $c_m>0$. The total available budget is denoted by $B$. Let $q_{i,m}$ denote the expected quality obtained when agent $i$ uses model $m$ for task $t_i$. The total cost of an allocation $\mathbf{m}=(m_1,\ldots,m_N)$ is:
+
+\begin{equation} 
+C(\mathbf{m}) = \sum_{i=1}^{N} c_{m_i}. 
+\end{equation} 
+
+An allocation is feasible if 
+
+\begin{equation} 
+C(\mathbf{m}) \leq B. 
+\end{equation} 
+
+The utility of agent $i$ is defined as 
+
+\begin{equation} 
+u_i(m_i) = q_{i,m_i} - \lambda c_{m_i}, 
+\end{equation} 
+
+where $\lambda\geq0$ represents the importance of resource cost.
+
+A \textit{best response} of agent $i$ is an action that maximizes its utility given the remaining budget $B_{\mathrm{rem}}$ left by preceding agents: 
+
+\begin{equation} 
+BR_i(B_{\mathrm{rem}}) = \arg\max_{m \in \mathcal{M}, \, c_m \leq B_{\mathrm{rem}}} u_i(m). 
+\end{equation} 
+
+We define social welfare as the sum of the utilities of all agents: 
+
+\begin{equation} 
+SW(\mathbf{m}) = \sum_{i=1}^{N}u_i(m_i). 
+\end{equation}
+
+\section{Problem Formulation} 
+
+We consider $N$ autonomous agents and $M$ available AI models. For every agent $i$, the task is $t_i$ and the expected quality of using model $m$ is $q_{i,m}$. The cost of model $m$ is $c_m$. 
+
+\subsection{Centralized Formulation}
+
+The centralized controller has global information regarding the tasks, model costs, and expected performance of all agents. The centralized problem is formulated as:
+
+\begin{equation} 
+\max_{\mathbf{m}} \sum_{i=1}^{N} q_{i,m_i} 
+\end{equation} 
+
+subject to 
+
+\begin{equation} 
+\sum_{i=1}^{N} c_{m_i}\leq B, \qquad m_i\in\mathcal{M}. 
+\end{equation} 
+
+This represents an optimal knapsack-style benchmark that maximizes total task quality within the available budget.
+
+\subsection{Decentralized Setting: Sequential Resource-Allocation Game}
+
+In the decentralized setting, agents make autonomous decisions without global coordination. If we simply state that each agent chooses the model with the highest utility while checking the remaining budget, a fundamental conflict arises under resource contention:
+\begin{quote}
+\textit{Suppose the total shared budget is $B = \$6$, and Model $C$ costs $\$6$. If Agent 1 and Agent 2 both desire Model $C$, who gets it? If Agent 1 selects first, Agent 2 cannot; if Agent 2 selects first, Agent 1 cannot.}
+\end{quote}
+Simultaneous selection under a hard shared budget either leads to invalid over-budget collisions or assumes that agents possess unrealistic clairvoyance over others' simultaneous choices. Furthermore, in practical multi-agent AI systems, requests arrive asynchronously rather than in strict synchrony.
+
+To model this interaction realistically and eliminate ambiguous race conditions, we formalize decentralized selection as a \textbf{Sequential Resource-Allocation Game}:
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Agent Arrival Order}: Agents arrive according to an ordering or permutation $\pi = (\pi_1, \pi_2, \ldots, \pi_N)$, where $\pi_k \in \mathcal{N}$ denotes the agent that selects an action at step $k \in \{1, \ldots, N\}$.
+    \item \textbf{State and Remaining Budget}: At step $k$, the state of the system is the remaining shared budget $B_k$, defined as:
+    \begin{equation}
+        B_k = B - \sum_{j=1}^{k-1} c_{m_{\pi_j}}, \quad \text{with } B_1 = B.
+    \end{equation}
+    \item \textbf{Feasible Action Set}: When agent $\pi_k$ arrives, it observes the remaining budget $B_k$. Its set of feasible models is bounded by:
+    \begin{equation}
+        \mathcal{M}(B_k) = \{ m \in \mathcal{M} \mid c_m \leq B_k \}.
+    \end{equation}
+    If $B_k < \min_{m \in \mathcal{M}} c_m$, the agent cannot afford any model and receives a fallback action (with baseline or zero utility).
+    \item \textbf{Best-Response Decision}: Agent $\pi_k$ chooses the model from its feasible set that maximizes its individual utility:
+    \begin{equation}
+        m_{\pi_k} = BR_{\pi_k}(B_k) = \arg\max_{m \in \mathcal{M}(B_k)} u_{\pi_k}(m) = \arg\max_{m \in \mathcal{M}(B_k)} \left( q_{\pi_k, m} - \lambda c_m \right).
+    \end{equation}
+    \item \textbf{Budget Deduction}: The cost of the chosen model $c_{m_{\pi_k}}$ is deducted immediately, leaving $B_{k+1} = B_k - c_{m_{\pi_k}}$ for the next arriving agent $\pi_{k+1}$.
+\end{enumerate}
+
+Because earlier agents consume budget and directly shape the feasible action space of subsequent agents, this sequential game formulation naturally makes the \textbf{agent ordering} $\pi$ a key factor affecting individual outcomes, resource fairness, and aggregate social welfare.
+
+The main research question is: 
+
+\begin{quote} 
+How does decentralized model selection by multiple autonomous agents compare with centralized optimal allocation when the agents share a limited AI-model/API budget? 
+\end{quote} 
+
+We will investigate the following sub-questions: 
+
+\begin{enumerate}[leftmargin=*] 
+    \item How does reducing the shared budget affect task quality? 
+    \item How does increasing the number of agents affect allocation efficiency? 
+    \item How large is the gap between decentralized and centralized allocation? 
+    \item How does task difficulty affect the value of using expensive models? 
+    \item How does the difference in model cost and capability affect decentralized decision-making? 
+    \item How does the agent arrival ordering (e.g., random arrival, task-difficulty-based priority, or round-robin) affect individual payoffs, first-mover advantage, and overall social welfare in a sequential allocation game?
+\end{enumerate}
+
+\section{Proposed Solutions} 
+
+We plan to implement and compare the following approaches. 
+
+\subsection{Cheapest-Model Baseline} 
+
+Each agent always selects the cheapest available model. This provides a lower-cost baseline for comparison. 
+
+\subsection{Best-Model Baseline} 
+
+Agents prefer the highest-performing model whenever the remaining budget allows it. This represents a quality-oriented strategy. 
+
+\subsection{Centralized Optimal Allocation} 
+
+A central controller observes all agents, tasks, model costs, and expected model performance. It solves the budget-constrained optimization problem in Section 3 and provides the reference allocation. For small problem instances, exact optimization can be performed using enumeration or integer programming. 
+
+\subsection{Decentralized Sequential Best-Response Allocation} 
+
+In the decentralized sequential allocation game, agents make uncoordinated decisions upon their arrival. When agent $\pi_k$ arrives, it queries the remaining shared budget $B_k$, determines its affordable model candidate set $\mathcal{M}(B_k) = \{m \in \mathcal{M} \mid c_m \leq B_k\}$, and selects the best-response model:
+
+\begin{equation}
+m_{\pi_k} = \arg\max_{m \in \mathcal{M}(B_k)} \left( q_{\pi_k, m} - \lambda c_m \right).
+\end{equation}
+
+The selected model's cost is deducted immediately from the shared pool ($B_{k+1} = B_k - c_{m_{\pi_k}}$). This ensures that the global budget constraint $\sum_{i=1}^N c_{m_i} \leq B$ is strictly satisfied at every stage without requiring synchronous consensus or clairvoyant agents.
+
+\subsection{Investigation of Agent Ordering Policies}
+
+Because each agent's feasible choice set is bounded by the residual budget left by prior agents, the arrival ordering $\pi$ is a decisive factor in determining individual allocations and aggregate welfare. We plan to systematically evaluate several ordering mechanisms:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Random Arrival Order}: Agents arrive in uniformly random permutations, simulating asynchronous, uncoordinated API traffic across independent execution runs. We report the mean and variance across orderings.
+    \item \textbf{Task-Difficulty Priority (Heuristic Ordering)}: Agents with high-difficulty tasks are prioritized first (Hardest-Task-First) vs. prioritized last (Easiest-Task-First). We investigate whether prioritizing tasks with steep quality gains under expensive models closes the gap to centralized optimality.
+    \item \textbf{Marginal Return / ROI Priority}: Agents are ordered by their maximum marginal quality gain per unit cost, evaluating whether greedy heuristic scheduling approaches the global knapsack solution.
+    \item \textbf{First-Mover Disparity and Starvation}: We quantify the degree to which early agents monopolize the budget by choosing premium models, and measure how frequently late-arriving agents experience resource starvation or are forced onto low-capability fallback models.
+\end{enumerate}
+
+\subsection{Optional Learning Extension} 
+
+In the baseline setting, we assume the expected task quality $q_{i,m}$ and model cost $c_m$ are \textbf{known} to the agents. However, in this learning extension, the expected quality $q_{i,m}$ is \textbf{unknown} in advance and agents initially have incomplete knowledge of model performance. After selecting a model and observing the task outcome, an agent updates its estimate of that model's performance. A simple empirical estimate or Upper Confidence Bound (UCB) strategy can be used to balance exploration and exploitation. The learning process will be: 
+
+\begin{center}
+  \small\textbf{Task} $\longrightarrow$ \textbf{Model Selection} $\longrightarrow$ \textbf{Observe Quality} $\longrightarrow$ \textbf{Update Estimate}
+\end{center}
+
+This extension will allow us to investigate the effect of uncertain model performance on decentralized resource allocation. 
+
+\subsection{Experimental Setup} 
+
+The primary experiments will use a controlled simulation containing software-engineering tasks such as: 
+
+\begin{itemize}[leftmargin=*] 
+    \item code generation, 
+    \item bug fixing, 
+    \item code explanation, 
+    \item test generation, and 
+    \item code optimization. 
+\end{itemize} 
+
+Tasks will be assigned different difficulty levels and each model will have different cost and expected performance. If feasible, real programming benchmarks such as HumanEval will be used to obtain realistic task-model performance measurements \cite{chen2021evaluating}. We will vary: 
+
+\begin{itemize}[leftmargin=*] 
+    \item number of agents, 
+    \item total available budget, 
+    \item task difficulty, 
+    \item model costs and performance differences, and 
+    \item agent arrival ordering policies (random permutations, difficulty-based priority, and marginal-return ordering). 
+\end{itemize} 
+
+\subsection{Evaluation Metrics} 
+
+The following metrics will be used: 
+
+\begin{itemize}[leftmargin=*] 
+    \item \textbf{Average Task Quality}: average quality across all completed tasks. 
+    \item \textbf{Total Cost}: total amount of budget consumed. 
+    \item \textbf{Social Welfare}: sum of agent utilities. 
+    \item \textbf{Budget Utilization}: fraction of the available budget that is used. 
+    \item \textbf{Allocation Efficiency}: comparison between the decentralized allocation and the centralized optimum. 
+    \item \textbf{Order Sensitivity and Disparity}: variance in social welfare across different agent permutations, and the payoff disparity between early-arriving and late-arriving agents. 
+    \item \textbf{Fairness Index}: Jain's Fairness Index across individual agent utilities to measure equitable resource distribution. 
+\end{itemize} 
+
+We will also measure the efficiency gap between centralized and decentralized solutions using 
+
+\begin{equation} 
+\mathrm{Gap} = \frac{SW_{\mathrm{centralized}} - SW_{\mathrm{decentralized}}}{SW_{\mathrm{centralized}}}. 
+\end{equation}
+
+\section{Contribution} 
+
+The project will be divided among the group members as follows. 
+
+\begin{table}[h] 
+\centering 
+\begin{tabular}{l p{8cm}} 
+\toprule 
+\textbf{Member} & \textbf{Responsibility} \\ 
+\midrule 
+Chauhan Mitesh & Responsibility \\ 
+Rathod Yuvraj  &Responsibility \\ 
+Solanki Viraj  & Responsibility \\ 
+Sunay Desai    & Responsibility \\ 
+\bottomrule 
+\end{tabular} 
+\vspace{0.5cm}
+\caption{Planned division of project responsibilities.} 
+\label{tab:responsibilities}
+\end{table}
+
+The exact allocation of tasks will be adjusted according to the number of members in the group. 
+
+\section{Expected Outcome} 
+
+The project will provide an experimental comparison between centralized and decentralized AI-model allocation under a shared budget. By modeling the decentralized interaction as a sequential resource-allocation game, we expect the experiments to reveal how agent arrival ordering, resource depletion rates, and individual best-response strategies interact. The main outcome will be an analysis of when decentralized sequential decision-making can approach centralized optimal welfare, the severity of the first-mover advantage under constrained budgets, and which agent ordering policies best balance overall efficiency, budget utilization, and fairness. 
+
+\bibliographystyle{unsrt} 
+\bibliography{references} 
+
+\end{document}

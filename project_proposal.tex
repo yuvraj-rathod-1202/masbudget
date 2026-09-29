@@ -45,11 +45,8 @@
 \maketitle
 
 \begin{abstract}
-Modern AI applications can choose among multiple language models with different costs and capabilities. When multiple autonomous agents share a limited budget, independently selecting the most capable model can lead to inefficient resource usage. This project studies AI model selection as a multi-agent resource allocation problem. We compare a centralized allocation strategy, which has global information about all agents and tasks, with a decentralized sequential resource-allocation game where agents arrive, select models via best-response reasoning from the remaining budget, and deduct costs sequentially. We investigate how the number of agents, available budget, task difficulty, model cost-performance trade-offs, and agent arrival ordering affect overall task quality, social welfare, individual fairness, and allocation efficiency.
+Modern AI applications can choose among multiple language models with different costs and capabilities. When multiple autonomous agents share a limited budget, independently selecting the most capable model can lead to inefficient resource usage. This project studies AI model selection as a multi-agent resource allocation problem. We compare centralized allocation strategies, which have global information about all agents and tasks, with a decentralized sequential resource-allocation game where agents arrive, select models via best-response reasoning from the remaining budget, and deduct costs sequentially. Beyond agent arrival ordering, we systematically vary the agent utility function to study how local payoff design influences decentralized outcomes. We investigate how the number of agents, available budget, task difficulty, model cost-performance trade-offs, and agent arrival ordering affect task quality, social welfare, individual fairness, and allocation efficiency.
 \end{abstract}
-
-% keywords can be removed
-% \keywords{First keyword \and Second keyword \and More}
 
 \section{Introduction}
 
@@ -77,24 +74,24 @@ An allocation is feasible if
 C(\mathbf{m}) \leq B. 
 \end{equation} 
 
-The utility of agent $i$ is defined as 
+The utility of agent $i$ under model selection $m_i$ is given by a utility function 
 
 \begin{equation} 
-u_i(m_i) = q_{i,m_i} - \lambda c_{m_i}, 
+U_i(m_i), 
 \end{equation} 
 
-where $\lambda\geq0$ represents the importance of resource cost.
+which captures agent $i$'s individual payoff from selecting model $m_i$. The specific functional form of $U_i$ may vary across experimental settings (e.g., quasi-linear, scarcity-adaptive, or marginal ROI-based formulations), the concrete utility designs investigated in this work are detailed in Section~\ref{sec:utilities}.
 
 A \textit{best response} of agent $i$ is an action that maximizes its utility given the remaining budget $B_{\mathrm{rem}}$ left by preceding agents: 
 
 \begin{equation} 
-BR_i(B_{\mathrm{rem}}) = \arg\max_{m \in \mathcal{M}, \, c_m \leq B_{\mathrm{rem}}} u_i(m). 
+BR_i(B_{\mathrm{rem}}) = \arg\max_{m \in \mathcal{M}, \, c_m \leq B_{\mathrm{rem}}} U_i(m). 
 \end{equation} 
 
 We define social welfare as the sum of the utilities of all agents: 
 
 \begin{equation} 
-SW(\mathbf{m}) = \sum_{i=1}^{N}u_i(m_i). 
+SW(\mathbf{m}) = \sum_{i=1}^{N}U_i(m_i). 
 \end{equation}
 
 \section{Problem Formulation} 
@@ -139,7 +136,7 @@ To model this interaction realistically and eliminate ambiguous race conditions,
     If $B_k < \min_{m \in \mathcal{M}} c_m$, the agent cannot afford any model and receives a fallback action (with baseline or zero utility).
     \item \textbf{Best-Response Decision}: Agent $\pi_k$ chooses the model from its feasible set that maximizes its individual utility:
     \begin{equation}
-        m_{\pi_k} = BR_{\pi_k}(B_k) = \arg\max_{m \in \mathcal{M}(B_k)} u_{\pi_k}(m) = \arg\max_{m \in \mathcal{M}(B_k)} \left( q_{\pi_k, m} - \lambda c_m \right).
+        m_{\pi_k} = BR_{\pi_k}(B_k) = \arg\max_{m \in \mathcal{M}(B_k)} U_{\pi_k}(m).
     \end{equation}
     \item \textbf{Budget Deduction}: The cost of the chosen model $c_{m_{\pi_k}}$ is deducted immediately, leaving $B_{k+1} = B_k - c_{m_{\pi_k}}$ for the next arriving agent $\pi_{k+1}$.
 \end{enumerate}
@@ -161,6 +158,7 @@ We will investigate the following sub-questions:
     \item How does task difficulty affect the value of using expensive models? 
     \item How does the difference in model cost and capability affect decentralized decision-making? 
     \item How does the agent arrival ordering (e.g., random arrival, task-difficulty-based priority, or round-robin) affect individual payoffs, first-mover advantage, and overall social welfare in a sequential allocation game?
+    \item How does changing the agent utility function $U_i$ in the decentralized model affect social welfare, fairness, and the efficiency gap relative to the centralized optimum?
 \end{enumerate}
 
 \section{Proposed Solutions} 
@@ -169,87 +167,165 @@ We plan to implement and compare the following approaches.
 
 \subsection{Cheapest-Model Baseline} 
 
-Each agent always selects the cheapest available model. This provides a lower-cost baseline for comparison. 
+Every agent always selects the lowest-cost model available, i.e., $m_i = \arg\min_{m \in \mathcal{M}} c_m$. This strategy trivially satisfies any budget constraint and provides a lower bound on achievable task quality. It serves as the cost-minimizing reference point against which all other approaches are evaluated. 
 
 \subsection{Best-Model Baseline} 
 
-Agents prefer the highest-performing model whenever the remaining budget allows it. This represents a quality-oriented strategy. 
+Agents greedily select the highest-performing model whenever the remaining budget permits, i.e., $m_i = \arg\max_{m \in \mathcal{M}(B_k)} q_{i,m}$. Early agents consume the budget on premium models, once the budget is exhausted, all remaining agents are starved and receive fallback (zero-utility) assignments. This strategy represents a quality-maximizing but socially reckless upper reference and illustrates the severity of the first-mover advantage under uncoordinated selection. 
 
-\subsection{Centralized Optimal Allocation} 
+\subsection{Centralized Allocation} 
+\label{sec:centralized}
 
-A central controller observes all agents, tasks, model costs, and expected model performance. It solves the budget-constrained optimization problem in Section 3 and provides the reference allocation. For small problem instances, exact optimization can be performed using enumeration or integer programming. 
+In the centralized paradigm, a controller has global visibility over all tasks, model costs, and expected quality profiles. We implement and compare four centralized strategies: 
+
+\begin{enumerate}[leftmargin=*] 
+    \item \textbf{Optimal MCKP Solver (Upper Bound):} The controller solves the exact Multiple-Choice Knapsack Problem (MCKP) using Integer Linear Programming (e.g., Google OR-Tools or PuLP~\cite{chen2021evaluating}) to globally maximize $\sum_{i=1}^N q_{i,m_i}$ subject to $\sum_{i=1}^N c_{m_i} \leq B$. This provides the theoretical optimum and the benchmark for computing the Price of Anarchy. 
+
+    \item \textbf{Predictive LLM Router:} A centralized router inspired by RouteLLM and MasRouter~\cite{yue2025masrouter} routes tasks to models based on task feature embeddings and predicted quality gains. It balances estimated quality versus marginal cost using a trained quality estimator, without solving an exact Integer Linear Programming. 
+
+    \item \textbf{Confidence-Based Cascade:} Following the FrugalGPT~\cite{chen2023frugalgpt}, the controller sends each task to the cheapest model first and escalates to a more capable model only if verification checks fail. Budget is consumed dynamically based on task-specific difficulty. 
+
+    \item \textbf{Static Equal Quota (Fair Baseline):} The budget is divided evenly upfront: $b_i = B/N$ for every agent. Each agent independently selects the best model within its individual allocation slice $b_i$. This baseline tests whether simple per-agent budget isolation matches coordinated solutions. 
+\end{enumerate} 
 
 \subsection{Decentralized Sequential Best-Response Allocation} 
+\label{sec:decentralized}
 
-In the decentralized sequential allocation game, agents make uncoordinated decisions upon their arrival. When agent $\pi_k$ arrives, it queries the remaining shared budget $B_k$, determines its affordable model candidate set $\mathcal{M}(B_k) = \{m \in \mathcal{M} \mid c_m \leq B_k\}$, and selects the best-response model:
+In the decentralized sequential allocation game, agents make autonomous, uncoordinated decisions upon arrival according to an ordering $\pi$. When agent $\pi_k$ arrives, it observes the remaining shared budget $B_k$, determines its feasible model set $\mathcal{M}(B_k) = \{m \in \mathcal{M} \mid c_m \leq B_k\}$, and selects the best-response model:
 
 \begin{equation}
-m_{\pi_k} = \arg\max_{m \in \mathcal{M}(B_k)} \left( q_{\pi_k, m} - \lambda c_m \right).
+m_{\pi_k} = \arg\max_{m \in \mathcal{M}(B_k)} U_{\pi_k}(m).
 \end{equation}
 
-The selected model's cost is deducted immediately from the shared pool ($B_{k+1} = B_k - c_{m_{\pi_k}}$). This ensures that the global budget constraint $\sum_{i=1}^N c_{m_i} \leq B$ is strictly satisfied at every stage without requiring synchronous consensus or clairvoyant agents.
+The selected model's cost is deducted immediately ($B_{k+1} = B_k - c_{m_{\pi_k}}$), ensuring the global budget constraint is strictly satisfied at every stage. The two key degrees of freedom in this framework are:
 
-\subsection{Investigation of Agent Ordering Policies}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Agent Ordering Policy} $\pi$: the sequence in which agents arrive and make decisions (Section~\ref{sec:ordering}).
+    \item \textbf{Utility Function} $U_i$: the local payoff function each agent uses to evaluate model candidates (Section~\ref{sec:utilities}).
+\end{itemize}
 
-Because each agent's feasible choice set is bounded by the residual budget left by prior agents, the arrival ordering $\pi$ is a decisive factor in determining individual allocations and aggregate welfare. We plan to systematically evaluate several ordering mechanisms:
+We systematically vary both dimensions in the subsequent sections to study their independent and joint effects on social welfare, fairness, and the efficiency gap relative to centralized allocation.
+
+\subsection{Agent Ordering Policies}
+\label{sec:ordering}
+
+Because each agent's feasible set is bounded by the residual budget left by prior agents, the arrival ordering $\pi$ is a decisive factor in determining individual allocations and aggregate welfare. We evaluate the following ordering mechanisms:
 
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Random Arrival Order}: Agents arrive in uniformly random permutations, simulating asynchronous, uncoordinated API traffic across independent execution runs. We report the mean and variance across orderings.
-    \item \textbf{Task-Difficulty Priority (Heuristic Ordering)}: Agents with high-difficulty tasks are prioritized first (Hardest-Task-First) vs. prioritized last (Easiest-Task-First). We investigate whether prioritizing tasks with steep quality gains under expensive models closes the gap to centralized optimality.
-    \item \textbf{Marginal Return / ROI Priority}: Agents are ordered by their maximum marginal quality gain per unit cost, evaluating whether greedy heuristic scheduling approaches the global knapsack solution.
-    \item \textbf{First-Mover Disparity and Starvation}: We quantify the degree to which early agents monopolize the budget by choosing premium models, and measure how frequently late-arriving agents experience resource starvation or are forced onto low-capability fallback models.
+    \item \textbf{Random Sequential:} At each step $k$, the policy selects an agent uniformly at random from the remaining unserved queue. This models asynchronous, uncoordinated API traffic. We report means and variance across 50-100 random seeds to measure baseline first-mover advantage and resource starvation~\cite{nisan2007algorithmic}.
+    \item \textbf{Hardest-Task-First:} At each step $k$, the policy selects the agent whose task has the highest difficulty among all remaining unserved agents. This tests whether granting budget access first to tasks with steep quality gains under expensive models bridges the gap to centralized optimality.
+    \item \textbf{Easiest-Task-First:} At each step $k$, the policy selects the agent with the easiest remaining task. This represents the worst-case scenario where low-difficulty tasks consume the budget before high-impact tasks are served.
+    \item \textbf{Marginal ROI Priority:} At each step $k$, the policy selects the agent with the highest expected quality gain per unit cost $(\Delta q / \Delta c)$ from the remaining queue. This tests whether greedy heuristic scheduling approximates the global knapsack solution without central model assignment.
+    \item \textbf{Cost-Sensitive Adaptive:} All agents use a shared utility, but the cost sensitivity parameter $\lambda$ is dynamically adjusted based on the remaining budget fraction $B_k / B$. As the shared pool depletes, agents automatically become more conservative in model selection.
 \end{enumerate}
 
-\subsection{Utility Function Engineering}
-To incentivize selfish agents to self-regulate under budget pressure, we will test advanced local utility formulations against the baseline quasi-linear utility ($U_i(m) = Q_{i,m} - \lambda C_m$):
+For each ordering policy, we quantify first-mover disparity and starvation by measuring how frequently late-arriving agents are forced onto low-capability fallback models.
+
+\subsection{Agent Decentralized Utilities}
+\label{sec:utilities}
+
+In addition to arrival ordering, we investigate \textbf{utility function design}--systematically altering the local payoff function $U_i$ so that decentralized best-response choices approach the centralized knapsack optimum. We compare four formulations:
+
 \begin{enumerate}[leftmargin=*]
-    \item \textbf{Scarcity-Adaptive Shadow Pricing}: The cost penalty dynamically increases as the remaining budget shrinks, using an endogenous shadow price $p(B_k)$: $U_i(m) = Q_{i,m} - p(B_k) C_m$.
-    \item \textbf{Submodular Marginal ROI}: Agents optimize for incremental return on investment rather than total quality: $\arg\max \frac{\Delta U_i(m)}{\Delta C_i(m)}$.
+    \item \textbf{Baseline Quasi-Linear Utility.} The standard selfish baseline:
+    \begin{equation}
+        U_i(m) = q_{i,m} - \lambda \, c_m,
+    \end{equation}
+    where $\lambda \geq 0$ is a fixed global cost-sensitivity parameter trading off task quality against model cost.
+
+    \item \textbf{Dynamic Shadow Price / Scarcity-Adaptive Utility.} The cost penalty dynamically reflects budget scarcity via an endogenous shadow price $p(B_k)$~\cite{balseiro2019learning, kelly1998rate}:
+    \begin{equation}
+        U_i(m) = q_{i,m} - p(B_k) \cdot c_m, \quad \text{where } p(B_k) = p_0 \cdot \left(\frac{B}{B_k}\right)^\alpha.
+    \end{equation}
+    When budget is plentiful ($B_k \approx B$), $p(B_k)$ is low and agents can select stronger models, as the budget depletes, $p(B_k)$ rises and automatically makes expensive models less attractive.
+
+    \item \textbf{Shapley Value / Marginal Contribution-Based Budget Share.} Agents receive a modified cost penalty based on their Shapley value $\phi_i$ reflecting marginal contribution to collective welfare~\cite{chandan2019optimal, marden2013distributed}:
+    \begin{equation}
+        U_i(m) = q_{i,m} - \frac{\lambda}{1 + \gamma \cdot \phi_i} \cdot c_m.
+    \end{equation}
+    Agents with high task criticality receive preferential access to premium models.
+
+    \item \textbf{Submodular Marginal Utility per Cost Ratio ($\Delta U / \Delta C$).} Instead of evaluating total quality, the agent computes the marginal improvement over a baseline model~\cite{williams2017decentralised, nemhauser1978analysis}:
+    \begin{equation}
+        m^* = \arg\max_{m \in \mathcal{M}(B_k)} \frac{q_{i,m} - q_{i,m_{\mathrm{base}}}}{c_m - c_{m_{\mathrm{base}}}}.
+    \end{equation}
+    Under monotone submodular structure, decentralized methods achieve provable constant-factor approximation guarantees.
 \end{enumerate}
 
-\subsection{Optional Learning Extension} 
+% \subsection{Optional Learning Extension} 
+% \label{sec:learning}
 
-In the baseline setting, we assume the expected task quality $q_{i,m}$ and model cost $c_m$ are \textbf{known} to the agents. However, in this learning extension, the expected quality $q_{i,m}$ is \textbf{unknown} in advance and agents initially have incomplete knowledge of model performance. After selecting a model and observing the task outcome, an agent updates its estimate of that model's performance. A simple empirical estimate or Upper Confidence Bound (UCB) strategy can be used to balance exploration and exploitation. The learning process will be: 
+% In the baseline setting, we assume the expected task quality $q_{i,m}$ and model cost $c_m$ are \textbf{known} to the agents. In this extension, the expected quality $q_{i,m}$ is \textbf{unknown} in advance and agents initially have incomplete knowledge of model performance. After selecting a model and observing the task outcome, an agent updates its estimate of that model's performance. A simple empirical estimate or Upper Confidence Bound (UCB) strategy can be used to balance exploration and exploitation~\cite{auer2002finite}. The learning process follows: 
 
-\begin{center}
-  \small\textbf{Task} $\longrightarrow$ \textbf{Model Selection} $\longrightarrow$ \textbf{Observe Quality} $\longrightarrow$ \textbf{Update Estimate}
-\end{center}
+% \begin{center}
+%   \small\textbf{Task} $\longrightarrow$ \textbf{Model Selection} $\longrightarrow$ \textbf{Observe Quality} $\longrightarrow$ \textbf{Update Estimate}
+% \end{center}
 
-This extension will allow us to investigate the effect of uncertain model performance on decentralized resource allocation. 
+% This extension investigates the effect of performance uncertainty on decentralized resource allocation and measures the cumulative regret relative to an oracle with full model knowledge. 
 
 \subsection{Experimental Setup} 
+\label{sec:setup}
 
-To obtain realistic empirical measurements for task complexity, expected quality ($q_{i,m}$), and latency/cost ($c_m$) without requiring live API expenditures, we will utilize open-source cost-aware routing datasets such as \textbf{LLMRouterBench} and \textbf{TwinRouterBench}. These datasets provide over 400,000 query-model instances with exact performance-cost trade-offs across 33 different models. 
+To obtain realistic empirical measurements for task complexity, expected quality ($q_{i,m}$), and cost ($c_m$) without requiring live API expenditures, we utilize open-source cost-aware routing datasets such as \textbf{LLMRouterBench} and \textbf{TwinRouterBench}. These datasets provide over 400,000 query-model instances with exact performance-cost trade-offs across 33 different models. 
 
-We will systematically evaluate the algorithms by varying: 
+Experiments will be conducted by systematically varying five key parameters: 
 
 \begin{itemize}[leftmargin=*] 
-    \item number of agents ($N \in \{5, 10, 20, 50\}$), 
-    \item total available budget ($B$), 
-    \item task difficulty mix (uniform, easy-heavy, hard-heavy), 
-    \item model cost-performance disparities, and 
-    \item agent arrival ordering policies. 
+    \item \textbf{Budget constraint} ($B$): severe ($B = N \cdot c_{\min}$), moderate, and generous ($B \geq N \cdot c_{\max}$) regimes.
+    \item \textbf{Agent count} ($N \in \{5, 10, 20, 50\}$): to study scalability and contention as agent density increases.
+    \item \textbf{Task difficulty mix}: uniform random, easy-heavy (80/20), and hard-heavy (20/80) distributions.
+    \item \textbf{Cost-performance disparity}: flat gap (small difference between models) vs.\ steep gap (frontier model is $10\times$ cost with $2\times$ quality).
+    \item \textbf{Arrival permutations} ($\pi$): 50-100 random seeds per decentralized configuration.
 \end{itemize} 
 
 \subsection{Evaluation Metrics} 
+\label{sec:metrics}
 
-The following metrics will be used: 
+The following metrics will be used across all experiments.
 
+\subsubsection*{Quality \& Task Performance}
 \begin{itemize}[leftmargin=*] 
-    \item \textbf{Average Task Quality}: average quality across all completed tasks. 
-    \item \textbf{Total Cost}: total amount of budget consumed. 
-    \item \textbf{Social Welfare}: sum of agent utilities. 
-    \item \textbf{Budget Utilization}: fraction of the available budget that is used. 
-    \item \textbf{Allocation Efficiency}: comparison between the decentralized allocation and the centralized optimum. 
-    \item \textbf{Order Sensitivity and Disparity}: variance in social welfare across different agent permutations, and the payoff disparity between early-arriving and late-arriving agents. 
-    \item \textbf{Fairness Index}: Jain's Fairness Index across individual agent utilities to measure equitable resource distribution. 
-\end{itemize} 
+    \item Average Task Quality ($\bar{Q}$): $\bar{Q} = \frac{1}{N} \sum_{i=1}^{N} q_{i, m_i}$. 
+    % \item Stratified Quality by Difficulty ($\bar{Q}_{\text{easy}}, \bar{Q}_{\text{med}}, \bar{Q}_{\text{hard}}$): average quality evaluated independently per difficulty tier. Applicable to experiments varying task difficulty mix.
+    \item Task Success Rate ($SR$): fraction of tasks meeting a functional threshold $\tau$: $SR = \frac{1}{N} \sum_{i=1}^{N} \mathbb{I}(q_{i, m_i} \geq \tau)$.
+\end{itemize}
 
-We will also measure the efficiency gap between centralized and decentralized solutions using 
+\subsubsection*{Budget \& Resource Efficiency}
+\begin{itemize}[leftmargin=*] 
+    \item Total Cost ($C$): $C = \sum_{i=1}^{N} c_{m_i}$.
+    \item Budget Utilization Rate ($BUR$): $BUR = C / B$. Identifies under-spending vs.\ efficient exhaustion.
+    \item Cost-Effectiveness / ROI: $CE = \sum q_{i,m_i} / C$. Quality delivered per dollar spent.
+\end{itemize}
 
-\begin{equation} 
-\mathrm{Gap} = \frac{SW_{\mathrm{centralized}} - SW_{\mathrm{decentralized}}}{SW_{\mathrm{centralized}}}. 
-\end{equation}
+\subsubsection*{Social Welfare \& Allocation Efficiency}
+\begin{itemize}[leftmargin=*] 
+    \item Social Welfare ($SW$): $SW(\mathbf{m}) = \sum_{i=1}^{N} U_i(m_i)$.
+    \item Optimality Efficiency Gap:
+    \begin{equation} 
+    \mathrm{Gap} = \frac{SW_{\mathrm{centralized}} - SW_{\mathrm{decentralized}}}{SW_{\mathrm{centralized}}}.
+    \end{equation}
+    Core metric comparing decentralized approaches to the centralized.
+\end{itemize}
+
+\subsubsection*{Fairness \& Game-Theoretic Disparity}
+\begin{itemize}[leftmargin=*] 
+    \item Jain's Fairness Index ($J$): $J = \left(\sum U_i\right)^2 / \left(N \cdot \sum U_i^2\right)$, where $J = 1$ indicates perfectly equal utility.
+    \item Starvation Rate ($SR_{\text{starve}}$): fraction of agents receiving zero-utility fallback.
+    \item First-Mover Advantage Ratio: ratio of mean utility of the earliest-arriving quartile to the latest-arriving quartile.
+    \item Order Sensitivity ($\sigma^2_{\pi}$): variance in social welfare across random arrival permutations.
+\end{itemize}
+
+\subsubsection*{Utility-Specific Diagnostic Metrics}
+\begin{itemize}[leftmargin=*] 
+    \item Shapley-Budget Alignment Index ($SBA$): Spearman rank correlation between each agent's Shapley value $\phi_i$ and budget consumed $c_{m_i}$.
+    \item Shadow Price Trajectory and Volatility ($\bar{p}, \sigma_p$): mean and standard deviation of the endogenous shadow price $p(B_k)$ across the arrival sequence.
+    \item Submodular Approximation Ratio ($\alpha_{\mathrm{sub}}$): $\alpha_{\mathrm{sub}} = SW_{\mathrm{decentralized}} / SW_{\mathrm{centralized}}$.
+\end{itemize}
+
+% \subsubsection*{Learning Extension Metrics}
+% \begin{itemize}[leftmargin=*] 
+%     \item \textbf{Cumulative Regret} ($R_T$): $R_T = \sum_{t=1}^{T} (u^*(t) - u_{\text{chosen}}(t))$. Specific to the bandit/UCB learning extension (D6, Section~\ref{sec:learning}).
+% \end{itemize}
 
 \section{Contribution} 
 
@@ -261,10 +337,10 @@ The project will be divided among the group members as follows.
 \toprule 
 \textbf{Member} & \textbf{Responsibility} \\ 
 \midrule 
-Chauhan Mitesh & Task 1 \& 2: Mathematical formulation, benchmark dataset integration, and implementation of the Centralized MCKP Optimal Solver. \\ 
-Rathod Yuvraj  & Task 3: Implementation of the Decentralized Sequential Game simulator, state-tracking for remaining budget, and FCFS policies. \\ 
-Solanki Viraj  & Task 4: Engineering advanced utility functions (Scarcity-Adaptive Shadow Pricing and Submodular Marginal ROI). \\ 
-Sunay Desai    & Task 5: Development of the Learning Extension, executing evaluation permutations, calculating Price of Anarchy, and fairness metrics. \\ 
+Chauhan Mitesh & Dataset preparation and centralized approaches implementation. \\ 
+Rathod Yuvraj  & Problem formulation, experiment setup, and code structure. \\ 
+Solanki Viraj  & Implementing utility functions for decentralized approaches. \\ 
+Sunay Desai    & Implementing sequence ordering policies and utility integration. \\ 
 \bottomrule 
 \end{tabular} 
 \vspace{0.5cm}
@@ -276,10 +352,10 @@ The exact allocation of tasks will be adjusted according to the number of member
 
 \section{Expected Outcome} 
 
-The project will provide an experimental comparison between centralized and decentralized AI-model allocation under a shared budget. By modeling the decentralized interaction as a sequential resource-allocation game, we expect the experiments to reveal how agent arrival ordering, resource depletion rates, and individual best-response strategies interact. The main outcome will be an analysis of when decentralized sequential decision-making can approach centralized optimal welfare, the severity of the first-mover advantage under constrained budgets, and which agent ordering policies best balance overall efficiency, budget utilization, and fairness. 
+The project will provide an experimental comparison between centralized and decentralized AI-model allocation under a shared budget. By modeling the decentralized interaction as a sequential resource-allocation game, we expect the experiments to reveal how agent arrival ordering, utility function design, and individual best-response strategies interact. The main outcome will be an analysis of when decentralized sequential decision-making can approach centralized optimal welfare, the severity of the first-mover advantage under constrained budgets, which agent ordering policies best balance overall efficiency, budget utilization, and fairness, and whether alternative utility formulations can induce selfish agents to self-regulate and close the gap to centralized optimality. 
 
-\textbf{Anticipated Challenges and Limitations:} 
-A successful outcome will mathematically quantify the Price of Anarchy between centralized knapsack solvers and decentralized sequential routing. A primary anticipated challenge is tuning the hyper-parameters of the dynamic shadow pricing mechanism; if the scarcity penalty scales too aggressively, it may trigger an artificial "budget freeze" where late-arriving agents refuse to execute even when funds are available.
+% \textbf{Anticipated Challenges and Limitations:} 
+% A successful outcome will mathematically quantify the Price of Anarchy between centralized knapsack solvers and decentralized sequential routing. A primary anticipated challenge is tuning the hyper-parameters of the dynamic shadow pricing mechanism; if the scarcity penalty scales too aggressively, it may trigger an artificial "budget freeze" where late-arriving agents refuse to execute even when funds are available.
 
 \bibliographystyle{unsrt} 
 \bibliography{references} 

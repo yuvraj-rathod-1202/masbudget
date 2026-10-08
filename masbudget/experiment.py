@@ -107,6 +107,8 @@ class Experiment:
         return compute_metrics(self.result, metrics)
 
     def _run_centralized(self, seed: int) -> RunResult:
+        if not self.centralized:
+            raise RuntimeError("No centralized policy configured")
         mapping = self.centralized.allocate(self.agents, self.models, self.budget, random.Random(seed))
         unknown = set(mapping) - set(self.agents.ids)
         if unknown:
@@ -123,6 +125,8 @@ class Experiment:
         return run
 
     def _run_decentralized(self, seed: int) -> RunResult:
+        if not self.decentralized:
+            raise RuntimeError("No decentralized policy configured")
         assignments = self.decentralized.allocate(self.agents, self.models, self.budget, random.Random(seed))
         if sorted(a.agent_id for a in assignments) != sorted(self.agents.ids):
             raise ValueError(f"{self.decentralized.registry_name} must return exactly one assignment per agent")
@@ -133,6 +137,8 @@ class Experiment:
         return run
 
     def _decentralized_label(self) -> str:
+        if not self.decentralized:
+            raise RuntimeError("No decentralized policy configured")
         d = self.decentralized
         return f"{d.registry_name}[arrival={d.arrival_policy.registry_name}, utility={d.utility.registry_name}]"
 

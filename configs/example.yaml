@@ -1,0 +1,75 @@
+# Example batch of experiments. Run from the repo root:
+#   python -m masbudget configs/example.yaml
+# Schema: docs/config.md
+
+defaults:
+  dataset_path: "data/example_tasks.json"
+  seed: 42
+  num_runs: 1
+  models:                      # model name -> fixed cost per call (order = tie-break order)
+    gpt-4o-mini: 0.01
+    claude-3.5-sonnet: 0.05
+    o1-reasoning: 0.25
+  metrics:
+    - "average_quality"
+    - "total_cost"
+    - "budget_utilization"
+    - "jains_fairness"
+    - "optimality_gap"
+
+experiments:
+  # Both paradigms side by side on the same agents/models
+  - name: "compare_mckp_vs_random_moderate"
+    mode: "both"
+    num_agents: 10
+    budget: 0.50
+    num_runs: 50                 # 50 arrival permutations (seeds 42..91)
+    centralized:
+      policy: "optimal_mckp"
+      params: {}
+    decentralized:
+      arrival_policy: "random_fcfs"
+      arrival_params: {}
+      utility: "dynamic_shadow_price"
+      utility_params:
+        p0: 0.1
+        alpha: 1.5
+    metrics:
+      - "average_quality"
+      - "total_cost"
+      - "budget_utilization"
+      - "jains_fairness"
+      - "starvation_rate"
+      - "first_mover_advantage"
+      - "order_sensitivity"
+      - "optimality_gap"
+      - success_rate: {tau: 0.8}
+
+  # Centralized only
+  - name: "centralized_cascade_study"
+    mode: "centralized"
+    num_agents: 20
+    budget: 1.00
+    centralized:
+      policy: "confidence_cascade"
+      params:
+        threshold: 0.8
+    metrics:
+      - "average_quality"
+      - "total_cost"
+
+  # Decentralized only, no coordinator (arrival_policy: null = uncoordinated FCFS)
+  - name: "decentralized_uncoordinated_fcfs"
+    mode: "decentralized"
+    num_agents: 15
+    num_models: 2                # only the first two models above
+    budget: 0.60
+    decentralized:
+      arrival_policy: null
+      utility: "quasi_linear"
+      utility_params:
+        lambda_cost: 0.5
+    metrics:
+      - "average_quality"
+      - "total_cost"
+      - "starvation_rate"

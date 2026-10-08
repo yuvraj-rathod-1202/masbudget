@@ -1,0 +1,506 @@
+{
+  "name": "synthetic_example",
+  "description": "Synthetic tasks for smoke-testing the framework; replace with real benchmark data.",
+  "tasks": [
+    {
+      "task_id": "synthetic/000",
+      "difficulty": "medium",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.576,
+        "claude-3.5-sonnet": 0.772,
+        "o1-reasoning": 0.856
+      }
+    },
+    {
+      "task_id": "synthetic/001",
+      "difficulty": "medium",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.592,
+        "claude-3.5-sonnet": 0.813,
+        "o1-reasoning": 0.927
+      }
+    },
+    {
+      "task_id": "synthetic/002",
+      "difficulty": "hard",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.239,
+        "claude-3.5-sonnet": 0.472,
+        "o1-reasoning": 0.764
+      }
+    },
+    {
+      "task_id": "synthetic/003",
+      "difficulty": "easy",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.862,
+        "claude-3.5-sonnet": 0.895,
+        "o1-reasoning": 0.991
+      }
+    },
+    {
+      "task_id": "synthetic/004",
+      "difficulty": "medium",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.51,
+        "claude-3.5-sonnet": 0.737,
+        "o1-reasoning": 0.915
+      }
+    },
+    {
+      "task_id": "synthetic/005",
+      "difficulty": "medium",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.556,
+        "claude-3.5-sonnet": 0.765,
+        "o1-reasoning": 0.862
+      }
+    },
+    {
+      "task_id": "synthetic/006",
+      "difficulty": "hard",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.198,
+        "claude-3.5-sonnet": 0.537,
+        "o1-reasoning": 0.776
+      }
+    },
+    {
+      "task_id": "synthetic/007",
+      "difficulty": "easy",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.872,
+        "claude-3.5-sonnet": 0.91,
+        "o1-reasoning": 0.982
+      }
+    },
+    {
+      "task_id": "synthetic/008",
+      "difficulty": "hard",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.199,
+        "claude-3.5-sonnet": 0.537,
+        "o1-reasoning": 0.774
+      }
+    },
+    {
+      "task_id": "synthetic/009",
+      "difficulty": "hard",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.237,
+        "claude-3.5-sonnet": 0.469,
+        "o1-reasoning": 0.807
+      }
+    },
+    {
+      "task_id": "synthetic/010",
+      "difficulty": "easy",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.88,
+        "claude-3.5-sonnet": 0.908,
+        "o1-reasoning": 0.915
+      }
+    },
+    {
+      "task_id": "synthetic/011",
+      "difficulty": "hard",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.25,
+        "claude-3.5-sonnet": 0.499,
+        "o1-reasoning": 0.78
+      }
+    },
+    {
+      "task_id": "synthetic/012",
+      "difficulty": "hard",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.162,
+        "claude-3.5-sonnet": 0.483,
+        "o1-reasoning": 0.842
+      }
+    },
+    {
+      "task_id": "synthetic/013",
+      "difficulty": "hard",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.205,
+        "claude-3.5-sonnet": 0.479,
+        "o1-reasoning": 0.759
+      }
+    },
+    {
+      "task_id": "synthetic/014",
+      "difficulty": "medium",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.558,
+        "claude-3.5-sonnet": 0.759,
+        "o1-reasoning": 0.849
+      }
+    },
+    {
+      "task_id": "synthetic/015",
+      "difficulty": "easy",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.861,
+        "claude-3.5-sonnet": 0.936,
+        "o1-reasoning": 0.948
+      }
+    },
+    {
+      "task_id": "synthetic/016",
+      "difficulty": "hard",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.226,
+        "claude-3.5-sonnet": 0.538,
+        "o1-reasoning": 0.842
+      }
+    },
+    {
+      "task_id": "synthetic/017",
+      "difficulty": "hard",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.242,
+        "claude-3.5-sonnet": 0.504,
+        "o1-reasoning": 0.789
+      }
+    },
+    {
+      "task_id": "synthetic/018",
+      "difficulty": "hard",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.231,
+        "claude-3.5-sonnet": 0.535,
+        "o1-reasoning": 0.84
+      }
+    },
+    {
+      "task_id": "synthetic/019",
+      "difficulty": "hard",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.178,
+        "claude-3.5-sonnet": 0.499,
+        "o1-reasoning": 0.814
+      }
+    },
+    {
+      "task_id": "synthetic/020",
+      "difficulty": "easy",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.832,
+        "claude-3.5-sonnet": 0.882,
+        "o1-reasoning": 0.959
+      }
+    },
+    {
+      "task_id": "synthetic/021",
+      "difficulty": "easy",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.824,
+        "claude-3.5-sonnet": 0.912,
+        "o1-reasoning": 0.943
+      }
+    },
+    {
+      "task_id": "synthetic/022",
+      "difficulty": "medium",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.579,
+        "claude-3.5-sonnet": 0.763,
+        "o1-reasoning": 0.912
+      }
+    },
+    {
+      "task_id": "synthetic/023",
+      "difficulty": "easy",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.886,
+        "claude-3.5-sonnet": 0.892,
+        "o1-reasoning": 0.982
+      }
+    },
+    {
+      "task_id": "synthetic/024",
+      "difficulty": "easy",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.812,
+        "claude-3.5-sonnet": 0.889,
+        "o1-reasoning": 0.983
+      }
+    },
+    {
+      "task_id": "synthetic/025",
+      "difficulty": "medium",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.509,
+        "claude-3.5-sonnet": 0.813,
+        "o1-reasoning": 0.842
+      }
+    },
+    {
+      "task_id": "synthetic/026",
+      "difficulty": "easy",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.888,
+        "claude-3.5-sonnet": 0.896,
+        "o1-reasoning": 0.912
+      }
+    },
+    {
+      "task_id": "synthetic/027",
+      "difficulty": "hard",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.23,
+        "claude-3.5-sonnet": 0.544,
+        "o1-reasoning": 0.752
+      }
+    },
+    {
+      "task_id": "synthetic/028",
+      "difficulty": "hard",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.16,
+        "claude-3.5-sonnet": 0.476,
+        "o1-reasoning": 0.772
+      }
+    },
+    {
+      "task_id": "synthetic/029",
+      "difficulty": "medium",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.544,
+        "claude-3.5-sonnet": 0.736,
+        "o1-reasoning": 0.877
+      }
+    },
+    {
+      "task_id": "synthetic/030",
+      "difficulty": "hard",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.249,
+        "claude-3.5-sonnet": 0.47,
+        "o1-reasoning": 0.786
+      }
+    },
+    {
+      "task_id": "synthetic/031",
+      "difficulty": "hard",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.167,
+        "claude-3.5-sonnet": 0.517,
+        "o1-reasoning": 0.847
+      }
+    },
+    {
+      "task_id": "synthetic/032",
+      "difficulty": "hard",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.166,
+        "claude-3.5-sonnet": 0.466,
+        "o1-reasoning": 0.803
+      }
+    },
+    {
+      "task_id": "synthetic/033",
+      "difficulty": "hard",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.242,
+        "claude-3.5-sonnet": 0.517,
+        "o1-reasoning": 0.751
+      }
+    },
+    {
+      "task_id": "synthetic/034",
+      "difficulty": "hard",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.237,
+        "claude-3.5-sonnet": 0.542,
+        "o1-reasoning": 0.815
+      }
+    },
+    {
+      "task_id": "synthetic/035",
+      "difficulty": "hard",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.175,
+        "claude-3.5-sonnet": 0.506,
+        "o1-reasoning": 0.751
+      }
+    },
+    {
+      "task_id": "synthetic/036",
+      "difficulty": "medium",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.574,
+        "claude-3.5-sonnet": 0.784,
+        "o1-reasoning": 0.843
+      }
+    },
+    {
+      "task_id": "synthetic/037",
+      "difficulty": "medium",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.561,
+        "claude-3.5-sonnet": 0.797,
+        "o1-reasoning": 0.889
+      }
+    },
+    {
+      "task_id": "synthetic/038",
+      "difficulty": "hard",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.181,
+        "claude-3.5-sonnet": 0.525,
+        "o1-reasoning": 0.833
+      }
+    },
+    {
+      "task_id": "synthetic/039",
+      "difficulty": "easy",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.859,
+        "claude-3.5-sonnet": 0.916,
+        "o1-reasoning": 0.94
+      }
+    },
+    {
+      "task_id": "synthetic/040",
+      "difficulty": "hard",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.195,
+        "claude-3.5-sonnet": 0.521,
+        "o1-reasoning": 0.817
+      }
+    },
+    {
+      "task_id": "synthetic/041",
+      "difficulty": "easy",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.84,
+        "claude-3.5-sonnet": 0.94,
+        "o1-reasoning": 0.942
+      }
+    },
+    {
+      "task_id": "synthetic/042",
+      "difficulty": "easy",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.845,
+        "claude-3.5-sonnet": 0.896,
+        "o1-reasoning": 0.916
+      }
+    },
+    {
+      "task_id": "synthetic/043",
+      "difficulty": "hard",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.21,
+        "claude-3.5-sonnet": 0.45,
+        "o1-reasoning": 0.754
+      }
+    },
+    {
+      "task_id": "synthetic/044",
+      "difficulty": "medium",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.584,
+        "claude-3.5-sonnet": 0.735,
+        "o1-reasoning": 0.912
+      }
+    },
+    {
+      "task_id": "synthetic/045",
+      "difficulty": "easy",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.855,
+        "claude-3.5-sonnet": 0.966,
+        "o1-reasoning": 0.998
+      }
+    },
+    {
+      "task_id": "synthetic/046",
+      "difficulty": "easy",
+      "category": "bug_fixing",
+      "quality": {
+        "gpt-4o-mini": 0.84,
+        "claude-3.5-sonnet": 0.932,
+        "o1-reasoning": 0.938
+      }
+    },
+    {
+      "task_id": "synthetic/047",
+      "difficulty": "easy",
+      "category": "code_generation",
+      "quality": {
+        "gpt-4o-mini": 0.87,
+        "claude-3.5-sonnet": 0.872,
+        "o1-reasoning": 0.982
+      }
+    },
+    {
+      "task_id": "synthetic/048",
+      "difficulty": "easy",
+      "category": "unit_test_generation",
+      "quality": {
+        "gpt-4o-mini": 0.812,
+        "claude-3.5-sonnet": 0.935,
+        "o1-reasoning": 0.987
+      }
+    },
+    {
+      "task_id": "synthetic/049",
+      "difficulty": "hard",
+      "category": "code_explanation",
+      "quality": {
+        "gpt-4o-mini": 0.248,
+        "claude-3.5-sonnet": 0.46,
+        "o1-reasoning": 0.835
+      }
+    }
+  ]
+}

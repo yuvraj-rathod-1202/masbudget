@@ -89,9 +89,13 @@ class TestShapleyBudgetShare:
     def test_gamma_zero_reduces_to_quasi_linear(self):
         assert utility("shapley_budget_share", 2, "big", 8.0, gamma=0.0) == pytest.approx(0.90 - 0.1 * 4.0)
 
-    @pytest.mark.skip(reason="TODO: add a test once phi_i (Shapley value) is defined")
     def test_critical_agents_get_lower_cost_penalty(self):
-        ...
+        # Critical agent (hard-2) has a larger delta_q (0.80) than easy agent (easy-0, delta_q 0.10)
+        # So effective cost penalty for hard-2 is smaller than for easy-0.
+        penalty_hard = 0.90 - utility("shapley_budget_share", 2, "big", 8.0)
+        penalty_easy = 0.90 - utility("shapley_budget_share", 0, "big", 8.0)
+        assert penalty_hard < penalty_easy
+
 
 
 class TestMarginalROIRatio:

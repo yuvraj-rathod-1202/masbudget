@@ -6,4 +6,5 @@ class BestModelUtility(BaseUtilityFunction):
     """Greedy best-model baseline. U_i(m) = q_{i,m} (cost ignored until the budget runs out)."""
 
     def compute(self, agent, model, state):
-        raise NotImplementedError(f"{self.registry_name} is not implemented yet")
+        return model.quality(agent.task)
+

@@ -11,4 +11,10 @@ class MarginalROIRatioUtility(BaseUtilityFunction):
     """
 
     def compute(self, agent, model, state):
-        raise NotImplementedError(f"{self.registry_name} is not implemented yet")
+        base = state.models.cheapest()
+        delta_cost = model.cost - base.cost
+        if abs(delta_cost) < 1e-9:
+            return 0.0
+        delta_quality = model.quality(agent.task) - base.quality(agent.task)
+        return delta_quality / delta_cost
+

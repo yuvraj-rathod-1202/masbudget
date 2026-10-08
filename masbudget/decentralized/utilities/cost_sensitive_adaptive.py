@@ -10,4 +10,12 @@ class CostSensitiveAdaptiveUtility(BaseUtilityFunction):
     """
 
     def compute(self, agent, model, state):
-        raise NotImplementedError(f"{self.registry_name} is not implemented yet")
+        lambda_0 = float(self.params.get("lambda_0", self.params.get("lambda_cost", 0.1)))
+        alpha = float(self.params.get("alpha", 1.0))
+        frac = state.budget_fraction
+        if frac <= 1e-9:
+            lam = float("inf")
+        else:
+            lam = lambda_0 / (frac ** alpha)
+        return model.quality(agent.task) - lam * model.cost
+

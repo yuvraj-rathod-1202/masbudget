@@ -6,4 +6,5 @@ class RandomSequentialArrival(BaseArrivalPolicy):
     """Random sequential. At each step pick a waiting agent uniformly at random (``state.rng``)."""
 
     def select_next(self, remaining, state):
-        raise NotImplementedError(f"{self.registry_name} is not implemented yet")
+        return state.rng.choice(remaining)
+

@@ -106,7 +106,10 @@ class TestConfidenceCascade:
 
 
 class TestPredictiveRouter:
-    @pytest.mark.skip(reason="TODO: add tests once the router's estimator is designed")
     def test_routes_hard_tasks_to_stronger_models(self):
-        mapping, agents, _ = allocate("predictive_router", BUDGETS["moderate"])
-        ...
+        mapping, agents, models = allocate("predictive_router", BUDGETS["moderate"])
+        # Hard tasks (hard-2) get routed to stronger models ('big', 'mid')
+        # while easy task (easy-0) stays on 'cheap'
+        assert model_of(mapping, 2) in ("mid", "big")
+        assert model_of(mapping, 0) == "cheap"
+

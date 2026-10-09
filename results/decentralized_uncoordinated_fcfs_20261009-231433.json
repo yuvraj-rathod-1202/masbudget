@@ -1,0 +1,53 @@
+{
+  "experiment": "decentralized_uncoordinated_fcfs",
+  "timestamp": "20261009-231433",
+  "config": {
+    "dataset_path": "data/example_tasks.json",
+    "seed": 42,
+    "num_runs": 1,
+    "models": {
+      "gpt-4o-mini": 0.01,
+      "claude-3.5-sonnet": 0.05,
+      "o1-reasoning": 0.25
+    },
+    "name": "decentralized_uncoordinated_fcfs",
+    "mode": "decentralized",
+    "num_agents": 15,
+    "num_models": 2,
+    "budget": 0.6,
+    "decentralized": {
+      "arrival_policy": null,
+      "utility": "quasi_linear",
+      "utility_params": {
+        "lambda_cost": 0.5
+      }
+    }
+  },
+  "num_agents": 15,
+  "runs": {
+    "decentralized": 1
+  },
+  "metrics": {
+    "average_quality": {
+      "decentralized": {
+        "mean": 0.5443333333333334,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "total_cost": {
+      "decentralized": {
+        "mean": 0.6000000000000001,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "starvation_rate": {
+      "decentralized": {
+        "mean": 0.2,
+        "std": 0.0,
+        "n": 1
+      }
+    }
+  }
+}

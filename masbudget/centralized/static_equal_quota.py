@@ -1,6 +1,9 @@
 from masbudget.centralized.base import CENTRALIZED_POLICIES, BaseCentralizedPolicy
 
 
+from masbudget.core import FALLBACK
+
+
 @CENTRALIZED_POLICIES.register("static_equal_quota")
 class StaticEqualQuotaPolicy(BaseCentralizedPolicy):
     """Static equal quota (fair baseline).
@@ -10,4 +13,17 @@ class StaticEqualQuotaPolicy(BaseCentralizedPolicy):
     """
 
     def allocate(self, agents, models, budget, rng):
-        raise NotImplementedError(f"{self.registry_name} is not implemented yet")
+        if not agents or budget <= 1e-9:
+            return {a.agent_id: FALLBACK for a in agents}
+
+        slice_ = budget / len(agents)
+        affordable = models.affordable(slice_)
+        mapping = {}
+        for agent in agents:
+            if affordable:
+                best = max(affordable, key=lambda m: m.quality(agent.task))
+                mapping[agent.agent_id] = best.name
+            else:
+                mapping[agent.agent_id] = FALLBACK
+        return mapping
+

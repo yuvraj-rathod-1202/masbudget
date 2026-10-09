@@ -104,13 +104,6 @@ class TestMarginalROIRatio:
         assert utility("marginal_roi_ratio", 2, model, 8.0) == pytest.approx(expected)
 
 
-class TestCostSensitiveAdaptive:
-    def test_expensive_models_lose_appeal_as_budget_depletes(self):
-        assert big_vs_cheap_preference("cost_sensitive_adaptive", 16.0) > big_vs_cheap_preference(
-            "cost_sensitive_adaptive", 4.0
-        )
-
-
 class TestBestModel:
     def test_ranks_models_by_quality(self):
         ranking = sorted(["cheap", "mid", "big"], key=lambda m: utility("best_model", 1, m, 16.0))

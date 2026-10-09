@@ -94,7 +94,7 @@ tests/
 | Centralized | `optimal_mckp`, `predictive_router`, `confidence_cascade`, `static_equal_quota`, `cheapest_model` | stubs |
 | Arrival | `random_fcfs`, `hardest_task_first`, `easiest_task_first`, `marginal_roi_priority` | stubs |
 | Arrival | `fcfs` (used for `null`) | implemented |
-| Utilities | `quasi_linear`, `dynamic_shadow_price`, `shapley_budget_share`, `marginal_roi_ratio`, `cost_sensitive_adaptive`, `best_model` | stubs |
+| Utilities | `quasi_linear`, `dynamic_shadow_price`, `shapley_budget_share`, `marginal_roi_ratio`, `best_model` | stubs |
 | Decentralized engine | `sequential_best_response` | implemented |
 | Metrics | `average_quality`, `success_rate`, `total_cost`, `budget_utilization`, `cost_effectiveness`, `social_welfare`, `optimality_gap`, `jains_fairness`, `starvation_rate`, `first_mover_advantage`, `order_sensitivity` | implemented |
 

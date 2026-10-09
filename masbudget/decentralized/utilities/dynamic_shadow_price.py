@@ -9,4 +9,13 @@ class DynamicShadowPriceUtility(BaseUtilityFunction):
     """
 
     def compute(self, agent, model, state):
-        raise NotImplementedError(f"{self.registry_name} is not implemented yet")
+        p0 = float(self.params.get("p0", 0.1))
+        alpha = float(self.params.get("alpha", 1.5))
+        if state.remaining_budget <= 1e-9:
+            price = float("inf")
+        elif state.total_budget <= 1e-9:
+            price = p0
+        else:
+            price = p0 * (state.total_budget / state.remaining_budget) ** alpha
+        return model.quality(agent.task) - price * model.cost
+

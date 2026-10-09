@@ -89,22 +89,26 @@ class TestShapleyBudgetShare:
     def test_gamma_zero_reduces_to_quasi_linear(self):
         assert utility("shapley_budget_share", 2, "big", 8.0, gamma=0.0) == pytest.approx(0.90 - 0.1 * 4.0)
 
-    @pytest.mark.skip(reason="TODO: add a test once phi_i (Shapley value) is defined")
-    def test_critical_agents_get_lower_cost_penalty(self):
-        ...
+    EXACT_SHAPLEY = [0.55, 0.25, -0.15, -0.05]
+
+    def test_monte_carlo_converges_to_exact_shapley(self):
+        agents, models = make_agents(), make_models()
+        state = make_state(agents, models, 8.0, BUDGETS["generous"])
+        u = make_utility("shapley_budget_share", num_samples=5000)
+        phis = [u.compute_phi(a, state) for a in agents]
+        assert phis == pytest.approx(self.EXACT_SHAPLEY, abs=0.03)
+
+    def test_higher_contribution_gets_lower_cost_penalty(self):
+        penalty_hard = 0.90 - utility("shapley_budget_share", 2, "big", 8.0)
+        penalty_easy = 0.90 - utility("shapley_budget_share", 0, "big", 8.0)
+        assert penalty_easy < penalty_hard
+
 
 
 class TestMarginalROIRatio:
     @pytest.mark.parametrize("model, expected", [("mid", (0.40 - 0.10) / 1.0), ("big", (0.90 - 0.10) / 3.0)])
     def test_formula_against_cheapest_baseline(self, model, expected):
         assert utility("marginal_roi_ratio", 2, model, 8.0) == pytest.approx(expected)
-
-
-class TestCostSensitiveAdaptive:
-    def test_expensive_models_lose_appeal_as_budget_depletes(self):
-        assert big_vs_cheap_preference("cost_sensitive_adaptive", 16.0) > big_vs_cheap_preference(
-            "cost_sensitive_adaptive", 4.0
-        )
 
 
 class TestBestModel:

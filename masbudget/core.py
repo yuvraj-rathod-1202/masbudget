@@ -36,16 +36,29 @@ class Task:
 
 @dataclass(frozen=True)
 class Agent:
-    """An autonomous agent i that owns exactly one task t_i."""
+    """An autonomous agent i that owns a list of tasks (one model call per task)."""
 
+    agent_id: int
+    tasks: tuple[Task, ...]
+
+
+@dataclass(frozen=True)
+class Job:
+    """One model call: agent ``agent_id`` running one of its tasks.
+
+    Jobs are what policies assign models to, so an agent with 10 tasks makes 10 choices.
+    """
+
+    job_id: int
     agent_id: int
     task: Task
 
 
 @dataclass(frozen=True)
 class Assignment:
-    """The model an agent ended up with in one run."""
+    """The model a job ended up with in one run."""
 
+    job_id: int
     agent_id: int
     model: str
     quality: float
@@ -53,6 +66,7 @@ class Assignment:
     step: int | None = None  # arrival position k (decentralized only)
     utility: float | None = None  # agent's own U_i(m) at decision time (decentralized only)
     remaining_budget: float | None = None  # B_k observed before acting (decentralized only)
+    attempts: tuple[str, ...] = ()
 
     @property
     def starved(self) -> bool:
@@ -61,19 +75,23 @@ class Assignment:
 
 @dataclass
 class AllocationState:
-    """What an agent / arrival policy observes at step k of the sequential game."""
+    """What an agent / arrival policy observes at step k of the sequential game (one job per step)."""
 
     step: int
     total_budget: float  # B
     remaining_budget: float  # B_k
     agents: AgentRegistry
     models: ModelRegistry
-    history: list[Assignment]  # decisions of agents that already acted
+    history: list[Assignment]  # jobs that were already served
     rng: random.Random
 
     @property
     def num_agents(self) -> int:
         return len(self.agents)
+
+    @property
+    def num_jobs(self) -> int:
+        return len(self.agents.jobs)
 
     @property
     def budget_fraction(self) -> float:
@@ -89,7 +107,7 @@ class RunResult:
     policy: str
     seed: int
     budget: float
-    assignments: list[Assignment]  # arrival order for decentralized, agent order for centralized
+    assignments: list[Assignment]  # one per job: arrival order for decentralized, job order for centralized
 
     @property
     def qualities(self) -> list[float]:
@@ -103,6 +121,18 @@ class RunResult:
     def total_cost(self) -> float:
         return sum(a.cost for a in self.assignments)
 
+    def by_agent(self) -> dict[int, list[Assignment]]:
+        """Assignments grouped by owning agent (agent order of first appearance)."""
+        groups: dict[int, list[Assignment]] = {}
+        for a in self.assignments:
+            groups.setdefault(a.agent_id, []).append(a)
+        return groups
+
+    @property
+    def agent_payoffs(self) -> dict[int, float]:
+        """Per-agent payoff u_i = mean quality over the agent's tasks."""
+        return {agent_id: sum(a.quality for a in rows) / len(rows) for agent_id, rows in self.by_agent().items()}
+
 
 @dataclass
 class ExperimentResult:
@@ -111,6 +141,7 @@ class ExperimentResult:
     name: str
     budget: float
     num_agents: int
+    num_jobs: int
     runs: dict[str, list[RunResult]] = field(default_factory=dict)
     metrics: dict[str, Any] = field(default_factory=dict)
 

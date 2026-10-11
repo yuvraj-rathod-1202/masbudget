@@ -1,0 +1,97 @@
+# Every centralized policy and every decentralized utility, each run on its own.
+# Decentralized runs use arrival_policy: null (no coordinator, uncoordinated FCFS).
+# Run from the repo root:
+#   python -m masbudget configs/all_individual_policy.yaml
+
+defaults:
+  dataset_path: "data/example_tasks.json"
+  seed: 42
+  num_runs: 1
+  num_agents: 3
+  budget: 6.5
+  models:
+    gpt-4o-mini: 0.01
+    claude-3.5-sonnet: 0.05
+    o1-reasoning: 0.25
+  metrics:
+    - "average_quality"
+    - success_rate: {tau: 0.7}
+    - "social_welfare"
+    - "total_cost"
+    - "budget_utilization"
+    - "jains_fairness"
+
+experiments:
+
+  - name: "central_optimal_mckp"
+    mode: "centralized"
+    centralized:
+      policy: "optimal_mckp"
+      params: {}
+
+  - name: "central_cheapest_model"
+    mode: "centralized"
+    centralized:
+      policy: "cheapest_model"
+      params: {}
+
+  - name: "central_static_equal_quota"
+    mode: "centralized"
+    centralized:
+      policy: "static_equal_quota"
+      params: {}
+
+  - name: "central_confidence_cascade"
+    mode: "centralized"
+    centralized:
+      policy: "confidence_cascade"
+      params:
+        threshold: 0.8
+
+  - name: "central_predictive_router"
+    mode: "centralized"
+    centralized:
+      policy: "predictive_router"
+      params: {}
+
+  - name: "decentral_best_model"
+    mode: "decentralized"
+    decentralized:
+      arrival_policy: null
+      utility: "best_model"
+      utility_params: {}
+
+  - name: "decentral_quasi_linear"
+    mode: "decentralized"
+    decentralized:
+      arrival_policy: null
+      utility: "quasi_linear"
+      utility_params:
+        lambda_cost: 0.5
+
+  - name: "decentral_dynamic_shadow_price"
+    mode: "decentralized"
+    decentralized:
+      arrival_policy: null
+      utility: "dynamic_shadow_price"
+      utility_params:
+        p0: 0.1
+        alpha: 1.5
+
+  - name: "decentral_marginal_roi_ratio"
+    mode: "decentralized"
+    decentralized:
+      arrival_policy: null
+      utility: "marginal_roi_ratio"
+      utility_params: {}
+
+  - name: "decentral_shapley_budget_share"
+    mode: "decentralized"
+    decentralized:
+      arrival_policy: null
+      utility: "shapley_budget_share"
+      utility_params:
+        lambda_cost: 0.5
+        gamma: 1.0
+        num_samples: 100
+        seed: 42

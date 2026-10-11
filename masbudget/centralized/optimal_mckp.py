@@ -1,74 +1,69 @@
 from __future__ import annotations
 
-import logging
+from typing import Iterable
 
 from masbudget.centralized.base import CENTRALIZED_POLICIES, BaseCentralizedPolicy
-from masbudget.core import FALLBACK
-
-logger = logging.getLogger(__name__)
+from masbudget.core import FALLBACK, Job
+from masbudget.registry import ModelRegistry
 
 
 @CENTRALIZED_POLICIES.register("optimal_mckp")
 class OptimalMCKPPolicy(BaseCentralizedPolicy):
     """Exact Multiple-Choice Knapsack solver (upper bound), using Google OR-Tools.
 
-        max  sum_i sum_m q_{i,m} x_{i,m}
-        s.t. sum_i sum_m c_m x_{i,m} <= B
-             sum_m x_{i,m} <= 1          (agents with no model get the fallback)
-             x_{i,m} in {0, 1}
+        max  sum_j sum_m q_{j,m} x_{j,m}
+        s.t. sum_j sum_m c_m x_{j,m} <= B
+             sum_m x_{j,m} <= 1          (jobs with no model get the fallback)
+             x_{j,m} in {0, 1}
+
+    over every job j (each task of each agent).
     """
 
     def allocate(self, agents, models, budget, rng):
-        if not agents or budget <= 1e-9:
-            return {a.agent_id: FALLBACK for a in agents}
+        return solve_mckp(agents.jobs, models, budget)
 
-        agent_list = list(agents)
-        model_list = list(models)
-        if not agent_list or not model_list:
-            return {a.agent_id: FALLBACK for a in agents}
 
-        # 1. Primary: Google OR-Tools (SCIP / CBC integer solver)
-        try:
-            from ortools.linear_solver import pywraplp
+def solve_mckp(jobs: Iterable[Job], models: ModelRegistry, budget: float) -> dict[int, str]:
+    """Optimal ``{job_id: model_name}`` for ``jobs`` within ``budget`` (OR-Tools SCIP, else CBC)."""
+    job_list = list(jobs)
+    model_list = list(models)
+    if not job_list or not model_list or budget <= 1e-9:
+        return {j.job_id: FALLBACK for j in job_list}
 
-            solver = pywraplp.Solver.CreateSolver("SCIP")
-            if not solver:
-                solver = pywraplp.Solver.CreateSolver("CBC")
-            if solver:
-                x = {}
-                for a in agent_list:
-                    for m in model_list:
-                        x[a.agent_id, m.name] = solver.BoolVar(f"x_{a.agent_id}_{m.name}")
+    from ortools.linear_solver import pywraplp
 
-                # Budget constraint: sum_i sum_m (c_m * x_{i,m}) <= B
-                solver.Add(
-                    sum(m.cost * x[a.agent_id, m.name] for a in agent_list for m in model_list) <= budget + 1e-9
-                )
+    solver = pywraplp.Solver.CreateSolver("SCIP") or pywraplp.Solver.CreateSolver("CBC")
+    if not solver:
+        raise RuntimeError("OR-Tools has neither the SCIP nor the CBC solver")
 
-                # Each agent chooses at most one model: sum_m x_{i,m} <= 1
-                for a in agent_list:
-                    solver.Add(sum(x[a.agent_id, m.name] for m in model_list) <= 1)
+    x = {}
+    for j in job_list:
+        for m in model_list:
+            x[j.job_id, m.name] = solver.BoolVar(f"x_{j.job_id}_{m.name}")
 
-                # Objective: maximize total quality sum_i sum_m (q_{i,m} * x_{i,m})
-                objective = solver.Objective()
-                for a in agent_list:
-                    for m in model_list:
-                        objective.SetCoefficient(x[a.agent_id, m.name], m.quality(a.task))
-                objective.SetMaximization()
+    # Budget constraint: sum_j sum_m (c_m * x_{j,m}) <= B
+    solver.Add(sum(m.cost * x[j.job_id, m.name] for j in job_list for m in model_list) <= budget + 1e-9)
 
-                status = solver.Solve()
-                if status in (pywraplp.Solver.OPTIMAL, pywraplp.Solver.FEASIBLE):
-                    mapping = {}
-                    for a in agent_list:
-                        chosen = FALLBACK
-                        for m in model_list:
-                            if x[a.agent_id, m.name].solution_value() > 0.5:
-                                chosen = m.name
-                                break
-                        mapping[a.agent_id] = chosen
-                    return mapping
-        except ImportError:
-            pass
-        except Exception as exc:
-            logger.debug("OR-Tools solver failed (%s); trying fallback solver", exc)
-        
+    # Each job gets at most one model: sum_m x_{j,m} <= 1
+    for j in job_list:
+        solver.Add(sum(x[j.job_id, m.name] for m in model_list) <= 1)
+
+    # Objective: maximize total quality sum_j sum_m (q_{j,m} * x_{j,m})
+    objective = solver.Objective()
+    for j in job_list:
+        for m in model_list:
+            objective.SetCoefficient(x[j.job_id, m.name], m.quality(j.task))
+    objective.SetMaximization()
+
+    status = solver.Solve()
+    if status not in (pywraplp.Solver.OPTIMAL, pywraplp.Solver.FEASIBLE):
+        raise RuntimeError(f"OR-Tools found no solution (status {status})")
+    mapping = {}
+    for j in job_list:
+        chosen = FALLBACK
+        for m in model_list:
+            if x[j.job_id, m.name].solution_value() > 0.5:
+                chosen = m.name
+                break
+        mapping[j.job_id] = chosen
+    return mapping

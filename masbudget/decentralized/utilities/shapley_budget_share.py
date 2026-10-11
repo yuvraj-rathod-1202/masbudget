@@ -6,21 +6,23 @@ from masbudget.decentralized.utilities.base import UTILITY_FUNCTIONS, BaseUtilit
 class ShapleyBudgetShareUtility(BaseUtilityFunction):
     """U_i(m) = q_{i,m} - lambda / (1 + gamma * phi_i) * c_m.
 
-    phi_i is agent i's Shapley value / marginal contribution to collective welfare
-    (computable from ``state.agents`` and ``state.models``). Params: ``lambda_cost``, ``gamma``.
+    phi_i is the Shapley value / marginal contribution to collective welfare of agent i,
+    the owner of the job (computable from ``state.agents`` and ``state.models``); a coalition
+    of agents brings all of its members' tasks. Params: ``lambda_cost``, ``gamma``.
     """
     
     def _get_coalition_welfare(self, coalition, models) -> float:
         """Characteristic function v(S): The maximum collective quality 
 
-        minus cost achievable by a coalition of agents choosing the optimal model.
+        minus cost achievable by a coalition of agents choosing the optimal model
+        (quality summed over every task of every agent in the coalition).
         """
         if not coalition or not models:
             return 0.0
 
         max_welfare = float("-inf")
         for m in models:
-            total_quality = sum(m.quality(a.task) for a in coalition)
+            total_quality = sum(m.quality(task) for a in coalition for task in a.tasks)
             welfare = total_quality - m.cost
             if welfare > max_welfare:
                 max_welfare = welfare
@@ -63,15 +65,15 @@ class ShapleyBudgetShareUtility(BaseUtilityFunction):
         return phi_i
             
 
-    def compute(self, agent, model, state):
+    def compute(self, job, model, state):
         lambda_cost = float(self.params.get("lambda_cost", 0.1))
         gamma = float(self.params.get("gamma", 1.0))
         
-        phi_i = self.compute_phi(agent, state)
+        phi_i = self.compute_phi(state.agents.get(job.agent_id), state)
         
         denominator = 1.0 + gamma * phi_i
         if denominator < 1e-3:
             denominator = 1e-3
         
         effective_lambda = lambda_cost / denominator
-        return model.quality(agent.task) - effective_lambda * model.cost
+        return model.quality(job.task) - effective_lambda * model.cost

@@ -11,7 +11,7 @@ import pytest
 
 from masbudget.decentralized import UTILITY_FUNCTIONS, create_arrival_policy, create_utility_function
 from masbudget.decentralized.sequential import SequentialBestResponse
-from tests.helpers import BUDGETS, call_or_skip, make_agents, make_models, make_state
+from tests.helpers import BUDGETS, call_or_skip, make_agents, make_models, make_multi_agents, make_state
 
 # Params each utility gets in these tests. Add an entry if your utility needs parameters.
 POLICY_PARAMS = {
@@ -25,14 +25,14 @@ def make_utility(name, **override):
     return create_utility_function(name, **{**POLICY_PARAMS.get(name, {}), **override})
 
 
-def utility(name, agent_id, model_name, remaining, total=BUDGETS["generous"], step=0, **override):
-    agents, models = make_agents(), make_models()
+def utility(name, job_id, model_name, remaining, total=BUDGETS["generous"], step=0, agents=None, **override):
+    agents, models = agents or make_agents(), make_models()
     state = make_state(agents, models, remaining, total, step=step)
-    return call_or_skip(make_utility(name, **override).compute, agents.get(agent_id), models.get(model_name), state)
+    return call_or_skip(make_utility(name, **override).compute, agents.jobs[job_id], models.get(model_name), state)
 
 
 def big_vs_cheap_preference(name, remaining):
-    """How much more agent hard-2 prefers 'big' over 'cheap' when B_k = remaining."""
+    """How much more job hard-2 prefers 'big' over 'cheap' when B_k = remaining."""
     return utility(name, 2, "big", remaining) - utility(name, 2, "cheap", remaining)
 
 
@@ -44,10 +44,10 @@ def big_vs_cheap_preference(name, remaining):
 def test_returns_a_number_for_every_affordable_model(name, remaining):
     agents, models = make_agents(), make_models()
     u = make_utility(name)
-    for step, agent in enumerate(agents):
+    for step, job in enumerate(agents.jobs):
         state = make_state(agents, models, remaining, BUDGETS["generous"], step=step)
         for model in models.affordable(remaining):
-            value = call_or_skip(u.compute, agent, model, state)
+            value = call_or_skip(u.compute, job, model, state)
             assert isinstance(value, (int, float)) and not math.isnan(value)
 
 
@@ -97,6 +97,16 @@ class TestShapleyBudgetShare:
         u = make_utility("shapley_budget_share", num_samples=5000)
         phis = [u.compute_phi(a, state) for a in agents]
         assert phis == pytest.approx(self.EXACT_SHAPLEY, abs=0.03)
+
+    def test_jobs_of_the_same_agent_share_its_shapley_value(self):
+        agents = make_multi_agents()
+        state = make_state(agents, make_models(), 8.0, BUDGETS["generous"])
+        u = make_utility("shapley_budget_share")
+        assert u.compute_phi(agents.get(0), state) != u.compute_phi(agents.get(1), state)
+        # jobs 0 (easy-0, q_big 0.90) and 2 (medium-1, q_big 0.85) both belong to agent 0
+        penalty_0 = 0.90 - utility("shapley_budget_share", 0, "big", 8.0, agents=agents)
+        penalty_2 = 0.85 - utility("shapley_budget_share", 2, "big", 8.0, agents=agents)
+        assert penalty_0 == pytest.approx(penalty_2)
 
     def test_higher_contribution_gets_lower_cost_penalty(self):
         penalty_hard = 0.90 - utility("shapley_budget_share", 2, "big", 8.0)

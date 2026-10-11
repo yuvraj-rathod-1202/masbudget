@@ -3,18 +3,18 @@ from masbudget.decentralized.arrival.base import ARRIVAL_POLICIES, BaseArrivalPo
 
 @ARRIVAL_POLICIES.register("marginal_roi_priority")
 class MarginalROIPriorityArrival(BaseArrivalPolicy):
-    """Pick the waiting agent with the highest expected quality gain per unit cost (dq / dc)."""
+    """Pick the waiting job with the highest expected quality gain per unit cost (dq / dc)."""
 
     def select_next(self, remaining, state):
         base = state.models.cheapest()
 
-        def agent_max_roi(agent):
+        def max_roi(job):
             upgrades = [
-                (m.quality(agent.task) - base.quality(agent.task)) / (m.cost - base.cost)
+                (m.quality(job.task) - base.quality(job.task)) / (m.cost - base.cost)
                 for m in state.models
                 if m.cost > base.cost + 1e-9
             ]
             return max(upgrades) if upgrades else 0.0
 
-        return max(remaining, key=agent_max_roi)
+        return max(remaining, key=max_roi)
 

@@ -7,27 +7,33 @@ import pytest
 
 from masbudget.centralized import CENTRALIZED_POLICIES, BaseCentralizedPolicy
 from masbudget.config import ConfigError, build_experiment, load_config
-from masbudget.core import CENTRALIZED, DECENTRALIZED, FALLBACK, BudgetExceededError, BudgetLedger
+from masbudget.core import CENTRALIZED, DECENTRALIZED, FALLBACK, BudgetExceededError, BudgetLedger, Task
 from masbudget.dataset import DatasetError, load_dataset
 from masbudget.decentralized import UTILITY_FUNCTIONS, BaseUtilityFunction, create_arrival_policy
 from masbudget.decentralized.sequential import SequentialBestResponse
 from masbudget.experiment import Experiment
+from masbudget.registry import AgentRegistry
 from tests.helpers import make_agents, make_models
 
 
 class QualityUtility(BaseUtilityFunction):
-    def compute(self, agent, model, state):
-        return model.quality(agent.task)
+    def compute(self, job, model, state):
+        return model.quality(job.task)
 
 
 class CheapestForAll(BaseCentralizedPolicy):
     def allocate(self, agents, models, budget, rng):
-        return {a.agent_id: models.cheapest().name for a in agents}
+        return {j.job_id: models.cheapest().name for j in agents.jobs}
 
 
 class Overspend(BaseCentralizedPolicy):
     def allocate(self, agents, models, budget, rng):
-        return {a.agent_id: "big" for a in agents}
+        return {j.job_id: "big" for j in agents.jobs}
+
+
+class TwoAttempts(BaseCentralizedPolicy):
+    def allocate(self, agents, models, budget, rng):
+        return {j.job_id: ["cheap", "mid"] for j in agents.jobs}
 
 
 # ---------------------------------------------------------------- ledger & registries
@@ -55,6 +61,17 @@ def test_model_registry_rejects_duplicates_and_reserved_name(models):
         models.add(FALLBACK, 0.0)
 
 
+def test_agent_registry_interleaves_jobs_round_robin():
+    a, b, c = (Task(name, "easy", {}) for name in "abc")
+    agents = AgentRegistry.from_task_lists([[a, b, c], [a]])  # uneven task lists are fine
+    assert [(j.job_id, j.agent_id, j.task.task_id) for j in agents.jobs] == [
+        (0, 0, "a"), (1, 1, "a"), (2, 0, "b"), (3, 0, "c")
+    ]
+    assert [j.job_id for j in agents.jobs_of(0)] == [0, 2, 3]
+    with pytest.raises(ValueError, match="no tasks"):
+        AgentRegistry.from_task_lists([[]])
+
+
 def test_unknown_factory_name_lists_available():
     with pytest.raises(ValueError, match="Available"):
         CENTRALIZED_POLICIES.create("does_not_exist")
@@ -70,6 +87,15 @@ def test_sequential_game_deducts_budget_and_starves_late_agents(agents, models):
     assert [a.model for a in out] == ["big", "mid", FALLBACK, FALLBACK]
     assert [a.remaining_budget for a in out] == pytest.approx([6.0, 2.0, 0.0, 0.0])
     assert [a.step for a in out] == [0, 1, 2, 3]
+
+
+def test_sequential_game_serves_each_task_of_each_agent(multi_agents, models):
+    game = SequentialBestResponse(create_arrival_policy(None), QualityUtility())
+    out = game.allocate(multi_agents, models, 6.0, random.Random(0))
+    # round-robin: agent 0's easy-0 takes big (4 -> 2 left), agent 1's hard-2 takes mid (-> 0 left)
+    assert [(a.job_id, a.agent_id, a.model) for a in out] == [
+        (0, 0, "big"), (1, 1, "mid"), (2, 0, FALLBACK), (3, 1, FALLBACK)
+    ]
 
 
 # ---------------------------------------------------------------- experiment
@@ -89,6 +115,16 @@ def test_experiment_rejects_overspending_centralized_policy(agents, models, regi
     register(CENTRALIZED_POLICIES, "_overspend", Overspend)
     with pytest.raises(BudgetExceededError):
         Experiment(agents, models, 8.0, centralized_policy="_overspend").run()
+
+
+def test_experiment_charges_every_attempt_and_keeps_the_last_answer(agents, models, register):
+    register(CENTRALIZED_POLICIES, "_two_attempts", TwoAttempts)
+    run = Experiment(agents, models, 12.0, centralized_policy="_two_attempts").run().runs[CENTRALIZED][0]
+    first = run.assignments[0]  # easy-0: cheap (1) then mid (2)
+    assert (first.model, first.quality, first.cost, first.attempts) == ("mid", 0.85, 3.0, ("cheap", "mid"))
+    assert run.total_cost == pytest.approx(12.0)
+    with pytest.raises(BudgetExceededError):  # 4 jobs x 3 > 11
+        Experiment(agents, models, 11.0, centralized_policy="_two_attempts").run()
 
 
 def test_experiment_needs_something_to_run(agents, models):
@@ -125,7 +161,8 @@ def write_config(tmp_path, body):
     dataset = write_dataset(tmp_path / "data.json").as_posix()
     path = tmp_path / "config.yaml"
     path.write_text(
-        f"defaults:\n  dataset_path: {dataset}\n  models: {{cheap: 1.0, mid: 2.0, big: 4.0}}\n  budget: 5.0\n{body}",
+        f"defaults:\n  dataset_path: {dataset}\n  models: {{cheap: 1.0, mid: 2.0, big: 4.0}}\n  budget: 5.0\n"
+        f"  num_agents: 2\n{body}",
         encoding="utf-8",
     )
     return path
@@ -144,7 +181,22 @@ def test_config_merges_defaults_and_infers_mode(tmp_path):
     assert (b["mode"], b["budget"]) == ("decentralized", 9)
     exp = build_experiment(b)
     assert len(exp.agents) == 3 and exp.models.names == ["cheap", "mid"]
+    assert len(exp.agents.jobs) == 3  # tasks_per_agent defaults to 5 tasks // 3 agents = 1
     assert exp.centralized is None and exp.decentralized.arrival_policy.registry_name == "fcfs"
+    assert len(build_experiment(a).agents.jobs) == 4  # 2 agents (defaults) x 5 // 2 = 2 tasks
+
+
+def test_config_deals_distinct_tasks_to_agents(tmp_path):
+    path = write_config(tmp_path, "experiments:\n  - name: a\n    tasks_per_agent: 2\n    centralized: {policy: optimal_mckp}\n")
+    agents = build_experiment(load_config(path)[0]).agents
+    tasks = [t.task_id for agent in agents for t in agent.tasks]
+    assert [len(agent.tasks) for agent in agents] == [2, 2] and len(set(tasks)) == 4
+
+
+def test_config_rejects_more_tasks_than_the_dataset_has(tmp_path):
+    path = write_config(tmp_path, "experiments:\n  - name: a\n    tasks_per_agent: 3\n    centralized: {policy: optimal_mckp}\n")
+    with pytest.raises(DatasetError, match="needs 6 tasks"):
+        build_experiment(load_config(path)[0])
 
 
 @pytest.mark.parametrize(
@@ -153,6 +205,7 @@ def test_config_merges_defaults_and_infers_mode(tmp_path):
         ("experiments:\n  - name: a\n    budjet: 3\n    centralized: {policy: optimal_mckp}\n", "unknown keys"),
         ("experiments:\n  - name: a\n    mode: both\n    centralized: {policy: optimal_mckp}\n", "decentralized.utility"),
         ("experiments:\n  - name: a\n    centralized: {policy: x}\n  - name: a\n    centralized: {policy: x}\n", "Duplicate"),
+        ("experiments:\n  - name: a\n    num_agents: null\n    centralized: {policy: x}\n", "'num_agents' is required"),
     ],
 )
 def test_config_errors(tmp_path, body, message):

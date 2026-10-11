@@ -9,7 +9,14 @@ Every component type has an abstract base class and a registry. To add one:
 Files in these folders are imported automatically, so `factory_name` can be used in YAML
 right away. Config params arrive as `self.params` (a dict). Check with `python -m masbudget --list`.
 
-To implement one of the existing stubs, replace its `raise NotImplementedError` body.
+A new component can start as a stub that raises `NotImplementedError`; its tests skip until
+it is implemented (see [Testing your policy](#testing-your-policy)).
+
+Every agent owns a list of tasks (`agent.tasks`), and each task is one model call, a `Job`
+(`job.job_id`, `job.agent_id`, `job.task`). Policies assign a model to every job, so an
+agent with 10 tasks gets 10 models. `agents.jobs` lists all jobs round-robin over agents
+(also the null-arrival FCFS order); `agents.jobs_of(agent_id)` gives one agent's jobs.
+How tasks are dealt to agents: [config.md](config.md#agents-and-tasks).
 
 ## Centralized policy: `masbudget/centralized/`
 
@@ -21,13 +28,15 @@ from masbudget.core import FALLBACK
 class MyPolicy(BaseCentralizedPolicy):
     def allocate(self, agents, models, budget, rng):
         # agents: AgentRegistry, models: ModelRegistry, rng: random.Random (seeded)
-        # q_{i,m} = model.quality(agent.task), c_m = model.cost
-        return {agent.agent_id: models.cheapest().name for agent in agents}  # or FALLBACK
+        # q_{j,m} = model.quality(job.task), c_m = model.cost
+        return {job.job_id: models.cheapest().name for job in agents.jobs}  # or FALLBACK
 ```
 
-Return `{agent_id: model_name}`. Agents left out (or mapped to `FALLBACK`) get quality 0,
-cost 0. The experiment charges every assignment to a `BudgetLedger` and fails if the total
-exceeds the budget.
+Return `{job_id: model_name}`. Jobs left out (or mapped to `FALLBACK`) get quality 0,
+cost 0. A value can also be a list of models tried in order, e.g. `["cheap", "mid"]` for a
+cascade that escalated once: every attempt is paid for and the job keeps the last model's
+answer (`Assignment.attempts` records the list). The experiment charges every call to a
+`BudgetLedger` and fails if the total exceeds the budget.
 
 ## Decentralized utility: `masbudget/decentralized/utilities/`
 
@@ -36,10 +45,12 @@ from masbudget.decentralized.utilities.base import UTILITY_FUNCTIONS, BaseUtilit
 
 @UTILITY_FUNCTIONS.register("my_utility")
 class MyUtility(BaseUtilityFunction):
-    def compute(self, agent, model, state):
+    def compute(self, job, model, state):
         lam = self.params.get("lambda_cost", 1.0)
-        return model.quality(agent.task) - lam * model.cost
+        return model.quality(job.task) - lam * model.cost
 ```
+
+`job` is the task being served; its owner is `state.agents.get(job.agent_id)`.
 
 `state` is an `AllocationState`: `step` (k), `remaining_budget` (B_k), `total_budget` (B),
 `budget_fraction` (B_k/B), `history` (earlier assignments), `agents`, `models`, `rng`.
@@ -54,21 +65,23 @@ from masbudget.decentralized.arrival.base import ARRIVAL_POLICIES, BaseArrivalPo
 @ARRIVAL_POLICIES.register("my_order")
 class MyOrder(BaseArrivalPolicy):
     def select_next(self, remaining, state):
-        return max(remaining, key=lambda a: a.task.difficulty_rank)
+        return max(remaining, key=lambda job: job.task.difficulty_rank)
 ```
 
-Return one agent from `remaining`. Use `state.rng` for randomness so runs are reproducible.
+Return one job from `remaining` (the jobs not served yet, in round-robin order). Any waiting
+job can be picked, whichever agent owns it. Use `state.rng` for randomness so runs are
+reproducible.
 
 ## Decentralized engine: `masbudget/decentralized/`
 
 The sequential best-response game is `sequential_best_response`. A different game subclasses
 `BaseDecentralizedPolicy` (registry `DECENTRALIZED_POLICIES`). It receives
 `self.arrival_policy` and `self.utility`, and `allocate(agents, models, budget, rng)` returns a
-list of `Assignment` (one per agent, in acting order). Select it with `decentralized.policy`.
+list of `Assignment` (one per job, in serving order). Select it with `decentralized.policy`.
 
 ## Model: `masbudget/models.py` (or a new module imported from it)
 
-Models default to type `dataset`: q_{i,m} is read from the task's `quality` table. For other
+Models default to type `dataset`: q_{j,m} is read from the task's `quality` table. For other
 behaviour (e.g. a live API call or a learned estimator), register a model type:
 
 ```python
@@ -96,13 +109,16 @@ class MaxCostShare(BaseMetrics):
 ```
 
 `compute(result)` gets the `ExperimentResult` (`result.runs[paradigm]` is a list of
-`RunResult`s, each with per-agent `assignments`) and returns `{paradigm: value}`. `per_run`
-applies a function to each run and reports mean/std per paradigm.
+`RunResult`s, each with one `assignment` per job; `run.by_agent()` groups them by agent and
+`run.agent_payoffs` gives each agent's mean quality) and returns `{paradigm: value}`. `per_run`
+applies a function to each run and reports mean/std per paradigm. Add the new metric to the
+table in [config.md](config.md#metrics).
 
 ## Testing your policy
 
-Tests use a toy instance with 4 agents and 3 models, defined in
-[tests/helpers.py](../tests/helpers.py). It is small enough to check expected answers by hand.
+Tests use a toy instance with 4 tasks and 3 models (as 4 one-task agents, or 2 agents with
+2 tasks each), defined in [tests/helpers.py](../tests/helpers.py). It is small enough to
+check expected answers by hand.
 Each policy test file has two parts:
 
 - **Contract tests** run for *every* registered name, including new ones. They check that

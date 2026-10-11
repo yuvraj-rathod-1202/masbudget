@@ -54,6 +54,7 @@ def run_batch(
                 "timestamp": timestamp,
                 "config": {k: v for k, v in spec.items() if k != "metrics"},
                 "num_agents": result.num_agents,
+                "num_jobs": result.num_jobs,
                 "runs": {paradigm: len(runs) for paradigm, runs in result.runs.items()},
                 "metrics": result.metrics,
             }

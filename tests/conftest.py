@@ -1,11 +1,16 @@
 import pytest
 
-from tests.helpers import make_agents, make_models
+from tests.helpers import make_agents, make_models, make_multi_agents
 
 
 @pytest.fixture
 def agents():
     return make_agents()
+
+
+@pytest.fixture
+def multi_agents():
+    return make_multi_agents()
 
 
 @pytest.fixture

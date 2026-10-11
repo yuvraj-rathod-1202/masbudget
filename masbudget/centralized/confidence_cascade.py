@@ -8,66 +8,61 @@ from masbudget.core import FALLBACK
 class ConfidenceCascadePolicy(BaseCentralizedPolicy):
     """Confidence-based cascade (FrugalGPT).
 
-    Send each task to the cheapest model first and escalate to a more capable model
-    only if verification fails (e.g. quality below ``params["threshold"]``).
+    Send each task (job) to the cheapest model first and escalate to the next more expensive
+    model only if verification fails (quality below ``params["threshold"]``), until a model
+    passes or every model has been tried. Every attempt is paid for, and the job keeps the
+    answer of the last model it tried.
+
+    If the budget cannot cover every cascade, each job first gets its cheapest attempt (while
+    money lasts), then the failing job whose next attempt adds the most quality per unit cost
+    is escalated, repeatedly.
     """
 
     def allocate(self, agents, models, budget, rng):
-        if not agents or budget <= 1e-9:
-            return {a.agent_id: FALLBACK for a in agents}
+        jobs = agents.jobs
+        if not jobs or budget <= 1e-9:
+            return {j.job_id: FALLBACK for j in jobs}
 
         threshold = float(self.params.get("threshold", 0.8))
-        sorted_models = sorted(models, key=lambda m: m.cost)
-        if not sorted_models:
-            return {a.agent_id: FALLBACK for a in agents}
-        cheapest = sorted_models[0]
+        ladder = sorted(models, key=lambda m: m.cost)
+        if not ladder:
+            return {j.job_id: FALLBACK for j in jobs}
 
-        # Determine target model for each agent: first model reaching threshold, or max quality
-        targets = {}
-        for a in agents:
-            chosen = None
-            for m in sorted_models:
-                if m.quality(a.task) >= threshold:
-                    chosen = m
-                    break
-            if chosen is None:
-                chosen = max(sorted_models, key=lambda m: m.quality(a.task))
-            targets[a.agent_id] = chosen
+        target_depth = {}
+        for j in jobs:
+            target_depth[j.job_id] = next(
+                (k + 1 for k, m in enumerate(ladder) if m.quality(j.task) >= threshold), len(ladder)
+            )
 
-        target_cost = sum(m.cost for m in targets.values())
-        if target_cost <= budget + 1e-9:
-            return {a.agent_id: targets[a.agent_id].name for a in agents}
+        full_cost = sum(m.cost for j in jobs for m in ladder[: target_depth[j.job_id]])
+        if full_cost <= budget + 1e-9:
+            return {j.job_id: [m.name for m in ladder[: target_depth[j.job_id]]] for j in jobs}
 
-        # Under tight budget: allocate cheapest model, then escalate by ROI
-        current = {a.agent_id: models.fallback for a in agents}
+        # Under tight budget: give every job its cheapest attempt, then escalate by ROI
+        depth = {j.job_id: 0 for j in jobs}
         rem = budget
-        for a in agents:
-            if rem >= cheapest.cost - 1e-9:
-                current[a.agent_id] = cheapest
-                rem -= cheapest.cost
+        for j in jobs:
+            if rem >= ladder[0].cost - 1e-9:
+                depth[j.job_id] = 1
+                rem -= ladder[0].cost
 
         while True:
-            best_upgrade = None
+            best_job = None
             best_ratio = -1.0
-            for a in agents:
-                cur_m = current[a.agent_id]
-                tgt_m = targets[a.agent_id]
-                if cur_m.name != tgt_m.name:
-                    cur_idx = sorted_models.index(cur_m) if cur_m in sorted_models else -1
-                    nxt_m = sorted_models[cur_idx + 1]
-                    delta_c = nxt_m.cost - cur_m.cost
-                    if rem >= delta_c - 1e-9:
-                        delta_q = nxt_m.quality(a.task) - cur_m.quality(a.task)
-                        ratio = delta_q / max(delta_c, 1e-9)
+            for j in jobs:
+                d = depth[j.job_id]
+                if 0 < d < target_depth[j.job_id]:  # its last answer failed verification
+                    nxt_m = ladder[d]
+                    if rem >= nxt_m.cost - 1e-9:
+                        delta_q = nxt_m.quality(j.task) - ladder[d - 1].quality(j.task)
+                        ratio = delta_q / max(nxt_m.cost, 1e-9)  # the whole next call is paid
                         if ratio > best_ratio:
                             best_ratio = ratio
-                            best_upgrade = (a.agent_id, nxt_m, delta_c)
-            if best_upgrade is not None and best_ratio >= 0:
-                aid, nxt_m, delta_c = best_upgrade
-                current[aid] = nxt_m
-                rem -= delta_c
+                            best_job = j.job_id
+            if best_job is not None and best_ratio >= 0:
+                rem -= ladder[depth[best_job]].cost
+                depth[best_job] += 1
             else:
                 break
 
-        return {aid: m.name for aid, m in current.items()}
-
+        return {jid: [m.name for m in ladder[:d]] if d else FALLBACK for jid, d in depth.items()}

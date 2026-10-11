@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 @METRICS.register("social_welfare")
 class SocialWelfare(BaseMetrics):
-    """SW = sum_i q_{i,m_i}."""
+    """SW = sum_j q_{j,m_j}, summed over every task of every agent."""
 
     def compute(self, result):
         return per_run(result, lambda run: run.total_quality)

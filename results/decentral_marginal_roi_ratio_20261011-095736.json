@@ -1,0 +1,72 @@
+{
+  "experiment": "decentral_marginal_roi_ratio",
+  "timestamp": "20261011-095736",
+  "config": {
+    "dataset_path": "data/example_tasks.json",
+    "seed": 42,
+    "num_runs": 1,
+    "num_agents": 3,
+    "budget": 6.5,
+    "models": {
+      "gpt-4o-mini": 0.01,
+      "claude-3.5-sonnet": 0.05,
+      "o1-reasoning": 0.25
+    },
+    "name": "decentral_marginal_roi_ratio",
+    "mode": "decentralized",
+    "decentralized": {
+      "arrival_policy": null,
+      "utility": "marginal_roi_ratio",
+      "utility_params": {}
+    }
+  },
+  "num_agents": 3,
+  "num_jobs": 48,
+  "runs": {
+    "decentralized": 1
+  },
+  "metrics": {
+    "average_quality": {
+      "decentralized": {
+        "mean": 0.6875416666666667,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "success_rate": {
+      "decentralized": {
+        "mean": 0.5208333333333334,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "social_welfare": {
+      "decentralized": {
+        "mean": 33.002,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "total_cost": {
+      "decentralized": {
+        "mean": 2.6,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "budget_utilization": {
+      "decentralized": {
+        "mean": 0.4,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "jains_fairness": {
+      "decentralized": {
+        "mean": 0.9990449169082041,
+        "std": 0.0,
+        "n": 1
+      }
+    }
+  }
+}

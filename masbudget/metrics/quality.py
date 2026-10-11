@@ -5,7 +5,7 @@ from masbudget.metrics.base import METRICS, BaseMetrics, per_run
 
 @METRICS.register("average_quality")
 class AverageQuality(BaseMetrics):
-    """Q = (1/N) * sum_i q_{i,m_i}."""
+    """Q = (1/J) * sum_j q_{j,m_j}, the mean over all J tasks (jobs) of all agents."""
 
     def compute(self, result):
         return per_run(result, lambda run: run.total_quality / len(run.assignments))
@@ -13,7 +13,7 @@ class AverageQuality(BaseMetrics):
 
 @METRICS.register("success_rate")
 class SuccessRate(BaseMetrics):
-    """SR = (1/N) * sum_i 1[q_{i,m_i} >= tau]. Param: ``tau`` (default 0.5)."""
+    """SR = (1/J) * sum_j 1[q_{j,m_j} >= tau], over all tasks. Param: ``tau`` (default 0.5)."""
 
     def compute(self, result):
         tau = self.params.get("tau", 0.5)

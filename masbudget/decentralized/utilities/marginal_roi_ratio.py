@@ -10,11 +10,11 @@ class MarginalROIRatioUtility(BaseUtilityFunction):
     where ``base`` is the baseline (cheapest) model, ``state.models.cheapest()``.
     """
 
-    def compute(self, agent, model, state):
+    def compute(self, job, model, state):
         base = state.models.cheapest()
         delta_cost = model.cost - base.cost
         if abs(delta_cost) < 1e-9:
             return 0.0
-        delta_quality = model.quality(agent.task) - base.quality(agent.task)
+        delta_quality = model.quality(job.task) - base.quality(job.task)
         return delta_quality / delta_cost
 

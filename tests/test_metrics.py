@@ -11,9 +11,9 @@ BUDGET = 8.0
 
 
 def run(paradigm, rows, seed=0):
-    """rows: (agent_id, model, quality, cost); list order = arrival order for decentralized."""
+    """rows: (agent_id, model, quality, cost), one per job; list order = arrival order for decentralized."""
     assignments = [
-        Assignment(agent_id, model, q, c, step=i if paradigm == DECENTRALIZED else None)
+        Assignment(i, agent_id, model, q, c, step=i if paradigm == DECENTRALIZED else None)
         for i, (agent_id, model, q, c) in enumerate(rows)
     ]
     return RunResult(paradigm, "test", seed, BUDGET, assignments)
@@ -25,11 +25,13 @@ CENTRAL = [(0, "cheap", 0.80, 1.0), (1, "mid", 0.75, 2.0), (2, "big", 0.90, 4.0)
 DEC_A = [(0, "mid", 0.85, 2.0), (1, "mid", 0.75, 2.0), (2, "mid", 0.40, 2.0), (3, "mid", 0.45, 2.0)]
 # total quality 1.75, cost 8, two agents starved
 DEC_B = [(0, "big", 0.90, 4.0), (1, "big", 0.85, 4.0), (2, FALLBACK, 0.0, 0.0), (3, FALLBACK, 0.0, 0.0)]
+# 2 agents x 2 tasks, round-robin: agent 0 payoff (0.90 + 0.75) / 2 = 0.825, agent 1 (0.40 + 0) / 2 = 0.2
+MULTI = [(0, "big", 0.90, 4.0), (1, "mid", 0.40, 2.0), (0, "mid", 0.75, 2.0), (1, FALLBACK, 0.0, 0.0)]
 
 
 @pytest.fixture
 def result():
-    r = ExperimentResult("test", BUDGET, 4)
+    r = ExperimentResult("test", BUDGET, 4, 4)
     r.runs[CENTRALIZED] = [run(CENTRALIZED, CENTRAL, 0), run(CENTRALIZED, CENTRAL, 1)]
     r.runs[DECENTRALIZED] = [run(DECENTRALIZED, DEC_A, 0), run(DECENTRALIZED, DEC_B, 1)]
     return r
@@ -114,6 +116,27 @@ def test_order_sensitivity(result):
     out = get_metric("order_sensitivity").compute(result)
     assert out[CENTRALIZED] == pytest.approx(0.0)
     assert out[DECENTRALIZED] == pytest.approx(((2.45 - 1.75) / 2) ** 2)
+
+
+@pytest.fixture
+def multi_result():
+    r = ExperimentResult("multi", BUDGET, 2, 4)
+    r.runs[DECENTRALIZED] = [run(DECENTRALIZED, MULTI)]
+    return r
+
+
+def test_fairness_is_measured_across_agents(multi_result):
+    assert mean("jains_fairness", multi_result, DECENTRALIZED) == pytest.approx(
+        (0.825 + 0.2) ** 2 / (2 * (0.825**2 + 0.2**2))
+    )
+    assert mean("starvation_rate", multi_result, DECENTRALIZED) == pytest.approx(0.5)  # agent 1 of 2
+    assert mean("task_starvation_rate", multi_result, DECENTRALIZED) == pytest.approx(0.25)  # 1 task of 4
+    # agent 0 acts at steps 0, 2 (mean 1) before agent 1 at steps 1, 3 (mean 2)
+    assert mean("first_mover_advantage", multi_result, DECENTRALIZED) == pytest.approx(0.825 / 0.2)
+
+
+def test_quality_metrics_are_over_all_tasks(multi_result):
+    assert mean("average_quality", multi_result, DECENTRALIZED) == pytest.approx(2.05 / 4)
 
 
 def test_compute_metrics_accepts_names_and_params(result):

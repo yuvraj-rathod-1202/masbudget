@@ -25,7 +25,7 @@ class BaseDecentralizedPolicy(ABC):
     def allocate(
         self, agents: AgentRegistry, models: ModelRegistry, budget: float, rng: random.Random
     ) -> list[Assignment]:
-        """Return one ``Assignment`` per agent, in the order the agents acted."""
+        """Return one ``Assignment`` per job (``agents.jobs``), in the order the jobs were served."""
 
 
 DECENTRALIZED_POLICIES: Registry[BaseDecentralizedPolicy] = Registry("decentralized policy")

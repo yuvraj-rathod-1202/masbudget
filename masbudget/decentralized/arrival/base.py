@@ -3,14 +3,14 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any
 
-from masbudget.core import Agent, AllocationState
+from masbudget.core import AllocationState, Job
 from masbudget.factory import Registry
 
 UNCOORDINATED = "fcfs"  # used when the config says `arrival_policy: null`
 
 
 class BaseArrivalPolicy(ABC):
-    """Decides which waiting agent requests a model next (the permutation pi)."""
+    """Decides which waiting job (one task of one agent) requests a model next (the permutation pi)."""
 
     registry_name: str
 
@@ -18,8 +18,10 @@ class BaseArrivalPolicy(ABC):
         self.params = params  # the `arrival_params:` block from the YAML config
 
     @abstractmethod
-    def select_next(self, remaining: list[Agent], state: AllocationState) -> Agent:
-        """Return one agent from ``remaining`` (agents that have not acted yet).
+    def select_next(self, remaining: list[Job], state: AllocationState) -> Job:
+        """Return one job from ``remaining`` (jobs not served yet, in round-robin order).
+
+        ``job.task`` is the task, ``job.agent_id`` its owner (``state.agents.get(...)``).
 
         Use ``state.rng`` for any randomness so runs are reproducible.
         """
@@ -29,5 +31,5 @@ ARRIVAL_POLICIES: Registry[BaseArrivalPolicy] = Registry("arrival policy")
 
 
 def create_arrival_policy(name: str | None, **params: Any) -> BaseArrivalPolicy:
-    """``None`` means no coordinator: uncoordinated FCFS."""
+    """``None`` means no coordinator: uncoordinated FCFS (round-robin over agents)."""
     return ARRIVAL_POLICIES.create(name or UNCOORDINATED, **params)

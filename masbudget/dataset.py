@@ -34,12 +34,23 @@ def load_dataset(path: str | Path) -> list[Task]:
     return tasks
 
 
-def sample_tasks(tasks: list[Task], num_agents: int | None, rng: random.Random) -> list[Task]:
-    """Seeded random sample of ``num_agents`` tasks (all tasks, shuffled, if None)."""
-    n = len(tasks) if num_agents is None else num_agents
-    if not 1 <= n <= len(tasks):
-        raise DatasetError(f"num_agents={n} but the dataset has {len(tasks)} tasks")
-    return rng.sample(tasks, n)
+def assign_tasks(
+    tasks: list[Task], num_agents: int, tasks_per_agent: int | None, rng: random.Random
+) -> list[list[Task]]:
+    """Seeded random sample of ``num_agents * tasks_per_agent`` distinct tasks, dealt out in
+    consecutive chunks: agent 0 gets the first ``tasks_per_agent``, agent 1 the next, ...
+    ``tasks_per_agent=None`` uses as many tasks as divide evenly (``len(tasks) // num_agents``)."""
+    if num_agents < 1:
+        raise DatasetError(f"num_agents must be >= 1, got {num_agents}")
+    if tasks_per_agent is None:
+        tasks_per_agent = len(tasks) // num_agents
+    if tasks_per_agent < 1 or num_agents * tasks_per_agent > len(tasks):
+        raise DatasetError(
+            f"num_agents={num_agents} x tasks_per_agent={tasks_per_agent} needs "
+            f"{num_agents * tasks_per_agent} tasks, but the dataset has {len(tasks)}"
+        )
+    sample = rng.sample(tasks, num_agents * tasks_per_agent)
+    return [sample[i * tasks_per_agent:(i + 1) * tasks_per_agent] for i in range(num_agents)]
 
 
 def _parse_task(entry: Any, where: str) -> Task:

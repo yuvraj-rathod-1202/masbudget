@@ -8,7 +8,7 @@ class DynamicShadowPriceUtility(BaseUtilityFunction):
     Params: ``p0``, ``alpha``.
     """
 
-    def compute(self, agent, model, state):
+    def compute(self, job, model, state):
         p0 = float(self.params.get("p0", 0.1))
         alpha = float(self.params.get("alpha", 1.5))
         if state.remaining_budget <= 1e-9:
@@ -17,5 +17,5 @@ class DynamicShadowPriceUtility(BaseUtilityFunction):
             price = p0
         else:
             price = p0 * (state.total_budget / state.remaining_budget) ** alpha
-        return model.quality(agent.task) - price * model.cost
+        return model.quality(job.task) - price * model.cost
 

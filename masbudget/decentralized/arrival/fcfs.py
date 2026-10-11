@@ -5,9 +5,9 @@ from masbudget.decentralized.arrival.base import ARRIVAL_POLICIES, BaseArrivalPo
 class FCFSArrival(BaseArrivalPolicy):
     """Uncoordinated first-come-first-served, used when ``arrival_policy`` is null.
 
-    There is no coordinator: each agent calls the model API on its own and requests are
-    served in the order the agents show up, i.e. their registration order (which follows
-    the seeded task sampling).
+    There is no coordinator: all agents work at the same time and call the model API on
+    their own, so requests are served round-robin: agent 0's first task, agent 1's first
+    task, ..., then everyone's second task, and so on (``AgentRegistry.jobs`` order).
     """
 
     def select_next(self, remaining, state):

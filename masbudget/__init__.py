@@ -2,7 +2,7 @@
 
 from masbudget import centralized, decentralized, metrics  # noqa: F401  (registers built-in components)
 from masbudget.centralized import BaseCentralizedPolicy, create_centralized_policy
-from masbudget.core import FALLBACK, Agent, AllocationState, Assignment, ExperimentResult, RunResult, Task
+from masbudget.core import FALLBACK, Agent, AllocationState, Assignment, ExperimentResult, Job, RunResult, Task
 from masbudget.dataset import load_dataset
 from masbudget.decentralized import (
     BaseArrivalPolicy,
@@ -31,6 +31,7 @@ __all__ = [
     "BaseUtilityFunction",
     "Experiment",
     "ExperimentResult",
+    "Job",
     "ModelRegistry",
     "RunResult",
     "Task",

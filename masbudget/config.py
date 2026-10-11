@@ -8,13 +8,13 @@ from typing import Any
 
 import yaml
 
-from masbudget.dataset import load_dataset, sample_tasks
+from masbudget.dataset import assign_tasks, load_dataset
 from masbudget.experiment import Experiment
 from masbudget.registry import AgentRegistry, ModelRegistry
 
 MODES = ("centralized", "decentralized", "both")
 EXPERIMENT_KEYS = {
-    "name", "description", "mode", "dataset_path", "num_agents", "num_models", "budget",
+    "name", "description", "mode", "dataset_path", "num_agents", "tasks_per_agent", "num_models", "budget",
     "seed", "num_runs", "models", "centralized", "decentralized", "metrics",
 }
 
@@ -45,7 +45,7 @@ def load_config(path: str | Path) -> list[dict[str, Any]]:
         names.add(name)
         _check_keys(experiment, name)
         spec["mode"] = _resolve_mode(spec)
-        for key in ("dataset_path", "budget", "models"):
+        for key in ("dataset_path", "budget", "models", "num_agents"):
             if spec.get(key) is None:
                 raise ConfigError(f"{name}: '{key}' is required (set it here or in defaults)")
         specs.append(spec)
@@ -53,11 +53,13 @@ def load_config(path: str | Path) -> list[dict[str, Any]]:
 
 
 def build_experiment(spec: dict[str, Any]) -> Experiment:
-    """Turn a resolved spec into an ``Experiment`` (loads the dataset, registers agents & models)."""
+    """Turn a resolved spec into an ``Experiment`` (loads the dataset, deals tasks to agents, registers models)."""
     seed = spec.get("seed", 0)
     models = build_models(spec["models"], spec.get("num_models"))
-    tasks = sample_tasks(load_dataset(spec["dataset_path"]), spec.get("num_agents"), random.Random(seed))
-    agents = AgentRegistry.from_tasks(tasks)
+    task_lists = assign_tasks(
+        load_dataset(spec["dataset_path"]), spec["num_agents"], spec.get("tasks_per_agent"), random.Random(seed)
+    )
+    agents = AgentRegistry.from_task_lists(task_lists)
 
     kwargs: dict[str, Any] = {}
     if spec["mode"] in ("centralized", "both"):

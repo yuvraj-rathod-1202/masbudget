@@ -1,0 +1,72 @@
+{
+  "experiment": "decentral_best_model",
+  "timestamp": "20261011-095736",
+  "config": {
+    "dataset_path": "data/example_tasks.json",
+    "seed": 42,
+    "num_runs": 1,
+    "num_agents": 3,
+    "budget": 6.5,
+    "models": {
+      "gpt-4o-mini": 0.01,
+      "claude-3.5-sonnet": 0.05,
+      "o1-reasoning": 0.25
+    },
+    "name": "decentral_best_model",
+    "mode": "decentralized",
+    "decentralized": {
+      "arrival_policy": null,
+      "utility": "best_model",
+      "utility_params": {}
+    }
+  },
+  "num_agents": 3,
+  "num_jobs": 48,
+  "runs": {
+    "decentralized": 1
+  },
+  "metrics": {
+    "average_quality": {
+      "decentralized": {
+        "mean": 0.47525,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "success_rate": {
+      "decentralized": {
+        "mean": 0.5416666666666666,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "social_welfare": {
+      "decentralized": {
+        "mean": 22.812,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "total_cost": {
+      "decentralized": {
+        "mean": 6.5,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "budget_utilization": {
+      "decentralized": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "jains_fairness": {
+      "decentralized": {
+        "mean": 0.9990922822356582,
+        "std": 0.0,
+        "n": 1
+      }
+    }
+  }
+}

@@ -6,7 +6,7 @@ import logging
 import random
 from typing import Any, Sequence
 
-from masbudget.centralized import create_centralized_policy
+from masbudget.centralized import attempts_of, create_centralized_policy
 from masbudget.core import CENTRALIZED, DECENTRALIZED, FALLBACK, Assignment, BudgetLedger, ExperimentResult, RunResult
 from masbudget.decentralized import create_arrival_policy, create_decentralized_policy, create_utility_function
 from masbudget.metrics.base import MetricSpec, compute_metrics
@@ -16,12 +16,14 @@ logger = logging.getLogger(__name__)
 
 
 class Experiment:
-    """One experiment = one set of agents, models and budget, evaluated by up to two paradigms.
+    """One experiment = one set of agents (each owning several tasks), models and budget,
+    evaluated by up to two paradigms. Every task is one job that gets its own model.
 
     The paradigms that run follow from the three factory names:
       * ``centralized_policy`` set  -> centralized run
       * ``utility`` set             -> decentralized run, ordered by ``arrival_policy``
-        (``None`` = uncoordinated FCFS: agents call the model API directly)
+        (``None`` = uncoordinated FCFS: agents call the model API directly, served
+        round-robin over agents)
     Both use the very same ``AgentRegistry`` and ``ModelRegistry``.
     """
 
@@ -83,12 +85,12 @@ class Experiment:
         """Run every paradigm ``num_runs`` times (run r uses seed + r). If ``metrics`` is given,
         they are computed and stored in ``result.metrics``."""
         logger.info(
-            "Experiment '%s': %d agents, %d models, budget=%g, runs=%d, centralized=%s, decentralized=%s",
-            self.name, len(self.agents), len(self.models), self.budget, self.num_runs,
+            "Experiment '%s': %d agents, %d jobs, %d models, budget=%g, runs=%d, centralized=%s, decentralized=%s",
+            self.name, len(self.agents), len(self.agents.jobs), len(self.models), self.budget, self.num_runs,
             self.centralized and self.centralized.registry_name,
             self.decentralized and self._decentralized_label(),
         )
-        result = ExperimentResult(self.name, self.budget, len(self.agents))
+        result = ExperimentResult(self.name, self.budget, len(self.agents), len(self.agents.jobs))
         for r in range(self.num_runs):
             run_seed = self.seed + r
             if self.centralized is not None:
@@ -110,16 +112,23 @@ class Experiment:
         if not self.centralized:
             raise RuntimeError("No centralized policy configured")
         mapping = self.centralized.allocate(self.agents, self.models, self.budget, random.Random(seed))
-        unknown = set(mapping) - set(self.agents.ids)
+        unknown = set(mapping) - set(self.agents.job_ids)
         if unknown:
-            raise ValueError(f"{self.centralized.registry_name} assigned unknown agents {sorted(unknown)}")
+            raise ValueError(f"{self.centralized.registry_name} assigned unknown jobs {sorted(unknown)}")
 
         ledger = BudgetLedger(self.budget)
         assignments = []
-        for agent in self.agents:
-            model = self.models.get(mapping.get(agent.agent_id, FALLBACK))
-            ledger.charge(model.cost)  # raises if the policy overspends
-            assignments.append(Assignment(agent.agent_id, model.name, model.quality(agent.task), model.cost))
+        for job in self.agents.jobs:
+            attempts = [self.models.get(name) for name in attempts_of(mapping.get(job.job_id, FALLBACK))]
+            for model in attempts:
+                ledger.charge(model.cost)  # every call is paid; raises if the policy overspends
+            final = attempts[-1]  # the job keeps the last answer
+            assignments.append(
+                Assignment(
+                    job.job_id, job.agent_id, final.name, final.quality(job.task), sum(m.cost for m in attempts),
+                    attempts=tuple(m.name for m in attempts) if len(attempts) > 1 else (),
+                )
+            )
         run = RunResult(CENTRALIZED, self.centralized.registry_name, seed, self.budget, assignments)
         self._log_run(run)
         return run
@@ -128,8 +137,8 @@ class Experiment:
         if not self.decentralized:
             raise RuntimeError("No decentralized policy configured")
         assignments = self.decentralized.allocate(self.agents, self.models, self.budget, random.Random(seed))
-        if sorted(a.agent_id for a in assignments) != sorted(self.agents.ids):
-            raise ValueError(f"{self.decentralized.registry_name} must return exactly one assignment per agent")
+        if sorted(a.job_id for a in assignments) != self.agents.job_ids:
+            raise ValueError(f"{self.decentralized.registry_name} must return exactly one assignment per job")
         if sum(a.cost for a in assignments) > self.budget + 1e-9:
             raise ValueError(f"{self._decentralized_label()} exceeded the budget")
         run = RunResult(DECENTRALIZED, self._decentralized_label(), seed, self.budget, assignments)
@@ -143,10 +152,10 @@ class Experiment:
         return f"{d.registry_name}[arrival={d.arrival_policy.registry_name}, utility={d.utility.registry_name}]"
 
     def _check_quality_coverage(self) -> None:
-        for agent in self.agents:
-            missing = [m for m in self.models.names if m not in agent.task.quality]
+        for job in self.agents.jobs:
+            missing = [m for m in self.models.names if m not in job.task.quality]
             if missing:
-                raise ValueError(f"Task '{agent.task.task_id}' has no quality for models {missing}")
+                raise ValueError(f"Task '{job.task.task_id}' has no quality for models {missing}")
 
     @staticmethod
     def _log_run(run: RunResult) -> None:
@@ -156,7 +165,10 @@ class Experiment:
             sum(a.starved for a in run.assignments),
         )
         for a in run.assignments:
-            logger.debug("    agent=%d model=%s q=%.4f c=%.6g step=%s", a.agent_id, a.model, a.quality, a.cost, a.step)
+            logger.debug(
+                "    job=%d agent=%d model=%s q=%.4f c=%.6g step=%s attempts=%s",
+                a.job_id, a.agent_id, a.model, a.quality, a.cost, a.step, ",".join(a.attempts) or "-",
+            )
 
 
 def run_experiment(
@@ -172,7 +184,8 @@ def run_experiment(
 ) -> ExperimentResult:
     """Main entry point: name the centralized policy, the decentralized utility and the
     arrival policy (factory names; ``None`` skips centralized / decentralized, and a
-    ``None`` arrival policy means uncoordinated FCFS). Extra kwargs go to ``Experiment``."""
+    ``None`` arrival policy means uncoordinated FCFS, i.e. round-robin over agents).
+    Extra kwargs go to ``Experiment``."""
     experiment = Experiment(
         agents,
         models,

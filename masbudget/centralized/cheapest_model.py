@@ -6,20 +6,20 @@ from masbudget.core import FALLBACK
 
 @CENTRALIZED_POLICIES.register("cheapest_model")
 class CheapestModelPolicy(BaseCentralizedPolicy):
-    """Cheapest-model baseline. Every agent gets m_i = argmin_m c_m (lower bound on quality)."""
+    """Cheapest-model baseline. Every job gets m_j = argmin_m c_m (lower bound on quality)."""
 
     def allocate(self, agents, models, budget, rng):
         if not agents or budget <= 1e-9:
-            return {a.agent_id: FALLBACK for a in agents}
+            return {j.job_id: FALLBACK for j in agents.jobs}
 
         cheapest = models.cheapest()
         mapping = {}
         rem = budget
-        for agent in agents:
+        for job in agents.jobs:
             if rem >= cheapest.cost - 1e-9:
-                mapping[agent.agent_id] = cheapest.name
+                mapping[job.job_id] = cheapest.name
                 rem -= cheapest.cost
             else:
-                mapping[agent.agent_id] = FALLBACK
+                mapping[job.job_id] = FALLBACK
         return mapping
 

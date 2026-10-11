@@ -1,6 +1,9 @@
 # Dataset format (JSON)
 
-One JSON object with a `tasks` list. Each task becomes one agent's task t_i.
+One JSON object with a `tasks` list. An experiment gives each of its `num_agents` agents
+floor(number of tasks / `num_agents`) tasks, drawn without replacement; each task is one model
+call (see [config.md](config.md#agents-and-tasks)). The dataset size therefore caps the total
+number of tasks in an experiment.
 Example: [data/example_tasks.json](../data/example_tasks.json) (synthetic, for smoke tests only).
 
 ```json

@@ -5,7 +5,7 @@ from masbudget.metrics.base import METRICS, BaseMetrics, per_run
 
 @METRICS.register("total_cost")
 class TotalCost(BaseMetrics):
-    """C = sum_i c_{m_i}."""
+    """C = sum_j c_{m_j}, over every task of every agent."""
 
     def compute(self, result):
         return per_run(result, lambda run: run.total_cost)
@@ -21,7 +21,7 @@ class BudgetUtilization(BaseMetrics):
 
 @METRICS.register("cost_effectiveness")
 class CostEffectiveness(BaseMetrics):
-    """CE = sum_i q_{i,m_i} / C (quality per unit cost)."""
+    """CE = sum_j q_{j,m_j} / C (quality per unit cost)."""
 
     def compute(self, result):
         return per_run(result, lambda run: run.total_quality / run.total_cost if run.total_cost > 0 else None)

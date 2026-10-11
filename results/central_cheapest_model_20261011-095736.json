@@ -1,0 +1,71 @@
+{
+  "experiment": "central_cheapest_model",
+  "timestamp": "20261011-095736",
+  "config": {
+    "dataset_path": "data/example_tasks.json",
+    "seed": 42,
+    "num_runs": 1,
+    "num_agents": 3,
+    "budget": 6.5,
+    "models": {
+      "gpt-4o-mini": 0.01,
+      "claude-3.5-sonnet": 0.05,
+      "o1-reasoning": 0.25
+    },
+    "name": "central_cheapest_model",
+    "mode": "centralized",
+    "centralized": {
+      "policy": "cheapest_model",
+      "params": {}
+    }
+  },
+  "num_agents": 3,
+  "num_jobs": 48,
+  "runs": {
+    "centralized": 1
+  },
+  "metrics": {
+    "average_quality": {
+      "centralized": {
+        "mean": 0.48360416666666667,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "success_rate": {
+      "centralized": {
+        "mean": 0.3125,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "social_welfare": {
+      "centralized": {
+        "mean": 23.213,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "total_cost": {
+      "centralized": {
+        "mean": 0.48,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "budget_utilization": {
+      "centralized": {
+        "mean": 0.07384615384615384,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "jains_fairness": {
+      "centralized": {
+        "mean": 0.9929088867492945,
+        "std": 0.0,
+        "n": 1
+      }
+    }
+  }
+}

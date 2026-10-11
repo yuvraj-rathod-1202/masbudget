@@ -1,6 +1,5 @@
 from masbudget.centralized.base import CENTRALIZED_POLICIES, BaseCentralizedPolicy
-
-
+from masbudget.centralized.optimal_mckp import solve_mckp
 from masbudget.core import FALLBACK
 
 
@@ -8,22 +7,17 @@ from masbudget.core import FALLBACK
 class StaticEqualQuotaPolicy(BaseCentralizedPolicy):
     """Static equal quota (fair baseline).
 
-    Split the budget upfront, b_i = B / N, and let each agent pick the best model
-    whose cost fits in its own slice b_i.
+    Split the budget upfront, b_i = B / N per agent, and let each agent spend its own slice
+    b_i on its own tasks only: the best models for its tasks whose total cost fits in b_i
+    (an exact knapsack per agent). Unused budget is not shared with other agents.
     """
 
     def allocate(self, agents, models, budget, rng):
         if not agents or budget <= 1e-9:
-            return {a.agent_id: FALLBACK for a in agents}
+            return {j.job_id: FALLBACK for j in agents.jobs}
 
         slice_ = budget / len(agents)
-        affordable = models.affordable(slice_)
         mapping = {}
         for agent in agents:
-            if affordable:
-                best = max(affordable, key=lambda m: m.quality(agent.task))
-                mapping[agent.agent_id] = best.name
-            else:
-                mapping[agent.agent_id] = FALLBACK
+            mapping.update(solve_mckp(agents.jobs_of(agent.agent_id), models, slice_))
         return mapping
-

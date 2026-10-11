@@ -44,7 +44,7 @@ class DatasetModel(BaseModel):
 
 
 class FallbackModel(BaseModel):
-    """Assigned to an agent that gets no model (e.g. budget exhausted): quality 0, cost 0."""
+    """Assigned to a job (task) that gets no model (e.g. budget exhausted): quality 0, cost 0."""
 
     def __init__(self) -> None:
         super().__init__(FALLBACK, 0.0)

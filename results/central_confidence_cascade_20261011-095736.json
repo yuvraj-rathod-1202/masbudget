@@ -1,0 +1,73 @@
+{
+  "experiment": "central_confidence_cascade",
+  "timestamp": "20261011-095736",
+  "config": {
+    "dataset_path": "data/example_tasks.json",
+    "seed": 42,
+    "num_runs": 1,
+    "num_agents": 3,
+    "budget": 6.5,
+    "models": {
+      "gpt-4o-mini": 0.01,
+      "claude-3.5-sonnet": 0.05,
+      "o1-reasoning": 0.25
+    },
+    "name": "central_confidence_cascade",
+    "mode": "centralized",
+    "centralized": {
+      "policy": "confidence_cascade",
+      "params": {
+        "threshold": 0.8
+      }
+    }
+  },
+  "num_agents": 3,
+  "num_jobs": 48,
+  "runs": {
+    "centralized": 1
+  },
+  "metrics": {
+    "average_quality": {
+      "centralized": {
+        "mean": 0.7766666666666667,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "success_rate": {
+      "centralized": {
+        "mean": 0.875,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "social_welfare": {
+      "centralized": {
+        "mean": 37.28,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "total_cost": {
+      "centralized": {
+        "mean": 6.38,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "budget_utilization": {
+      "centralized": {
+        "mean": 0.9815384615384615,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "jains_fairness": {
+      "centralized": {
+        "mean": 0.9978522687822964,
+        "std": 0.0,
+        "n": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "experiment": "decentral_quasi_linear",
+  "timestamp": "20261011-095736",
+  "config": {
+    "dataset_path": "data/example_tasks.json",
+    "seed": 42,
+    "num_runs": 1,
+    "num_agents": 3,
+    "budget": 6.5,
+    "models": {
+      "gpt-4o-mini": 0.01,
+      "claude-3.5-sonnet": 0.05,
+      "o1-reasoning": 0.25
+    },
+    "name": "decentral_quasi_linear",
+    "mode": "decentralized",
+    "decentralized": {
+      "arrival_policy": null,
+      "utility": "quasi_linear",
+      "utility_params": {
+        "lambda_cost": 0.5
+      }
+    }
+  },
+  "num_agents": 3,
+  "num_jobs": 48,
+  "runs": {
+    "decentralized": 1
+  },
+  "metrics": {
+    "average_quality": {
+      "decentralized": {
+        "mean": 0.7708333333333334,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "success_rate": {
+      "decentralized": {
+        "mean": 0.875,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "social_welfare": {
+      "decentralized": {
+        "mean": 37.0,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "total_cost": {
+      "decentralized": {
+        "mean": 6.5,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "budget_utilization": {
+      "decentralized": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 1
+      }
+    },
+    "jains_fairness": {
+      "decentralized": {
+        "mean": 0.999839992005487,
+        "std": 0.0,
+        "n": 1
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "deepseek-v3.1-terminus": {
+    "mean_cost_usd": 0.0011249379052132701,
+    "min_cost_usd": 9.456e-05,
+    "max_cost_usd": 0.01033903,
+    "median_cost_usd": 0.00052668,
+    "n_observations": 1055,
+    "source": "per-record cost from LLMRouterBench livecodebench/test",
+    "archive_member": "bench-release/livecodebench/test/deepseek-v3.1-terminus/livecodebench-test-deepseek-v3.1-terminus-20251024_102915.json"
+  },
+  "deepseek-v3-0324": {
+    "mean_cost_usd": 0.001447101345971564,
+    "min_cost_usd": 7.898e-05,
+    "max_cost_usd": 0.014106470000000001,
+    "median_cost_usd": 0.0008674900000000001,
+    "n_observations": 1055,
+    "source": "per-record cost from LLMRouterBench livecodebench/test",
+    "archive_member": "bench-release/livecodebench/test/deepseek-v3-0324/livecodebench-test-deepseek-v3-0324-20251017_111427.json"
+  },
+  "gemini-2.5-flash": {
+    "mean_cost_usd": 0.005834280568720379,
+    "min_cost_usd": 6e-05,
+    "max_cost_usd": 0.0631679,
+    "median_cost_usd": 0.0007185,
+    "n_observations": 1055,
+    "source": "per-record cost from LLMRouterBench livecodebench/test",
+    "archive_member": "bench-release/livecodebench/test/gemini-2.5-flash/livecodebench-test-gemini-2.5-flash-20251013_003249.json"
+  },
+  "deepseek-r1-0528": {
+    "mean_cost_usd": 0.028872312369668245,
+    "min_cost_usd": 0.00123215,
+    "max_cost_usd": 0.0699975,
+    "median_cost_usd": 0.025594699999999998,
+    "n_observations": 1055,
+    "source": "per-record cost from LLMRouterBench livecodebench/test",
+    "archive_member": "bench-release/livecodebench/test/deepseek-r1-0528/livecodebench-test-deepseek-r1-0528-20251018_090719.json"
+  }
+}

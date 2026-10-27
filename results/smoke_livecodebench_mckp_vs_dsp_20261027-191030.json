@@ -1,0 +1,109 @@
+{
+  "experiment": "smoke_livecodebench_mckp_vs_dsp",
+  "timestamp": "20261027-191030",
+  "config": {
+    "dataset_path": "data/llmrouterbench_livecodebench.json",
+    "seed": 42,
+    "num_runs": 2,
+    "models": {
+      "deepseek-v3.1-terminus": 0.0011249379,
+      "deepseek-v3-0324": 0.0014471013,
+      "gemini-2.5-flash": 0.0058342806,
+      "deepseek-r1-0528": 0.0288723124
+    },
+    "name": "smoke_livecodebench_mckp_vs_dsp",
+    "description": "Smoke test on real LiveCodeBench data comparing MCKP and Dynamic Shadow Price",
+    "mode": "both",
+    "num_agents": 5,
+    "tasks_per_agent": 2,
+    "budget": 0.02,
+    "centralized": {
+      "policy": "optimal_mckp",
+      "params": {}
+    },
+    "decentralized": {
+      "arrival_policy": "random_fcfs",
+      "arrival_params": {},
+      "utility": "dynamic_shadow_price",
+      "utility_params": {
+        "p0": 0.1,
+        "alpha": 1.5
+      }
+    }
+  },
+  "num_agents": 5,
+  "num_jobs": 10,
+  "runs": {
+    "centralized": 2,
+    "decentralized": 2
+  },
+  "metrics": {
+    "average_quality": {
+      "centralized": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 2
+      },
+      "decentralized": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 2
+      }
+    },
+    "total_cost": {
+      "centralized": {
+        "mean": 0.0159587217,
+        "std": 0.0,
+        "n": 2
+      },
+      "decentralized": {
+        "mean": 0.0159587217,
+        "std": 0.0,
+        "n": 2
+      }
+    },
+    "budget_utilization": {
+      "centralized": {
+        "mean": 0.797936085,
+        "std": 0.0,
+        "n": 2
+      },
+      "decentralized": {
+        "mean": 0.797936085,
+        "std": 0.0,
+        "n": 2
+      }
+    },
+    "jains_fairness": {
+      "centralized": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 2
+      },
+      "decentralized": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 2
+      }
+    },
+    "optimality_gap": {
+      "decentralized": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 2
+      }
+    },
+    "starvation_rate": {
+      "centralized": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 2
+      },
+      "decentralized": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 2
+      }
+    }
+  }
+}

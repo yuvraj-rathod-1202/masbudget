@@ -1,0 +1,71 @@
+# Headline result of the study (results.md) with the framework's own runner:
+# naive decentralized agents vs. the budget reserve vs. the pacing price + reserve, each against
+# the optimal MCKP on the same agents. Run from the repo root:
+#   python experiments/export_datasets.py      # writes the dataset below (once)
+#   python -m masbudget configs/final_mechanism.yaml
+#
+# Dataset: evaluation split, difficulty regime (quality = calibrated q-hat per difficulty label).
+# N = 20 agents x 10 tasks = 200 jobs, measured costs, random arrival (20 permutations).
+# Budget tau = 0.2: B = 200 * (c_min + 0.2 * (c_max - c_min)) = 1.334883.
+# Pacing: p0 = lambda*_hist(tau = 0.2) = 11.5598 (calibration split), p_min = 0.1 / (c_max - c_min).
+
+defaults:
+  dataset_path: "data/livecodebench_difficulty_eval.json"
+  seed: 7
+  num_agents: 20
+  tasks_per_agent: 10
+  budget: 1.334883
+  num_runs: 20
+  models:
+    deepseek-v3.1-terminus: 0.0011249379
+    deepseek-v3-0324: 0.0014471013
+    gemini-2.5-flash: 0.0058342806
+    deepseek-r1-0528: 0.0288723124
+  centralized:
+    policy: "optimal_mckp"
+  metrics:
+    - "average_quality"
+    - "optimality_gap"
+    - "budget_utilization"
+    - "task_starvation_rate"
+    - "starvation_rate"
+    - "jains_fairness"
+    - "first_mover_advantage"
+    - "order_sensitivity"
+
+experiments:
+  - name: "final_best_model"
+    mode: "both"
+    decentralized:
+      arrival_policy: "random_fcfs"
+      utility: "best_model"
+
+  - name: "final_quasi_linear_repo_lambda"
+    mode: "both"
+    decentralized:
+      arrival_policy: "random_fcfs"
+      utility: "quasi_linear"
+      utility_params: {lambda_cost: 0.5}
+
+  - name: "final_best_model_reserve"
+    mode: "both"
+    decentralized:
+      arrival_policy: "random_fcfs"
+      utility: "best_model"
+      params: {reserve: true}
+
+  - name: "final_pacing_reserve"
+    mode: "both"
+    decentralized:
+      arrival_policy: "random_fcfs"
+      utility: "budget_pacing"
+      utility_params: {p0: 11.5598, beta: 10.0, p_min: 3.6039}
+      params: {reserve: true}
+
+  - name: "final_pacing_reserve_abstain"
+    mode: "both"
+    decentralized:
+      arrival_policy: "random_fcfs"
+      utility: "budget_pacing"
+      utility_params: {p0: 11.5598, beta: 10.0, p_min: 3.6039}
+      params: {reserve: true, abstain: true}

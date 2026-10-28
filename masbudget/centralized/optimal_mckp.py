@@ -17,14 +17,18 @@ class OptimalMCKPPolicy(BaseCentralizedPolicy):
              x_{j,m} in {0, 1}
 
     over every job j (each task of each agent).
+
+    Param ``serve_all`` (default ``False``): when B covers the cheapest model for every job,
+    require sum_m x_{j,m} = 1, i.e. the optimum among allocations that starve nobody.
     """
 
     def allocate(self, agents, models, budget, rng):
-        return solve_mckp(agents.jobs, models, budget)
+        return solve_mckp(agents.jobs, models, budget, serve_all=bool(self.params.get("serve_all", False)))
 
 
-def solve_mckp(jobs: Iterable[Job], models: ModelRegistry, budget: float) -> dict[int, str]:
-    """Optimal ``{job_id: model_name}`` for ``jobs`` within ``budget`` (OR-Tools SCIP, else CBC)."""
+def solve_mckp(jobs: Iterable[Job], models: ModelRegistry, budget: float, serve_all: bool = False) -> dict[int, str]:
+    """Optimal ``{job_id: model_name}`` for ``jobs`` within ``budget`` (OR-Tools SCIP, else CBC).
+    ``serve_all``: every job gets a model whenever the budget allows it."""
     job_list = list(jobs)
     model_list = list(models)
     if not job_list or not model_list or budget <= 1e-9:
@@ -44,9 +48,11 @@ def solve_mckp(jobs: Iterable[Job], models: ModelRegistry, budget: float) -> dic
     # Budget constraint: sum_j sum_m (c_m * x_{j,m}) <= B
     solver.Add(sum(m.cost * x[j.job_id, m.name] for j in job_list for m in model_list) <= budget + 1e-9)
 
-    # Each job gets at most one model: sum_m x_{j,m} <= 1
+    # Each job gets at most one model: sum_m x_{j,m} <= 1 (exactly one with serve_all, if affordable)
+    exactly_one = serve_all and len(job_list) * models.cheapest().cost <= budget + 1e-9
     for j in job_list:
-        solver.Add(sum(x[j.job_id, m.name] for m in model_list) <= 1)
+        picks = sum(x[j.job_id, m.name] for m in model_list)
+        solver.Add(picks == 1 if exactly_one else picks <= 1)
 
     # Objective: maximize total quality sum_j sum_m (q_{j,m} * x_{j,m})
     objective = solver.Objective()

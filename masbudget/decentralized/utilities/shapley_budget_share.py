@@ -8,9 +8,20 @@ class ShapleyBudgetShareUtility(BaseUtilityFunction):
 
     phi_i is the Shapley value / marginal contribution to collective welfare of agent i,
     the owner of the job (computable from ``state.agents`` and ``state.models``); a coalition
-    of agents brings all of its members' tasks. Params: ``lambda_cost``, ``gamma``.
+    of agents brings all of its members' tasks. Params: ``lambda_cost``, ``gamma``,
+    ``num_samples``, ``seed``, ``characteristic``:
+
+    * ``"best_model_welfare"`` (default): v(S) = max_m sum_{t in S} q_{t,m} - c_m.
+    * ``"upgrade_gain"``: v(S) = sum_{t in S} max_m (q_{t,m} - q_{t,base}) / |tasks of the agent|,
+      the quality the coalition gains from premium models over the cheapest one (task criticality).
+
+    phi_i is fixed for a given set of agents, so it is computed once per agent and cached.
     """
-    
+
+    def __init__(self, **params):
+        super().__init__(**params)
+        self._phi_cache: dict[tuple[int, int], float] = {}
+
     def _get_coalition_welfare(self, coalition, models) -> float:
         """Characteristic function v(S): The maximum collective quality 
 
@@ -19,6 +30,13 @@ class ShapleyBudgetShareUtility(BaseUtilityFunction):
         """
         if not coalition or not models:
             return 0.0
+
+        if self.params.get("characteristic", "best_model_welfare") == "upgrade_gain":
+            base = models.cheapest()
+            return sum(
+                max(m.quality(task) - base.quality(task) for m in models) / len(a.tasks)
+                for a in coalition for task in a.tasks
+            )
 
         max_welfare = float("-inf")
         for m in models:
@@ -69,7 +87,10 @@ class ShapleyBudgetShareUtility(BaseUtilityFunction):
         lambda_cost = float(self.params.get("lambda_cost", 0.1))
         gamma = float(self.params.get("gamma", 1.0))
         
-        phi_i = self.compute_phi(state.agents.get(job.agent_id), state)
+        key = (id(state.agents), job.agent_id)
+        if key not in self._phi_cache:
+            self._phi_cache[key] = self.compute_phi(state.agents.get(job.agent_id), state)
+        phi_i = self._phi_cache[key]
         
         denominator = 1.0 + gamma * phi_i
         if denominator < 1e-3:

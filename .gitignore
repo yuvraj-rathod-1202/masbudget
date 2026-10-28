@@ -3,3 +3,5 @@ __pycache__/
 logs/*.log
 
 .venv/*
+# experiment raw runs (regenerate with experiments/e0*.py)
+experiments/results/*_raw*.csv

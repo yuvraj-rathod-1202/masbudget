@@ -1,0 +1,85 @@
+### all 180 cells
+| policy | mean_gap | worst_gap | cells_gap_over_5pct | mean_gap_vs_serve_all | worst_gap_vs_serve_all | mean_starve | mean_jain |
+|---|---|---|---|---|---|---|---|
+| MCKP (optimal) | 0.0000 | 0.0000 | 0.0000 | -0.0225 | 0.0000 | 0.0403 | 0.9475 |
+| Pacing + reserve + abstain (ours) | 0.0071 | 0.0676 | 0.0167 | -0.0148 | 0.0676 | 0.0514 | 0.9426 |
+| Static equal quota | 0.0151 | 0.0725 | 0.0944 | -0.0066 | 0.0725 | 0.0310 | 0.9418 |
+| MCKP (serve all) | 0.0185 | 0.2445 | 0.1056 | 0.0000 | 0.0000 | 0.0000 | 0.9420 |
+| Predictive router | 0.0196 | 0.2445 | 0.1056 | 0.0011 | 0.0312 | 0.0000 | 0.9420 |
+| Pacing + reserve (ours) | 0.0208 | 0.2445 | 0.1056 | 0.0023 | 0.0312 | 0.0000 | 0.9404 |
+| U1 quasi-linear (lambda=10) + reserve | 0.0242 | 0.2445 | 0.1444 | 0.0058 | 0.0404 | 0.0000 | 0.9398 |
+| U2 shadow price (p0=3, a=0.5) + reserve | 0.0252 | 0.2445 | 0.1444 | 0.0068 | 0.0404 | 0.0000 | 0.9392 |
+| Best model + reserve | 0.0276 | 0.2445 | 0.1444 | 0.0093 | 0.0440 | 0.0000 | 0.9380 |
+| Cascade (verified) | 0.0469 | 0.2539 | 0.2556 | 0.0292 | 0.2025 | 0.0000 | 0.9369 |
+| Cheapest model | 0.1293 | 0.4930 | 0.5278 | 0.1124 | 0.4930 | 0.0000 | 0.9047 |
+| U1 quasi-linear (lambda=30) | 0.1681 | 0.7482 | 0.5833 | 0.1502 | 0.7475 | 0.1694 | 0.8925 |
+| Best model | 0.2576 | 0.8817 | 0.6333 | 0.2397 | 0.8817 | 0.2996 | 0.8453 |
+
+### mean gap by N
+| policy | 5 | 10 | 20 | 50 |
+|---|---|---|---|---|
+| Best model | 0.1874 | 0.2556 | 0.2822 | 0.3053 |
+| Best model + reserve | 0.0257 | 0.0275 | 0.0283 | 0.0289 |
+| Cascade (verified) | 0.0484 | 0.0464 | 0.0462 | 0.0466 |
+| Cheapest model | 0.1258 | 0.1292 | 0.1306 | 0.1317 |
+| MCKP (optimal) | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
+| MCKP (serve all) | 0.0177 | 0.0185 | 0.0189 | 0.0189 |
+| Pacing + reserve (ours) | 0.0217 | 0.0211 | 0.0203 | 0.0201 |
+| Pacing + reserve + abstain (ours) | 0.0094 | 0.0069 | 0.0062 | 0.0060 |
+| Predictive router | 0.0203 | 0.0198 | 0.0192 | 0.0191 |
+| Static equal quota | 0.0130 | 0.0146 | 0.0159 | 0.0169 |
+| U1 quasi-linear (lambda=10) + reserve | 0.0234 | 0.0245 | 0.0243 | 0.0246 |
+| U1 quasi-linear (lambda=30) | 0.1549 | 0.1693 | 0.1725 | 0.1759 |
+| U2 shadow price (p0=3, a=0.5) + reserve | 0.0240 | 0.0255 | 0.0255 | 0.0259 |
+
+### mean gap by mix
+| policy | easy_heavy | hard_heavy | uniform |
+|---|---|---|---|
+| Best model | 0.1486 | 0.2971 | 0.3272 |
+| Best model + reserve | 0.0026 | 0.0561 | 0.0242 |
+| Cascade (verified) | 0.0101 | 0.0962 | 0.0343 |
+| Cheapest model | 0.0291 | 0.2637 | 0.0951 |
+| MCKP (optimal) | 0.0000 | 0.0000 | 0.0000 |
+| MCKP (serve all) | 0.0011 | 0.0465 | 0.0080 |
+| Pacing + reserve (ours) | 0.0024 | 0.0501 | 0.0099 |
+| Pacing + reserve + abstain (ours) | 0.0041 | 0.0119 | 0.0055 |
+| Predictive router | 0.0011 | 0.0491 | 0.0085 |
+| Static equal quota | 0.0055 | 0.0272 | 0.0127 |
+| U1 quasi-linear (lambda=10) + reserve | 0.0037 | 0.0515 | 0.0174 |
+| U1 quasi-linear (lambda=30) | 0.0706 | 0.2449 | 0.1889 |
+| U2 shadow price (p0=3, a=0.5) + reserve | 0.0033 | 0.0536 | 0.0187 |
+
+### mean gap by tau
+| policy | 0.0 | 0.05 | 0.2 | 0.5 | 1.0 |
+|---|---|---|---|---|---|
+| Best model | 0.4846 | 0.4781 | 0.2377 | 0.0878 | -0.0000 |
+| Best model + reserve | 0.0348 | 0.0372 | 0.0382 | 0.0279 | -0.0000 |
+| Cascade (verified) | 0.0348 | 0.0421 | 0.0474 | 0.0521 | 0.0579 |
+| Cheapest model | 0.0348 | 0.0629 | 0.1245 | 0.1929 | 0.2315 |
+| MCKP (optimal) | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 |
+| MCKP (serve all) | 0.0348 | 0.0297 | 0.0201 | 0.0080 | 0.0000 |
+| Pacing + reserve (ours) | 0.0348 | 0.0304 | 0.0257 | 0.0102 | 0.0029 |
+| Pacing + reserve + abstain (ours) | 0.0128 | 0.0087 | 0.0091 | 0.0023 | 0.0029 |
+| Predictive router | 0.0348 | 0.0304 | 0.0240 | 0.0087 | 0.0000 |
+| Static equal quota | 0.0074 | 0.0278 | 0.0111 | 0.0292 | 0.0000 |
+| U1 quasi-linear (lambda=10) + reserve | 0.0348 | 0.0323 | 0.0283 | 0.0182 | 0.0074 |
+| U1 quasi-linear (lambda=30) | 0.2891 | 0.2307 | 0.1447 | 0.0976 | 0.0786 |
+| U2 shadow price (p0=3, a=0.5) + reserve | 0.0348 | 0.0347 | 0.0324 | 0.0198 | 0.0042 |
+
+### mean gap by pricing
+| policy | flat2x | measured | steep10x |
+|---|---|---|---|
+| Best model | 0.1241 | 0.3029 | 0.3459 |
+| Best model + reserve | 0.0635 | 0.0094 | 0.0100 |
+| Cascade (verified) | 0.1017 | 0.0180 | 0.0209 |
+| Cheapest model | 0.1621 | 0.1127 | 0.1132 |
+| MCKP (optimal) | 0.0000 | 0.0000 | 0.0000 |
+| MCKP (serve all) | 0.0549 | 0.0000 | 0.0006 |
+| Pacing + reserve (ours) | 0.0576 | 0.0020 | 0.0028 |
+| Pacing + reserve + abstain (ours) | 0.0129 | 0.0033 | 0.0052 |
+| Predictive router | 0.0561 | 0.0010 | 0.0017 |
+| Static equal quota | 0.0190 | 0.0129 | 0.0135 |
+| U1 quasi-linear (lambda=10) + reserve | 0.0635 | 0.0042 | 0.0049 |
+| U1 quasi-linear (lambda=30) | 0.1241 | 0.1160 | 0.2643 |
+| U2 shadow price (p0=3, a=0.5) + reserve | 0.0635 | 0.0045 | 0.0076 |
+done in 364s

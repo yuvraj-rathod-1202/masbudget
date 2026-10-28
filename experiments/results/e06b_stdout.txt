@@ -1,0 +1,10 @@
+| policy | mean_gap | worst_gap | cells_over_5pct | mean_starve |
+|---|---|---|---|---|
+| MCKP (optimal) | 0.0000 | 0.0000 | 0.0000 | 0.0403 |
+| Pacing + reserve + abstain (ours) | 0.0071 | 0.0676 | 0.0167 | 0.0514 |
+| Pacing + reserve + abstain (no price history) | 0.0107 | 0.2445 | 0.0389 | 0.0225 |
+| MCKP (serve all) | 0.0185 | 0.2445 | 0.1056 | 0.0000 |
+| Pacing + reserve (no price history) | 0.0206 | 0.2445 | 0.1056 | 0.0000 |
+| Pacing + reserve (ours) | 0.0208 | 0.2445 | 0.1056 | 0.0000 |
+| Cheapest model | 0.1293 | 0.4930 | 0.5278 | 0.0000 |
+done in 308s

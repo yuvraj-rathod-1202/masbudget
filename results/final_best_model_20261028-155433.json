@@ -1,0 +1,113 @@
+{
+  "experiment": "final_best_model",
+  "timestamp": "20261028-155433",
+  "config": {
+    "dataset_path": "data/livecodebench_difficulty_eval.json",
+    "seed": 7,
+    "num_agents": 20,
+    "tasks_per_agent": 10,
+    "budget": 1.334883,
+    "num_runs": 20,
+    "models": {
+      "deepseek-v3.1-terminus": 0.0011249379,
+      "deepseek-v3-0324": 0.0014471013,
+      "gemini-2.5-flash": 0.0058342806,
+      "deepseek-r1-0528": 0.0288723124
+    },
+    "centralized": {
+      "policy": "optimal_mckp"
+    },
+    "name": "final_best_model",
+    "mode": "both",
+    "decentralized": {
+      "arrival_policy": "random_fcfs",
+      "utility": "best_model"
+    }
+  },
+  "num_agents": 20,
+  "num_jobs": 200,
+  "runs": {
+    "centralized": 20,
+    "decentralized": 20
+  },
+  "metrics": {
+    "average_quality": {
+      "centralized": {
+        "mean": 0.7404716981132076,
+        "std": 0.0,
+        "n": 20
+      },
+      "decentralized": {
+        "mean": 0.30372877358490563,
+        "std": 0.02755313192700939,
+        "n": 20
+      }
+    },
+    "optimality_gap": {
+      "decentralized": {
+        "mean": 0.5898171741623137,
+        "std": 0.03721024314260409,
+        "n": 20
+      }
+    },
+    "budget_utilization": {
+      "centralized": {
+        "mean": 0.994176505581388,
+        "std": 0.0,
+        "n": 20
+      },
+      "decentralized": {
+        "mean": 0.9996619256556567,
+        "std": 0.00021799918980417156,
+        "n": 20
+      }
+    },
+    "task_starvation_rate": {
+      "centralized": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 20
+      },
+      "decentralized": {
+        "mean": 0.60975,
+        "std": 0.03414948755105997,
+        "n": 20
+      }
+    },
+    "starvation_rate": {
+      "centralized": {
+        "mean": 0.0,
+        "std": 0.0,
+        "n": 20
+      },
+      "decentralized": {
+        "mean": 0.9974999999999999,
+        "std": 0.010897247358851694,
+        "n": 20
+      }
+    },
+    "jains_fairness": {
+      "centralized": {
+        "mean": 0.9810601605353193,
+        "std": 1.1102230246251565e-16,
+        "n": 20
+      },
+      "decentralized": {
+        "mean": 0.8456142221177438,
+        "std": 0.04112340300432522,
+        "n": 20
+      }
+    },
+    "first_mover_advantage": {
+      "decentralized": {
+        "mean": 2.5285245219354144,
+        "std": 0.5055450489813694,
+        "n": 20
+      }
+    },
+    "order_sensitivity": {
+      "centralized": 0.0,
+      "decentralized": 30.367003159487364
+    }
+  }
+}

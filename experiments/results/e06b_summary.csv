@@ -1,0 +1,1261 @@
+N,mix,tau,pricing,policy,gap_exp,task_starve,gap_exp_ci,task_starve_ci,n
+5,easy_heavy,0.0,flat2x,Cheapest model,0.009399264405394262,0.0,0.0,0.0,10
+5,easy_heavy,0.0,flat2x,MCKP (optimal),0.0,0.04,0.0,0.0,10
+5,easy_heavy,0.0,flat2x,MCKP (serve all),0.009399264405394262,0.0,0.0,0.0,10
+5,easy_heavy,0.0,flat2x,Pacing + reserve (no price history),0.009399264405394143,0.0,0.0,0.0,10
+5,easy_heavy,0.0,flat2x,Pacing + reserve (ours),0.009399264405394143,0.0,0.0,0.0,10
+5,easy_heavy,0.0,flat2x,Pacing + reserve + abstain (no price history),0.009399264405394143,0.0,0.0,0.0,10
+5,easy_heavy,0.0,flat2x,Pacing + reserve + abstain (ours),0.016134041683694332,0.08,0.0003106318764375947,0.0,10
+5,easy_heavy,0.05,flat2x,Cheapest model,0.017430077016619278,0.0,0.0,0.0,10
+5,easy_heavy,0.05,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.05,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.05,flat2x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.05,flat2x,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.05,flat2x,Pacing + reserve + abstain (no price history),0.0033887312525333725,0.0304,0.0005079198012308514,0.004556502362314518,10
+5,easy_heavy,0.05,flat2x,Pacing + reserve + abstain (ours),0.004458856911228259,0.04,0.0,0.0,10
+5,easy_heavy,0.2,flat2x,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,0.2,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.2,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.2,flat2x,Pacing + reserve (no price history),0.00445151033386319,0.0,0.00030282633052190636,0.0,10
+5,easy_heavy,0.2,flat2x,Pacing + reserve (ours),0.007042925278219284,0.0,0.0008650450262801899,0.0,10
+5,easy_heavy,0.2,flat2x,Pacing + reserve + abstain (no price history),0.00445151033386319,0.0,0.00030282633052190636,0.0,10
+5,easy_heavy,0.2,flat2x,Pacing + reserve + abstain (ours),0.015262321144674008,0.020800000000000003,0.002992875239754003,0.006693399202863136,10
+5,easy_heavy,0.5,flat2x,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,0.5,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.5,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.5,flat2x,Pacing + reserve (no price history),0.0018282988871223742,0.0,0.00038864061887001225,0.0,10
+5,easy_heavy,0.5,flat2x,Pacing + reserve (ours),0.0018282988871223742,0.0,0.00038864061887001225,0.0,10
+5,easy_heavy,0.5,flat2x,Pacing + reserve + abstain (no price history),0.0018282988871223742,0.0,0.00038864061887001225,0.0,10
+5,easy_heavy,0.5,flat2x,Pacing + reserve + abstain (ours),0.0018282988871223742,0.0,0.00038864061887001225,0.0,10
+5,easy_heavy,1.0,flat2x,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,1.0,flat2x,Pacing + reserve (no price history),0.0012321144674085544,0.0,0.000337572866984639,0.0,10
+5,easy_heavy,1.0,flat2x,Pacing + reserve (ours),0.0012321144674085544,0.0,0.000337572866984639,0.0,10
+5,easy_heavy,1.0,flat2x,Pacing + reserve + abstain (no price history),0.0012321144674085544,0.0,0.000337572866984639,0.0,10
+5,easy_heavy,1.0,flat2x,Pacing + reserve + abstain (ours),0.0012321144674085544,0.0,0.000337572866984639,0.0,10
+5,easy_heavy,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.0,measured,Pacing + reserve (no price history),-1.2137339171850927e-16,0.0,0.0,0.0,10
+5,easy_heavy,0.0,measured,Pacing + reserve (ours),-1.2137339171850927e-16,0.0,0.0,0.0,10
+5,easy_heavy,0.0,measured,Pacing + reserve + abstain (no price history),-1.2137339171850927e-16,0.0,0.0,0.0,10
+5,easy_heavy,0.0,measured,Pacing + reserve + abstain (ours),-1.2137339171850927e-16,0.0,0.0,0.0,10
+5,easy_heavy,0.05,measured,Cheapest model,0.017430077016619278,0.0,0.0,0.0,10
+5,easy_heavy,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.05,measured,Pacing + reserve (no price history),0.005034454803404935,0.0,0.0012512606391670918,0.0,10
+5,easy_heavy,0.05,measured,Pacing + reserve (ours),0.001986218078638064,0.0,0.0006662964849561226,0.0,10
+5,easy_heavy,0.05,measured,Pacing + reserve + abstain (no price history),0.005212809079854075,0.0016,0.0012601078436999447,0.0020906666666666665,10
+5,easy_heavy,0.05,measured,Pacing + reserve + abstain (ours),0.002942845561410618,0.008799999999999999,0.000762431828668362,0.004930827471688251,10
+5,easy_heavy,0.2,measured,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.2,measured,Pacing + reserve (no price history),0.002106518282988791,0.0,0.00023370429252780173,0.0,10
+5,easy_heavy,0.2,measured,Pacing + reserve (ours),0.004062003179650126,0.0,0.0009683899541683587,0.0,10
+5,easy_heavy,0.2,measured,Pacing + reserve + abstain (no price history),0.002106518282988791,0.0,0.00023370429252780173,0.0,10
+5,easy_heavy,0.2,measured,Pacing + reserve + abstain (ours),0.004062003179650126,0.0,0.0009683899541683587,0.0,10
+5,easy_heavy,0.5,measured,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.5,measured,Pacing + reserve (no price history),0.0007949125596183951,0.0,0.0003072473867216326,0.0,10
+5,easy_heavy,0.5,measured,Pacing + reserve (ours),0.0007949125596183951,0.0,0.0003072473867216326,0.0,10
+5,easy_heavy,0.5,measured,Pacing + reserve + abstain (no price history),0.0007949125596183951,0.0,0.0003072473867216326,0.0,10
+5,easy_heavy,0.5,measured,Pacing + reserve + abstain (ours),0.0007949125596183951,0.0,0.0003072473867216326,0.0,10
+5,easy_heavy,1.0,measured,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,1.0,measured,Pacing + reserve (no price history),0.0006359300476947231,0.0,0.00020773714891359995,0.0,10
+5,easy_heavy,1.0,measured,Pacing + reserve (ours),0.0006359300476947231,0.0,0.00020773714891359995,0.0,10
+5,easy_heavy,1.0,measured,Pacing + reserve + abstain (no price history),0.0006359300476947231,0.0,0.00020773714891359995,0.0,10
+5,easy_heavy,1.0,measured,Pacing + reserve + abstain (ours),0.0006359300476947231,0.0,0.00020773714891359995,0.0,10
+5,easy_heavy,0.0,steep10x,Cheapest model,0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.0,steep10x,Pacing + reserve (no price history),-1.2137339171850927e-16,0.0,0.0,0.0,10
+5,easy_heavy,0.0,steep10x,Pacing + reserve (ours),-1.2137339171850927e-16,0.0,0.0,0.0,10
+5,easy_heavy,0.0,steep10x,Pacing + reserve + abstain (no price history),-1.2137339171850927e-16,0.0,0.0,0.0,10
+5,easy_heavy,0.0,steep10x,Pacing + reserve + abstain (ours),0.004438943894389496,0.05920000000000001,0.0006969447934748809,0.004790319126460504,10
+5,easy_heavy,0.05,steep10x,Cheapest model,0.017430077016619278,0.0,0.0,0.0,10
+5,easy_heavy,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.05,steep10x,Pacing + reserve (no price history),0.003526550466153219,0.0,0.0012383697619599789,0.0,10
+5,easy_heavy,0.05,steep10x,Pacing + reserve (ours),0.00017024726388326233,0.0,0.00010174400896123736,0.0,10
+5,easy_heavy,0.05,steep10x,Pacing + reserve + abstain (no price history),0.003526550466153219,0.0,0.0012383697619599789,0.0,10
+5,easy_heavy,0.05,steep10x,Pacing + reserve + abstain (ours),0.001240372922578018,0.009600000000000001,0.0006816146895657619,0.006095288380744955,10
+5,easy_heavy,0.2,steep10x,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.2,steep10x,Pacing + reserve (no price history),0.002146263910969695,0.0,0.0002648139440021401,0.0,10
+5,easy_heavy,0.2,steep10x,Pacing + reserve (ours),0.004578696343402163,0.0,0.0009957849409501754,0.0,10
+5,easy_heavy,0.2,steep10x,Pacing + reserve + abstain (no price history),0.002146263910969695,0.0,0.0002648139440021401,0.0,10
+5,easy_heavy,0.2,steep10x,Pacing + reserve + abstain (ours),0.004578696343402163,0.0,0.0009957849409501754,0.0,10
+5,easy_heavy,0.5,steep10x,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,0.5,steep10x,Pacing + reserve (no price history),0.0009936406995229938,0.0,0.00026608404214733226,0.0,10
+5,easy_heavy,0.5,steep10x,Pacing + reserve (ours),0.0009936406995229938,0.0,0.00026608404214733226,0.0,10
+5,easy_heavy,0.5,steep10x,Pacing + reserve + abstain (no price history),0.0009936406995229938,0.0,0.00026608404214733226,0.0,10
+5,easy_heavy,0.5,steep10x,Pacing + reserve + abstain (ours),0.0009936406995229938,0.0,0.00026608404214733226,0.0,10
+5,easy_heavy,1.0,steep10x,Cheapest model,0.036565977742448186,0.0,0.0,0.0,10
+5,easy_heavy,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,easy_heavy,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,easy_heavy,1.0,steep10x,Pacing + reserve (no price history),0.0009538950715420672,0.0,0.0002891578736392907,0.0,10
+5,easy_heavy,1.0,steep10x,Pacing + reserve (ours),0.0009538950715420672,0.0,0.0002891578736392907,0.0,10
+5,easy_heavy,1.0,steep10x,Pacing + reserve + abstain (no price history),0.0009538950715420672,0.0,0.0002891578736392907,0.0,10
+5,easy_heavy,1.0,steep10x,Pacing + reserve + abstain (ours),0.0009538950715420672,0.0,0.0002891578736392907,0.0,10
+10,easy_heavy,0.0,flat2x,Cheapest model,0.010384215991692746,0.0,0.0,0.0,10
+10,easy_heavy,0.0,flat2x,MCKP (optimal),0.0,0.06,0.0,0.0,10
+10,easy_heavy,0.0,flat2x,MCKP (serve all),0.010384215991692746,0.0,0.0,0.0,10
+10,easy_heavy,0.0,flat2x,Pacing + reserve (no price history),0.010384215991692624,0.0,0.0,0.0,10
+10,easy_heavy,0.0,flat2x,Pacing + reserve (ours),0.010384215991692624,0.0,0.0,0.0,10
+10,easy_heavy,0.0,flat2x,Pacing + reserve + abstain (no price history),0.010384215991692624,0.0,0.0,0.0,10
+10,easy_heavy,0.0,flat2x,Pacing + reserve + abstain (ours),0.019277258566978272,0.1,0.00014586204286460037,0.0,10
+10,easy_heavy,0.05,flat2x,Cheapest model,0.021761445288441816,0.0,0.0,0.0,10
+10,easy_heavy,0.05,flat2x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+10,easy_heavy,0.05,flat2x,MCKP (serve all),0.004721823034284431,0.0,0.0,0.0,10
+10,easy_heavy,0.05,flat2x,Pacing + reserve (no price history),0.004721823034284311,0.0,0.0,0.0,10
+10,easy_heavy,0.05,flat2x,Pacing + reserve (ours),0.005001026483268106,0.0,0.00036482584000549213,0.0,10
+10,easy_heavy,0.05,flat2x,Pacing + reserve + abstain (no price history),0.0008581400123177394,0.027600000000000003,0.00020655580647367336,0.0018293333333333334,10
+10,easy_heavy,0.05,flat2x,Pacing + reserve + abstain (ours),0.010942311640320165,0.0588,0.0007729495076186585,0.001673349800715784,10
+10,easy_heavy,0.2,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,0.2,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.2,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.2,flat2x,Pacing + reserve (no price history),0.004582914572864185,0.0,0.00021011725293127354,0.0,10
+10,easy_heavy,0.2,flat2x,Pacing + reserve (ours),0.005981909547738444,0.0,0.0004092232419589575,0.0,10
+10,easy_heavy,0.2,flat2x,Pacing + reserve + abstain (no price history),0.004582914572864185,0.0,0.00021011725293127354,0.0,10
+10,easy_heavy,0.2,flat2x,Pacing + reserve + abstain (ours),0.013889447236180675,0.0196,0.0017086668119282514,0.0037780521730413183,10
+10,easy_heavy,0.5,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,0.5,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.5,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.5,flat2x,Pacing + reserve (no price history),0.0013668341708541955,0.0,0.0003259358170337119,0.0,10
+10,easy_heavy,0.5,flat2x,Pacing + reserve (ours),0.0013668341708541955,0.0,0.0003259358170337119,0.0,10
+10,easy_heavy,0.5,flat2x,Pacing + reserve + abstain (no price history),0.0013668341708541955,0.0,0.0003259358170337119,0.0,10
+10,easy_heavy,0.5,flat2x,Pacing + reserve + abstain (ours),0.0013668341708541955,0.0,0.0003259358170337119,0.0,10
+10,easy_heavy,1.0,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,1.0,flat2x,Pacing + reserve (no price history),0.000824120603015119,0.0,0.00023084526518756072,0.0,10
+10,easy_heavy,1.0,flat2x,Pacing + reserve (ours),0.000824120603015119,0.0,0.00023084526518756072,0.0,10
+10,easy_heavy,1.0,flat2x,Pacing + reserve + abstain (no price history),0.000824120603015119,0.0,0.00023084526518756072,0.0,10
+10,easy_heavy,1.0,flat2x,Pacing + reserve + abstain (ours),0.000824120603015119,0.0,0.00023084526518756072,0.0,10
+10,easy_heavy,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.0,measured,Pacing + reserve (no price history),-1.234875557295557e-16,0.0,0.0,0.0,10
+10,easy_heavy,0.0,measured,Pacing + reserve (ours),-1.234875557295557e-16,0.0,0.0,0.0,10
+10,easy_heavy,0.0,measured,Pacing + reserve + abstain (no price history),-1.234875557295557e-16,0.0,0.0,0.0,10
+10,easy_heavy,0.0,measured,Pacing + reserve + abstain (ours),-1.234875557295557e-16,0.0,0.0,0.0,10
+10,easy_heavy,0.05,measured,Cheapest model,0.017120462046204748,0.0,0.0,0.0,10
+10,easy_heavy,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.05,measured,Pacing + reserve (no price history),0.001914191419141935,0.0,0.0008703842859825862,0.0,10
+10,easy_heavy,0.05,measured,Pacing + reserve (ours),0.0005981848184818031,0.0,0.0005243321115556892,0.0,10
+10,easy_heavy,0.05,measured,Pacing + reserve + abstain (no price history),0.001914191419141935,0.0,0.0008703842859825862,0.0,10
+10,easy_heavy,0.05,measured,Pacing + reserve + abstain (ours),0.0005981848184818031,0.0,0.0005243321115556892,0.0,10
+10,easy_heavy,0.2,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.2,measured,Pacing + reserve (no price history),0.0018894472361808544,0.0,0.0002639565322263911,0.0,10
+10,easy_heavy,0.2,measured,Pacing + reserve (ours),0.003971859296482339,0.0,0.0004791122609633589,0.0,10
+10,easy_heavy,0.2,measured,Pacing + reserve + abstain (no price history),0.0018894472361808544,0.0,0.0002639565322263911,0.0,10
+10,easy_heavy,0.2,measured,Pacing + reserve + abstain (ours),0.003971859296482339,0.0,0.0004791122609633589,0.0,10
+10,easy_heavy,0.5,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.5,measured,Pacing + reserve (no price history),0.0006231155778894318,0.0,0.00023819886102880274,0.0,10
+10,easy_heavy,0.5,measured,Pacing + reserve (ours),0.0006231155778894318,0.0,0.00023819886102880274,0.0,10
+10,easy_heavy,0.5,measured,Pacing + reserve + abstain (no price history),0.0006231155778894318,0.0,0.00023819886102880274,0.0,10
+10,easy_heavy,0.5,measured,Pacing + reserve + abstain (ours),0.0006231155778894318,0.0,0.00023819886102880274,0.0,10
+10,easy_heavy,1.0,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,1.0,measured,Pacing + reserve (no price history),0.00048241206030150504,0.0,0.00020513352582617714,0.0,10
+10,easy_heavy,1.0,measured,Pacing + reserve (ours),0.00048241206030150504,0.0,0.00020513352582617714,0.0,10
+10,easy_heavy,1.0,measured,Pacing + reserve + abstain (no price history),0.00048241206030150504,0.0,0.00020513352582617714,0.0,10
+10,easy_heavy,1.0,measured,Pacing + reserve + abstain (ours),0.00048241206030150504,0.0,0.00020513352582617714,0.0,10
+10,easy_heavy,0.0,steep10x,Cheapest model,0.0008387502621094321,0.0,0.0,0.0,10
+10,easy_heavy,0.0,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+10,easy_heavy,0.0,steep10x,MCKP (serve all),0.0008387502621094321,0.0,0.0,0.0,10
+10,easy_heavy,0.0,steep10x,Pacing + reserve (no price history),0.0008387502621093088,0.0,0.0,0.0,10
+10,easy_heavy,0.0,steep10x,Pacing + reserve (ours),0.0008387502621093088,0.0,0.0,0.0,10
+10,easy_heavy,0.0,steep10x,Pacing + reserve + abstain (no price history),0.0008387502621093088,0.0,0.0,0.0,10
+10,easy_heavy,0.0,steep10x,Pacing + reserve + abstain (ours),0.004881526525477048,0.057199999999999994,0.00020066973375412338,0.001197579781615126,10
+10,easy_heavy,0.05,steep10x,Cheapest model,0.017120462046204748,0.0,0.0,0.0,10
+10,easy_heavy,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.05,steep10x,Pacing + reserve (no price history),0.0010767326732672988,0.0,0.0006492691149178816,0.0,10
+10,easy_heavy,0.05,steep10x,Pacing + reserve (ours),0.00014026402640252567,0.0,0.00027491749174918815,0.0,10
+10,easy_heavy,0.05,steep10x,Pacing + reserve + abstain (no price history),0.0010767326732672988,0.0,0.0006492691149178816,0.0,10
+10,easy_heavy,0.05,steep10x,Pacing + reserve + abstain (ours),0.00014026402640252567,0.0,0.00027491749174918815,0.0,10
+10,easy_heavy,0.2,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.2,steep10x,Pacing + reserve (no price history),0.002030150753768805,0.0,0.00029039969848906156,0.0,10
+10,easy_heavy,0.2,steep10x,Pacing + reserve (ours),0.004514572864321558,0.0,0.00045598499924600787,0.0,10
+10,easy_heavy,0.2,steep10x,Pacing + reserve + abstain (no price history),0.002030150753768805,0.0,0.00029039969848906156,0.0,10
+10,easy_heavy,0.2,steep10x,Pacing + reserve + abstain (ours),0.004514572864321558,0.0,0.00045598499924600787,0.0,10
+10,easy_heavy,0.5,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,0.5,steep10x,Pacing + reserve (no price history),0.000683417085427145,0.0,0.00020513352582615936,0.0,10
+10,easy_heavy,0.5,steep10x,Pacing + reserve (ours),0.000683417085427145,0.0,0.00020513352582615936,0.0,10
+10,easy_heavy,0.5,steep10x,Pacing + reserve + abstain (no price history),0.000683417085427145,0.0,0.00020513352582615936,0.0,10
+10,easy_heavy,0.5,steep10x,Pacing + reserve + abstain (ours),0.000683417085427145,0.0,0.00020513352582615936,0.0,10
+10,easy_heavy,1.0,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+10,easy_heavy,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,easy_heavy,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,easy_heavy,1.0,steep10x,Pacing + reserve (no price history),0.0005829145728642896,0.0,0.00021538619869373703,0.0,10
+10,easy_heavy,1.0,steep10x,Pacing + reserve (ours),0.0005829145728642896,0.0,0.00021538619869373703,0.0,10
+10,easy_heavy,1.0,steep10x,Pacing + reserve + abstain (no price history),0.0005829145728642896,0.0,0.00021538619869373703,0.0,10
+10,easy_heavy,1.0,steep10x,Pacing + reserve + abstain (ours),0.0005829145728642896,0.0,0.00021538619869373703,0.0,10
+20,easy_heavy,0.0,flat2x,Cheapest model,0.011923276308968346,0.0,0.0,0.0,10
+20,easy_heavy,0.0,flat2x,MCKP (optimal),0.0,0.05,0.0,0.0,10
+20,easy_heavy,0.0,flat2x,MCKP (serve all),0.011923276308968346,0.0,0.0,0.0,10
+20,easy_heavy,0.0,flat2x,Pacing + reserve (no price history),0.011923276308968223,0.0,0.0,0.0,10
+20,easy_heavy,0.0,flat2x,Pacing + reserve (ours),0.011923276308968223,0.0,0.0,0.0,10
+20,easy_heavy,0.0,flat2x,Pacing + reserve + abstain (no price history),0.011923276308968223,0.0,0.0,0.0,10
+20,easy_heavy,0.0,flat2x,Pacing + reserve + abstain (ours),0.020553654743390232,0.0998,0.00015010356957068856,0.00039199999999999923,10
+20,easy_heavy,0.05,flat2x,Cheapest model,0.024065540194572535,0.0,0.0,0.0,10
+20,easy_heavy,0.05,flat2x,MCKP (optimal),0.0,0.03,0.0,0.0,10
+20,easy_heavy,0.05,flat2x,MCKP (serve all),0.006656426011264749,0.0,0.0,0.0,10
+20,easy_heavy,0.05,flat2x,Pacing + reserve (no price history),0.007066052227342386,0.0,0.0,0.0,10
+20,easy_heavy,0.05,flat2x,Pacing + reserve (ours),0.007135688684075625,0.0,0.000136487455197151,0.0,10
+20,easy_heavy,0.05,flat2x,Pacing + reserve + abstain (no price history),0.0014132104454685252,0.024,0.000496257490074519,0.002106936691555354,10
+20,easy_heavy,0.05,flat2x,Pacing + reserve + abstain (ours),0.009769585253456205,0.0512,0.0002949923131093965,0.0006401333194473375,10
+20,easy_heavy,0.2,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,0.2,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.2,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.2,flat2x,Pacing + reserve (no price history),0.004522613065326556,0.0,7.769190200918766e-05,0.0,10
+20,easy_heavy,0.2,flat2x,Pacing + reserve (ours),0.005298492462311298,0.0,0.000218739023730778,0.0,10
+20,easy_heavy,0.2,flat2x,Pacing + reserve + abstain (no price history),0.004522613065326556,0.0,7.769190200918766e-05,0.0,10
+20,easy_heavy,0.2,flat2x,Pacing + reserve + abstain (ours),0.013165829145728433,0.018,0.0012947170404544342,0.002862763233893667,10
+20,easy_heavy,0.5,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,0.5,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.5,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.5,flat2x,Pacing + reserve (no price history),0.0015477386934672761,0.0,0.0001444556113902726,0.0,10
+20,easy_heavy,0.5,flat2x,Pacing + reserve (ours),0.0015477386934672761,0.0,0.0001444556113902726,0.0,10
+20,easy_heavy,0.5,flat2x,Pacing + reserve + abstain (no price history),0.0015477386934672761,0.0,0.0001444556113902726,0.0,10
+20,easy_heavy,0.5,flat2x,Pacing + reserve + abstain (ours),0.0015477386934672761,0.0,0.0001444556113902726,0.0,10
+20,easy_heavy,1.0,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,1.0,flat2x,Pacing + reserve (no price history),0.0009547738693466833,0.0,0.00016150628339995943,0.0,10
+20,easy_heavy,1.0,flat2x,Pacing + reserve (ours),0.0009547738693466833,0.0,0.00016150628339995943,0.0,10
+20,easy_heavy,1.0,flat2x,Pacing + reserve + abstain (no price history),0.0009547738693466833,0.0,0.00016150628339995943,0.0,10
+20,easy_heavy,1.0,flat2x,Pacing + reserve + abstain (ours),0.0009547738693466833,0.0,0.00016150628339995943,0.0,10
+20,easy_heavy,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.0,measured,Pacing + reserve (no price history),-1.234875557295557e-16,0.0,0.0,0.0,10
+20,easy_heavy,0.0,measured,Pacing + reserve (ours),-1.234875557295557e-16,0.0,0.0,0.0,10
+20,easy_heavy,0.0,measured,Pacing + reserve + abstain (no price history),-1.234875557295557e-16,0.0,0.0,0.0,10
+20,easy_heavy,0.0,measured,Pacing + reserve + abstain (ours),-1.234875557295557e-16,0.0,0.0,0.0,10
+20,easy_heavy,0.05,measured,Cheapest model,0.017525773195876344,0.0,0.0,0.0,10
+20,easy_heavy,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.05,measured,Pacing + reserve (no price history),0.000830927835051431,0.0,0.000305109684933758,0.0,10
+20,easy_heavy,0.05,measured,Pacing + reserve (ours),0.00041237113402042434,0.0,0.0,0.0,10
+20,easy_heavy,0.05,measured,Pacing + reserve + abstain (no price history),0.000830927835051431,0.0,0.000305109684933758,0.0,10
+20,easy_heavy,0.05,measured,Pacing + reserve + abstain (ours),0.00041237113402042434,0.0,0.0,0.0,10
+20,easy_heavy,0.2,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.2,measured,Pacing + reserve (no price history),0.0017889447236179874,0.0,0.00016030049585821028,0.0,10
+20,easy_heavy,0.2,measured,Pacing + reserve (ours),0.0032482412060300878,0.0,0.0002671517136113326,0.0,10
+20,easy_heavy,0.2,measured,Pacing + reserve + abstain (no price history),0.0017889447236179874,0.0,0.00016030049585821028,0.0,10
+20,easy_heavy,0.2,measured,Pacing + reserve + abstain (ours),0.0032482412060300878,0.0,0.0002671517136113326,0.0,10
+20,easy_heavy,0.5,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.5,measured,Pacing + reserve (no price history),0.0006331658291457941,0.0,0.0001609714929137269,0.0,10
+20,easy_heavy,0.5,measured,Pacing + reserve (ours),0.0006331658291457941,0.0,0.0001609714929137269,0.0,10
+20,easy_heavy,0.5,measured,Pacing + reserve + abstain (no price history),0.0006331658291457941,0.0,0.0001609714929137269,0.0,10
+20,easy_heavy,0.5,measured,Pacing + reserve + abstain (ours),0.0006331658291457941,0.0,0.0001609714929137269,0.0,10
+20,easy_heavy,1.0,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,1.0,measured,Pacing + reserve (no price history),0.0005326633165829742,0.0,0.00013148733471764882,0.0,10
+20,easy_heavy,1.0,measured,Pacing + reserve (ours),0.0005326633165829742,0.0,0.00013148733471764882,0.0,10
+20,easy_heavy,1.0,measured,Pacing + reserve + abstain (no price history),0.0005326633165829742,0.0,0.00013148733471764882,0.0,10
+20,easy_heavy,1.0,measured,Pacing + reserve + abstain (ours),0.0005326633165829742,0.0,0.00013148733471764882,0.0,10
+20,easy_heavy,0.0,steep10x,Cheapest model,0.0008387502621094321,0.0,0.0,0.0,10
+20,easy_heavy,0.0,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+20,easy_heavy,0.0,steep10x,MCKP (serve all),0.0008387502621094321,0.0,0.0,0.0,10
+20,easy_heavy,0.0,steep10x,Pacing + reserve (no price history),0.0008387502621093088,0.0,0.0,0.0,10
+20,easy_heavy,0.0,steep10x,Pacing + reserve (ours),0.0008387502621093088,0.0,0.0,0.0,10
+20,easy_heavy,0.0,steep10x,Pacing + reserve + abstain (no price history),0.0008387502621093088,0.0,0.0,0.0,10
+20,easy_heavy,0.0,steep10x,Pacing + reserve + abstain (ours),0.004355210736003269,0.054000000000000006,9.590689822173325e-05,0.001168718196239889,10
+20,easy_heavy,0.05,steep10x,Cheapest model,0.018335393489905264,0.0,0.0,0.0,10
+20,easy_heavy,0.05,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+20,easy_heavy,0.05,steep10x,MCKP (serve all),0.0008240626287597614,0.0,0.0,0.0,10
+20,easy_heavy,0.05,steep10x,Pacing + reserve (no price history),0.0014153275648947474,0.0,0.0001788721346664875,0.0,10
+20,easy_heavy,0.05,steep10x,Pacing + reserve (ours),0.0012360939431394602,0.0,0.0,0.0,10
+20,easy_heavy,0.05,steep10x,Pacing + reserve + abstain (no price history),0.0014153275648947474,0.0,0.0001788721346664875,0.0,10
+20,easy_heavy,0.05,steep10x,Pacing + reserve + abstain (ours),0.0012360939431394602,0.0,0.0,0.0,10
+20,easy_heavy,0.2,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.2,steep10x,Pacing + reserve (no price history),0.0020100502512561983,0.0,0.00015813417336302894,0.0,10
+20,easy_heavy,0.2,steep10x,Pacing + reserve (ours),0.0038110552763818773,0.0,0.0002290603330058958,0.0,10
+20,easy_heavy,0.2,steep10x,Pacing + reserve + abstain (no price history),0.0020100502512561983,0.0,0.00015813417336302894,0.0,10
+20,easy_heavy,0.2,steep10x,Pacing + reserve + abstain (ours),0.0038110552763818773,0.0,0.0002290603330058958,0.0,10
+20,easy_heavy,0.5,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,0.5,steep10x,Pacing + reserve (no price history),0.0006834170854271924,0.0,0.00017322730772669962,0.0,10
+20,easy_heavy,0.5,steep10x,Pacing + reserve (ours),0.0006834170854271924,0.0,0.00017322730772669962,0.0,10
+20,easy_heavy,0.5,steep10x,Pacing + reserve + abstain (no price history),0.0006834170854271924,0.0,0.00017322730772669962,0.0,10
+20,easy_heavy,0.5,steep10x,Pacing + reserve + abstain (ours),0.0006834170854271924,0.0,0.00017322730772669962,0.0,10
+20,easy_heavy,1.0,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+20,easy_heavy,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,easy_heavy,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,easy_heavy,1.0,steep10x,Pacing + reserve (no price history),0.0005728643216080808,0.0,0.0001440072224821876,0.0,10
+20,easy_heavy,1.0,steep10x,Pacing + reserve (ours),0.0005728643216080808,0.0,0.0001440072224821876,0.0,10
+20,easy_heavy,1.0,steep10x,Pacing + reserve + abstain (no price history),0.0005728643216080808,0.0,0.0001440072224821876,0.0,10
+20,easy_heavy,1.0,steep10x,Pacing + reserve + abstain (ours),0.0005728643216080808,0.0,0.0001440072224821876,0.0,10
+50,easy_heavy,0.0,flat2x,Cheapest model,0.013212392312789981,0.0,0.0,0.0,10
+50,easy_heavy,0.0,flat2x,MCKP (optimal),0.0,0.052000000000000005,0.0,0.0,10
+50,easy_heavy,0.0,flat2x,MCKP (serve all),0.013212392312789981,0.0,0.0,0.0,10
+50,easy_heavy,0.0,flat2x,Pacing + reserve (no price history),0.013212392312789858,0.0,0.0,0.0,10
+50,easy_heavy,0.0,flat2x,Pacing + reserve (ours),0.013212392312789858,0.0,0.0,0.0,10
+50,easy_heavy,0.0,flat2x,Pacing + reserve + abstain (no price history),0.013212392312789858,0.0,0.0,0.0,10
+50,easy_heavy,0.0,flat2x,Pacing + reserve + abstain (ours),0.01974652087475152,0.096,3.9902059684892464e-05,0.0,10
+50,easy_heavy,0.05,flat2x,Cheapest model,0.024964190710047105,0.0,0.0,0.0,10
+50,easy_heavy,0.05,flat2x,MCKP (optimal),0.0,0.028000000000000004,0.0,0.0,10
+50,easy_heavy,0.05,flat2x,MCKP (serve all),0.006588909351340258,0.0,0.0,0.0,10
+50,easy_heavy,0.05,flat2x,Pacing + reserve (no price history),0.006818088807039076,0.0,7.486528886160202e-05,0.0,10
+50,easy_heavy,0.05,flat2x,Pacing + reserve (ours),0.006616738285246555,0.0,5.4544710456343575e-05,0.0,10
+50,easy_heavy,0.05,flat2x,Pacing + reserve + abstain (no price history),0.0010746879476161637,0.02384,0.00015020822796936938,0.0006095288380744949,10
+50,easy_heavy,0.05,flat2x,Pacing + reserve + abstain (ours),0.010276243093922744,0.05032,0.0002512338951192924,0.0005456800201990577,10
+50,easy_heavy,0.2,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,0.2,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.2,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.2,flat2x,Pacing + reserve (no price history),0.00460703517587938,0.0,6.125917970597013e-05,0.0,10
+50,easy_heavy,0.2,flat2x,Pacing + reserve (ours),0.0054898492462310995,0.0,0.00017949044191394292,0.0,10
+50,easy_heavy,0.2,flat2x,Pacing + reserve + abstain (no price history),0.00460703517587938,0.0,6.125917970597013e-05,0.0,10
+50,easy_heavy,0.2,flat2x,Pacing + reserve + abstain (ours),0.013382914572864271,0.018480000000000003,0.00046621800035820155,0.001030859800791984,10
+50,easy_heavy,0.5,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,0.5,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.5,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.5,flat2x,Pacing + reserve (no price history),0.0013829145728642617,0.0,0.0001221800660113403,0.0,10
+50,easy_heavy,0.5,flat2x,Pacing + reserve (ours),0.0013829145728642617,0.0,0.0001221800660113403,0.0,10
+50,easy_heavy,0.5,flat2x,Pacing + reserve + abstain (no price history),0.0013829145728642617,0.0,0.0001221800660113403,0.0,10
+50,easy_heavy,0.5,flat2x,Pacing + reserve + abstain (ours),0.0013829145728642617,0.0,0.0001221800660113403,0.0,10
+50,easy_heavy,1.0,flat2x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,1.0,flat2x,Pacing + reserve (no price history),0.0008080402010049226,0.0,0.00012118798317087798,0.0,10
+50,easy_heavy,1.0,flat2x,Pacing + reserve (ours),0.0008080402010049226,0.0,0.00012118798317087798,0.0,10
+50,easy_heavy,1.0,flat2x,Pacing + reserve + abstain (no price history),0.0008080402010049226,0.0,0.00012118798317087798,0.0,10
+50,easy_heavy,1.0,flat2x,Pacing + reserve + abstain (ours),0.0008080402010049226,0.0,0.00012118798317087798,0.0,10
+50,easy_heavy,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.0,measured,Pacing + reserve (no price history),-1.234875557295557e-16,0.0,0.0,0.0,10
+50,easy_heavy,0.0,measured,Pacing + reserve (ours),-1.234875557295557e-16,0.0,0.0,0.0,10
+50,easy_heavy,0.0,measured,Pacing + reserve + abstain (no price history),-1.234875557295557e-16,0.0,0.0,0.0,10
+50,easy_heavy,0.0,measured,Pacing + reserve + abstain (ours),-1.234875557295557e-16,0.0,0.0,0.0,10
+50,easy_heavy,0.05,measured,Cheapest model,0.019870001645548814,0.0,0.0,0.0,10
+50,easy_heavy,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.05,measured,Pacing + reserve (no price history),2.3860457462466595e-05,0.0,4.676649662667175e-05,0.0,10
+50,easy_heavy,0.05,measured,Pacing + reserve (ours),2.79743294387627e-05,0.0,5.482968570021211e-05,0.0,10
+50,easy_heavy,0.05,measured,Pacing + reserve + abstain (no price history),2.3860457462466595e-05,0.0,4.676649662667175e-05,0.0,10
+50,easy_heavy,0.05,measured,Pacing + reserve + abstain (ours),2.79743294387627e-05,0.0,5.482968570021211e-05,0.0,10
+50,easy_heavy,0.2,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.2,measured,Pacing + reserve (no price history),0.0015195979899496836,0.0,0.00011496601544077012,0.0,10
+50,easy_heavy,0.2,measured,Pacing + reserve (ours),0.0032184924623115596,0.0,0.00013493082307936742,0.0,10
+50,easy_heavy,0.2,measured,Pacing + reserve + abstain (no price history),0.0015195979899496836,0.0,0.00011496601544077012,0.0,10
+50,easy_heavy,0.2,measured,Pacing + reserve + abstain (ours),0.0032184924623115596,0.0,0.00013493082307936742,0.0,10
+50,easy_heavy,0.5,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.5,measured,Pacing + reserve (no price history),0.0005668341708542114,0.0,8.091049039725267e-05,0.0,10
+50,easy_heavy,0.5,measured,Pacing + reserve (ours),0.0005668341708542114,0.0,8.091049039725267e-05,0.0,10
+50,easy_heavy,0.5,measured,Pacing + reserve + abstain (no price history),0.0005668341708542114,0.0,8.091049039725267e-05,0.0,10
+50,easy_heavy,0.5,measured,Pacing + reserve + abstain (ours),0.0005668341708542114,0.0,8.091049039725267e-05,0.0,10
+50,easy_heavy,1.0,measured,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,1.0,measured,Pacing + reserve (no price history),0.0004462311557787849,0.0,7.28341233173134e-05,0.0,10
+50,easy_heavy,1.0,measured,Pacing + reserve (ours),0.0004462311557787849,0.0,7.28341233173134e-05,0.0,10
+50,easy_heavy,1.0,measured,Pacing + reserve + abstain (no price history),0.0004462311557787849,0.0,7.28341233173134e-05,0.0,10
+50,easy_heavy,1.0,measured,Pacing + reserve + abstain (ours),0.0004462311557787849,0.0,7.28341233173134e-05,0.0,10
+50,easy_heavy,0.0,steep10x,Cheapest model,0.0008387502621095553,0.0,0.0,0.0,10
+50,easy_heavy,0.0,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+50,easy_heavy,0.0,steep10x,MCKP (serve all),0.0008387502621095553,0.0,0.0,0.0,10
+50,easy_heavy,0.0,steep10x,Pacing + reserve (no price history),0.000838750262109432,0.0,0.0,0.0,10
+50,easy_heavy,0.0,steep10x,Pacing + reserve (ours),0.000838750262109432,0.0,0.0,0.0,10
+50,easy_heavy,0.0,steep10x,Pacing + reserve + abstain (no price history),0.000838750262109432,0.0,0.0,0.0,10
+50,easy_heavy,0.0,steep10x,Pacing + reserve + abstain (ours),0.0038708324596351774,0.05256000000000001,4.987854105613701e-05,0.000334669960143156,10
+50,easy_heavy,0.05,steep10x,Cheapest model,0.01962801415521358,0.0,0.0,0.0,10
+50,easy_heavy,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.05,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.05,steep10x,Pacing + reserve (ours),0.0008344992181712705,0.0,0.00019898759874539308,0.0,10
+50,easy_heavy,0.05,steep10x,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.05,steep10x,Pacing + reserve + abstain (ours),0.0008344992181712705,0.0,0.00019898759874539308,0.0,10
+50,easy_heavy,0.2,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.2,steep10x,Pacing + reserve (no price history),0.001760804020100442,0.0,0.0001196700305248444,0.0,10
+50,easy_heavy,0.2,steep10x,Pacing + reserve (ours),0.003825527638190925,0.0,0.0001227163908325824,0.0,10
+50,easy_heavy,0.2,steep10x,Pacing + reserve + abstain (no price history),0.001760804020100442,0.0,0.0001196700305248444,0.0,10
+50,easy_heavy,0.2,steep10x,Pacing + reserve + abstain (ours),0.003825527638190925,0.0,0.0001227163908325824,0.0,10
+50,easy_heavy,0.5,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,0.5,steep10x,Pacing + reserve (no price history),0.0006351758793969223,0.0,9.952884108575908e-05,0.0,10
+50,easy_heavy,0.5,steep10x,Pacing + reserve (ours),0.0006351758793969223,0.0,9.952884108575908e-05,0.0,10
+50,easy_heavy,0.5,steep10x,Pacing + reserve + abstain (no price history),0.0006351758793969223,0.0,9.952884108575908e-05,0.0,10
+50,easy_heavy,0.5,steep10x,Pacing + reserve + abstain (ours),0.0006351758793969223,0.0,9.952884108575908e-05,0.0,10
+50,easy_heavy,1.0,steep10x,Cheapest model,0.0422110552763819,0.0,0.0,0.0,10
+50,easy_heavy,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,easy_heavy,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,easy_heavy,1.0,steep10x,Pacing + reserve (no price history),0.000474371859296401,0.0,8.120834753537473e-05,0.0,10
+50,easy_heavy,1.0,steep10x,Pacing + reserve (ours),0.000474371859296401,0.0,8.120834753537473e-05,0.0,10
+50,easy_heavy,1.0,steep10x,Pacing + reserve + abstain (no price history),0.000474371859296401,0.0,8.120834753537473e-05,0.0,10
+50,easy_heavy,1.0,steep10x,Pacing + reserve + abstain (ours),0.000474371859296401,0.0,8.120834753537473e-05,0.0,10
+5,hard_heavy,0.0,flat2x,Cheapest model,0.24058577405857737,0.0,0.0,0.0,10
+5,hard_heavy,0.0,flat2x,MCKP (optimal),0.0,0.4,0.0,0.0,10
+5,hard_heavy,0.0,flat2x,MCKP (serve all),0.24058577405857737,0.0,0.0,0.0,10
+5,hard_heavy,0.0,flat2x,Pacing + reserve (no price history),0.24058577405857737,0.0,0.0,0.0,10
+5,hard_heavy,0.0,flat2x,Pacing + reserve (ours),0.24058577405857737,0.0,0.0,0.0,10
+5,hard_heavy,0.0,flat2x,Pacing + reserve + abstain (no price history),0.24058577405857737,0.0,0.0,0.0,10
+5,hard_heavy,0.0,flat2x,Pacing + reserve + abstain (ours),0.04117154811715469,0.44000000000000006,0.0004181622697339783,0.0,10
+5,hard_heavy,0.05,flat2x,Cheapest model,0.25385405960945545,0.0,0.0,0.0,10
+5,hard_heavy,0.05,flat2x,MCKP (optimal),0.0,0.36,0.0,0.0,10
+5,hard_heavy,0.05,flat2x,MCKP (serve all),0.21274409044193235,0.0,0.0,0.0,10
+5,hard_heavy,0.05,flat2x,Pacing + reserve (no price history),0.21274409044193235,0.0,0.0,0.0,10
+5,hard_heavy,0.05,flat2x,Pacing + reserve (ours),0.21274409044193235,0.0,0.0,0.0,10
+5,hard_heavy,0.05,flat2x,Pacing + reserve + abstain (no price history),0.02174717368961992,0.32320000000000004,0.001513162008971108,0.002560533277789351,10
+5,hard_heavy,0.05,flat2x,Pacing + reserve + abstain (ours),0.011305241521068977,0.4,0.0,0.0,10
+5,hard_heavy,0.2,flat2x,Cheapest model,0.31315042573320734,0.0,0.0,0.0,10
+5,hard_heavy,0.2,flat2x,MCKP (optimal),0.0,0.28,0.0,0.0,10
+5,hard_heavy,0.2,flat2x,MCKP (serve all),0.15231788079470218,0.0,0.0,0.0,10
+5,hard_heavy,0.2,flat2x,Pacing + reserve (no price history),0.16132450331125847,0.0,0.004656795255146021,0.0,10
+5,hard_heavy,0.2,flat2x,Pacing + reserve (ours),0.17880794701986766,0.0,0.0,0.0,10
+5,hard_heavy,0.2,flat2x,Pacing + reserve + abstain (no price history),0.03903500473036909,0.2584,0.0035170140868735693,0.0070317608352705235,10
+5,hard_heavy,0.2,flat2x,Pacing + reserve + abstain (ours),0.004730368968779563,0.32,0.0,0.0,10
+5,hard_heavy,0.5,flat2x,Cheapest model,0.41071428571428575,0.0,0.0,0.0,10
+5,hard_heavy,0.5,flat2x,MCKP (optimal),0.0,0.16,0.0,0.0,10
+5,hard_heavy,0.5,flat2x,MCKP (serve all),0.07467532467532473,0.0,0.0,0.0,10
+5,hard_heavy,0.5,flat2x,Pacing + reserve (no price history),0.07467532467532473,0.0,0.0,0.0,10
+5,hard_heavy,0.5,flat2x,Pacing + reserve (ours),0.07467532467532473,0.0,0.0,0.0,10
+5,hard_heavy,0.5,flat2x,Pacing + reserve + abstain (no price history),-1.1940304445035165e-16,0.16,0.0,0.0,10
+5,hard_heavy,0.5,flat2x,Pacing + reserve + abstain (ours),-1.1940304445035165e-16,0.16,0.0,0.0,10
+5,hard_heavy,1.0,flat2x,Cheapest model,0.489451476793249,0.0,0.0,0.0,10
+5,hard_heavy,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,1.0,flat2x,Pacing + reserve (no price history),0.005625879043600438,0.0,0.0005032987401359779,0.0,10
+5,hard_heavy,1.0,flat2x,Pacing + reserve (ours),0.005625879043600438,0.0,0.0005032987401359779,0.0,10
+5,hard_heavy,1.0,flat2x,Pacing + reserve + abstain (no price history),0.005625879043600438,0.0,0.0005032987401359779,0.0,10
+5,hard_heavy,1.0,flat2x,Pacing + reserve + abstain (ours),0.005625879043600438,0.0,0.0005032987401359779,0.0,10
+5,hard_heavy,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.05,measured,Cheapest model,0.05221932114882506,0.0,0.0,0.0,10
+5,hard_heavy,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.05,measured,Pacing + reserve (no price history),0.0012532637075718066,0.0,0.0007309242673599836,0.0,10
+5,hard_heavy,0.05,measured,Pacing + reserve (ours),0.001958224543080901,0.0,0.0009505322249914306,0.0,10
+5,hard_heavy,0.05,measured,Pacing + reserve + abstain (no price history),0.034830287206266186,0.0944,0.0026461834696009743,0.008362666666666668,10
+5,hard_heavy,0.05,measured,Pacing + reserve + abstain (ours),0.06759791122715396,0.18480000000000002,0.0027383239534827875,0.008572370708010448,10
+5,hard_heavy,0.2,measured,Cheapest model,0.18973214285714282,0.0,0.0,0.0,10
+5,hard_heavy,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.2,measured,Pacing + reserve (no price history),0.028749999999999908,0.0,0.0027085769121235562,0.0,10
+5,hard_heavy,0.2,measured,Pacing + reserve (ours),0.031249999999999896,0.0,0.0,0.0,10
+5,hard_heavy,0.2,measured,Pacing + reserve + abstain (no price history),0.028749999999999908,0.0,0.0027085769121235562,0.0,10
+5,hard_heavy,0.2,measured,Pacing + reserve + abstain (ours),0.031249999999999896,0.0,0.0,0.0,10
+5,hard_heavy,0.5,measured,Cheapest model,0.3631578947368422,0.0,0.0,0.0,10
+5,hard_heavy,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+5,hard_heavy,1.0,measured,Cheapest model,0.489451476793249,0.0,0.0,0.0,10
+5,hard_heavy,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,1.0,measured,Pacing + reserve (no price history),0.0026019690576651313,0.0,0.0008231665921155789,0.0,10
+5,hard_heavy,1.0,measured,Pacing + reserve (ours),0.0026019690576651313,0.0,0.0008231665921155789,0.0,10
+5,hard_heavy,1.0,measured,Pacing + reserve + abstain (no price history),0.0026019690576651313,0.0,0.0008231665921155789,0.0,10
+5,hard_heavy,1.0,measured,Pacing + reserve + abstain (ours),0.0026019690576651313,0.0,0.0008231665921155789,0.0,10
+5,hard_heavy,0.0,steep10x,Cheapest model,0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,steep10x,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,steep10x,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.0,steep10x,Pacing + reserve + abstain (ours),0.02192837465564733,0.0784,0.0007385828774328275,0.0020906666666666673,10
+5,hard_heavy,0.05,steep10x,Cheapest model,0.05221932114882506,0.0,0.0,0.0,10
+5,hard_heavy,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.05,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.05,steep10x,Pacing + reserve (ours),0.0014882506527414856,0.0,0.000774417286235635,0.0,10
+5,hard_heavy,0.05,steep10x,Pacing + reserve + abstain (no price history),0.012924281984334169,0.036,0.001512813551377861,0.004213873383110708,10
+5,hard_heavy,0.05,steep10x,Pacing + reserve + abstain (ours),0.04362924281984323,0.12,0.0009842217094528582,0.002337436392479782,10
+5,hard_heavy,0.2,steep10x,Cheapest model,0.18973214285714282,0.0,0.0,0.0,10
+5,hard_heavy,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.2,steep10x,Pacing + reserve (no price history),0.028749999999999908,0.0,0.0027085769121235562,0.0,10
+5,hard_heavy,0.2,steep10x,Pacing + reserve (ours),0.031249999999999896,0.0,0.0,0.0,10
+5,hard_heavy,0.2,steep10x,Pacing + reserve + abstain (no price history),0.028749999999999908,0.0,0.0027085769121235562,0.0,10
+5,hard_heavy,0.2,steep10x,Pacing + reserve + abstain (ours),0.031249999999999896,0.0,0.0,0.0,10
+5,hard_heavy,0.5,steep10x,Cheapest model,0.3631578947368422,0.0,0.0,0.0,10
+5,hard_heavy,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,steep10x,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,steep10x,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+5,hard_heavy,0.5,steep10x,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+5,hard_heavy,1.0,steep10x,Cheapest model,0.489451476793249,0.0,0.0,0.0,10
+5,hard_heavy,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,hard_heavy,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,hard_heavy,1.0,steep10x,Pacing + reserve (no price history),0.004360056258790286,0.0,0.000914287565273762,0.0,10
+5,hard_heavy,1.0,steep10x,Pacing + reserve (ours),0.004360056258790286,0.0,0.000914287565273762,0.0,10
+5,hard_heavy,1.0,steep10x,Pacing + reserve + abstain (no price history),0.004360056258790286,0.0,0.000914287565273762,0.0,10
+5,hard_heavy,1.0,steep10x,Pacing + reserve + abstain (ours),0.004360056258790286,0.0,0.000914287565273762,0.0,10
+10,hard_heavy,0.0,flat2x,Cheapest model,0.24210526315789468,0.0,0.0,0.0,10
+10,hard_heavy,0.0,flat2x,MCKP (optimal),0.0,0.4,0.0,0.0,10
+10,hard_heavy,0.0,flat2x,MCKP (serve all),0.24210526315789468,0.0,0.0,0.0,10
+10,hard_heavy,0.0,flat2x,Pacing + reserve (no price history),0.24210526315789468,0.0,0.0,0.0,10
+10,hard_heavy,0.0,flat2x,Pacing + reserve (ours),0.24210526315789468,0.0,0.0,0.0,10
+10,hard_heavy,0.0,flat2x,Pacing + reserve + abstain (no price history),0.24210526315789468,0.0,0.0,0.0,10
+10,hard_heavy,0.0,flat2x,Pacing + reserve + abstain (ours),0.0397578947368421,0.44000000000000006,0.00021540000797331757,0.0,10
+10,hard_heavy,0.05,flat2x,Cheapest model,0.26530612244897966,0.0,0.0,0.0,10
+10,hard_heavy,0.05,flat2x,MCKP (optimal),0.0,0.38,0.0,0.0,10
+10,hard_heavy,0.05,flat2x,MCKP (serve all),0.22295918367346945,0.0,0.0,0.0,10
+10,hard_heavy,0.05,flat2x,Pacing + reserve (no price history),0.22295918367346945,0.0,0.0,0.0,10
+10,hard_heavy,0.05,flat2x,Pacing + reserve (ours),0.22295918367346945,0.0,0.0,0.0,10
+10,hard_heavy,0.05,flat2x,Pacing + reserve + abstain (no price history),0.038255102040816294,0.3148,0.0016866666666667065,0.002874666666666667,10
+10,hard_heavy,0.05,flat2x,Pacing + reserve + abstain (ours),0.022959183673469382,0.4,0.0,0.0,10
+10,hard_heavy,0.2,flat2x,Cheapest model,0.3223529411764706,0.0,0.0,0.0,10
+10,hard_heavy,0.2,flat2x,MCKP (optimal),0.0,0.3,0.0,0.0,10
+10,hard_heavy,0.2,flat2x,MCKP (serve all),0.16235294117647067,0.0,0.0,0.0,10
+10,hard_heavy,0.2,flat2x,Pacing + reserve (no price history),0.16950588235294123,0.0,0.0009049719203938056,0.0,10
+10,hard_heavy,0.2,flat2x,Pacing + reserve (ours),0.17129411764705885,0.0,0.0,0.0,10
+10,hard_heavy,0.2,flat2x,Pacing + reserve + abstain (no price history),0.018795294117647056,0.28200000000000003,0.0007956033005375211,0.0013066666666666795,10
+10,hard_heavy,0.2,flat2x,Pacing + reserve + abstain (ours),0.018352941176470555,0.324,0.0017500416604037776,0.0016528171237146841,10
+10,hard_heavy,0.5,flat2x,Cheapest model,0.4134419551934827,0.0,0.0,0.0,10
+10,hard_heavy,0.5,flat2x,MCKP (optimal),0.0,0.16,0.0,0.0,10
+10,hard_heavy,0.5,flat2x,MCKP (serve all),0.06720977596741343,0.0,0.0,0.0,10
+10,hard_heavy,0.5,flat2x,Pacing + reserve (no price history),0.07494908350305504,0.0,0.0,0.0,10
+10,hard_heavy,0.5,flat2x,Pacing + reserve (ours),0.07494908350305504,0.0,0.0,0.0,10
+10,hard_heavy,0.5,flat2x,Pacing + reserve + abstain (no price history),0.006370672097759646,0.1464,0.000979334691106562,0.0020906666666666617,10
+10,hard_heavy,0.5,flat2x,Pacing + reserve + abstain (ours),0.006370672097759646,0.1464,0.000979334691106562,0.0020906666666666617,10
+10,hard_heavy,1.0,flat2x,Cheapest model,0.4929577464788732,0.0,0.0,0.0,10
+10,hard_heavy,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,hard_heavy,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,hard_heavy,1.0,flat2x,Pacing + reserve (no price history),0.007183098591549269,0.0,0.0003443027454496595,0.0,10
+10,hard_heavy,1.0,flat2x,Pacing + reserve (ours),0.007183098591549269,0.0,0.0003443027454496595,0.0,10
+10,hard_heavy,1.0,flat2x,Pacing + reserve + abstain (no price history),0.007183098591549269,0.0,0.0003443027454496595,0.0,10
+10,hard_heavy,1.0,flat2x,Pacing + reserve + abstain (ours),0.007183098591549269,0.0,0.0003443027454496595,0.0,10
+10,hard_heavy,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.0,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.0,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.0,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.0,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.05,measured,Cheapest model,0.054497701904136595,0.0,0.0,0.0,10
+10,hard_heavy,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.05,measured,Pacing + reserve (no price history),0.00019697964543664203,0.0,0.00017266027193301405,0.0,10
+10,hard_heavy,0.05,measured,Pacing + reserve (ours),7.879185817465681e-05,0.0,0.00010295469468155156,0.0,10
+10,hard_heavy,0.05,measured,Pacing + reserve + abstain (no price history),0.0010636900853578863,0.0024000000000000002,0.0005696852281029084,0.001733489223759089,10
+10,hard_heavy,0.05,measured,Pacing + reserve + abstain (ours),0.00036769533814841137,0.0008,0.0004269138349234559,0.0010453333333333334,10
+10,hard_heavy,0.2,measured,Cheapest model,0.19101123595505615,0.0,0.0,0.0,10
+10,hard_heavy,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.2,measured,Pacing + reserve (no price history),0.01067415730337072,0.0,0.0,0.0,10
+10,hard_heavy,0.2,measured,Pacing + reserve (ours),0.01067415730337072,0.0,0.0,0.0,10
+10,hard_heavy,0.2,measured,Pacing + reserve + abstain (no price history),0.01067415730337072,0.0,0.0,0.0,10
+10,hard_heavy,0.2,measured,Pacing + reserve + abstain (ours),0.01067415730337072,0.0,0.0,0.0,10
+10,hard_heavy,0.5,measured,Cheapest model,0.3711790393013101,0.0,0.0,0.0,10
+10,hard_heavy,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.5,measured,Pacing + reserve (no price history),0.008296943231441123,0.0,0.0,0.0,10
+10,hard_heavy,0.5,measured,Pacing + reserve (ours),0.008296943231441123,0.0,0.0,0.0,10
+10,hard_heavy,0.5,measured,Pacing + reserve + abstain (no price history),0.008296943231441123,0.0,0.0,0.0,10
+10,hard_heavy,0.5,measured,Pacing + reserve + abstain (ours),0.008296943231441123,0.0,0.0,0.0,10
+10,hard_heavy,1.0,measured,Cheapest model,0.4929577464788732,0.0,0.0,0.0,10
+10,hard_heavy,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,hard_heavy,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,hard_heavy,1.0,measured,Pacing + reserve (no price history),0.003767605633802793,0.0,0.00035712890146321556,0.0,10
+10,hard_heavy,1.0,measured,Pacing + reserve (ours),0.003767605633802793,0.0,0.00035712890146321556,0.0,10
+10,hard_heavy,1.0,measured,Pacing + reserve + abstain (no price history),0.003767605633802793,0.0,0.00035712890146321556,0.0,10
+10,hard_heavy,1.0,measured,Pacing + reserve + abstain (ours),0.003767605633802793,0.0,0.00035712890146321556,0.0,10
+10,hard_heavy,0.0,steep10x,Cheapest model,0.0027700831024931962,0.0,0.0,0.0,10
+10,hard_heavy,0.0,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+10,hard_heavy,0.0,steep10x,MCKP (serve all),0.0027700831024931962,0.0,0.0,0.0,10
+10,hard_heavy,0.0,steep10x,Pacing + reserve (no price history),0.0027700831024931962,0.0,0.0,0.0,10
+10,hard_heavy,0.0,steep10x,Pacing + reserve (ours),0.0027700831024931962,0.0,0.0,0.0,10
+10,hard_heavy,0.0,steep10x,Pacing + reserve + abstain (no price history),0.0027700831024931962,0.0,0.0,0.0,10
+10,hard_heavy,0.0,steep10x,Pacing + reserve + abstain (ours),0.015609418282548642,0.06,0.0002834210631227849,0.0,10
+10,hard_heavy,0.05,steep10x,Cheapest model,0.054497701904136595,0.0,0.0,0.0,10
+10,hard_heavy,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.05,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.05,steep10x,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+10,hard_heavy,0.05,steep10x,Pacing + reserve + abstain (no price history),0.006933683519369722,0.019200000000000002,0.00037750054716570566,0.0010453333333333337,10
+10,hard_heavy,0.05,steep10x,Pacing + reserve + abstain (ours),0.01198949441891006,0.0332,0.0010381265047056073,0.002874666666666665,10
+10,hard_heavy,0.2,steep10x,Cheapest model,0.19282511210762324,0.0,0.0,0.0,10
+10,hard_heavy,0.2,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+10,hard_heavy,0.2,steep10x,MCKP (serve all),0.0022421524663676466,0.0,0.0,0.0,10
+10,hard_heavy,0.2,steep10x,Pacing + reserve (no price history),0.012892376681614217,0.0,0.0,0.0,10
+10,hard_heavy,0.2,steep10x,Pacing + reserve (ours),0.012892376681614217,0.0,0.0,0.0,10
+10,hard_heavy,0.2,steep10x,Pacing + reserve + abstain (no price history),0.012892376681614217,0.0,0.0,0.0,10
+10,hard_heavy,0.2,steep10x,Pacing + reserve + abstain (ours),0.012892376681614217,0.0,0.0,0.0,10
+10,hard_heavy,0.5,steep10x,Cheapest model,0.37227550130775944,0.0,0.0,0.0,10
+10,hard_heavy,0.5,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+10,hard_heavy,0.5,steep10x,MCKP (serve all),0.001743679163034078,0.0,0.0,0.0,10
+10,hard_heavy,0.5,steep10x,Pacing + reserve (no price history),0.01002615518744566,0.0,0.0,0.0,10
+10,hard_heavy,0.5,steep10x,Pacing + reserve (ours),0.01002615518744566,0.0,0.0,0.0,10
+10,hard_heavy,0.5,steep10x,Pacing + reserve + abstain (no price history),0.01002615518744566,0.0,0.0,0.0,10
+10,hard_heavy,0.5,steep10x,Pacing + reserve + abstain (ours),0.01002615518744566,0.0,0.0,0.0,10
+10,hard_heavy,1.0,steep10x,Cheapest model,0.4929577464788732,0.0,0.0,0.0,10
+10,hard_heavy,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,hard_heavy,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,hard_heavy,1.0,steep10x,Pacing + reserve (no price history),0.004471830985915448,0.0,0.0005250919233005903,0.0,10
+10,hard_heavy,1.0,steep10x,Pacing + reserve (ours),0.004471830985915448,0.0,0.0005250919233005903,0.0,10
+10,hard_heavy,1.0,steep10x,Pacing + reserve + abstain (no price history),0.004471830985915448,0.0,0.0005250919233005903,0.0,10
+10,hard_heavy,1.0,steep10x,Pacing + reserve + abstain (ours),0.004471830985915448,0.0,0.0005250919233005903,0.0,10
+20,hard_heavy,0.0,flat2x,Cheapest model,0.24210526315789468,0.0,0.0,0.0,10
+20,hard_heavy,0.0,flat2x,MCKP (optimal),0.0,0.4,0.0,0.0,10
+20,hard_heavy,0.0,flat2x,MCKP (serve all),0.24210526315789468,0.0,0.0,0.0,10
+20,hard_heavy,0.0,flat2x,Pacing + reserve (no price history),0.24210526315789468,0.0,0.0,0.0,10
+20,hard_heavy,0.0,flat2x,Pacing + reserve (ours),0.24210526315789468,0.0,0.0,0.0,10
+20,hard_heavy,0.0,flat2x,Pacing + reserve + abstain (no price history),0.24210526315789468,0.0,0.0,0.0,10
+20,hard_heavy,0.0,flat2x,Pacing + reserve + abstain (ours),0.05137894736842097,0.45,5.053684100900033e-05,0.0,10
+20,hard_heavy,0.05,flat2x,Cheapest model,0.26530612244897966,0.0,0.0,0.0,10
+20,hard_heavy,0.05,flat2x,MCKP (optimal),0.0,0.38,0.0,0.0,10
+20,hard_heavy,0.05,flat2x,MCKP (serve all),0.22193877551020416,0.0,0.0,0.0,10
+20,hard_heavy,0.05,flat2x,Pacing + reserve (no price history),0.22232653061224497,0.0,0.00016275407487644593,0.0,10
+20,hard_heavy,0.05,flat2x,Pacing + reserve (ours),0.22295918367346945,0.0,0.0,0.0,10
+20,hard_heavy,0.05,flat2x,Pacing + reserve + abstain (no price history),0.04300000000000005,0.3076,0.0013523477527782484,0.0023227814743918126,10
+20,hard_heavy,0.05,flat2x,Pacing + reserve + abstain (ours),0.022959183673469382,0.4,0.0,0.0,10
+20,hard_heavy,0.2,flat2x,Cheapest model,0.3223529411764706,0.0,0.0,0.0,10
+20,hard_heavy,0.2,flat2x,MCKP (optimal),0.0,0.3,0.0,0.0,10
+20,hard_heavy,0.2,flat2x,MCKP (serve all),0.16235294117647067,0.0,0.0,0.0,10
+20,hard_heavy,0.2,flat2x,Pacing + reserve (no price history),0.16321882352941186,0.0,6.0247841830312064e-05,0.0,10
+20,hard_heavy,0.2,flat2x,Pacing + reserve (ours),0.1632941176470589,0.0,0.0,0.0,10
+20,hard_heavy,0.2,flat2x,Pacing + reserve + abstain (no price history),0.0058117647058823505,0.291,0.00035356862745097216,0.0006533333333333365,10
+20,hard_heavy,0.2,flat2x,Pacing + reserve + abstain (ours),0.024705882352941237,0.33,0.0,0.0,10
+20,hard_heavy,0.5,flat2x,Cheapest model,0.4152284263959391,0.0,0.0,0.0,10
+20,hard_heavy,0.5,flat2x,MCKP (optimal),0.0,0.15,0.0,0.0,10
+20,hard_heavy,0.5,flat2x,MCKP (serve all),0.07005076142131983,0.0,0.0,0.0,10
+20,hard_heavy,0.5,flat2x,Pacing + reserve (no price history),0.07086294416243669,0.0,0.0,0.0,10
+20,hard_heavy,0.5,flat2x,Pacing + reserve (ours),0.07086294416243669,0.0,0.0,0.0,10
+20,hard_heavy,0.5,flat2x,Pacing + reserve + abstain (no price history),0.0008121827411166077,0.15,0.0,0.0,10
+20,hard_heavy,0.5,flat2x,Pacing + reserve + abstain (ours),0.0008121827411166077,0.15,0.0,0.0,10
+20,hard_heavy,1.0,flat2x,Cheapest model,0.4929577464788732,0.0,0.0,0.0,10
+20,hard_heavy,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,hard_heavy,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,hard_heavy,1.0,flat2x,Pacing + reserve (no price history),0.0065316901408449726,0.0,0.00020219281589929826,0.0,10
+20,hard_heavy,1.0,flat2x,Pacing + reserve (ours),0.0065316901408449726,0.0,0.00020219281589929826,0.0,10
+20,hard_heavy,1.0,flat2x,Pacing + reserve + abstain (no price history),0.0065316901408449726,0.0,0.00020219281589929826,0.0,10
+20,hard_heavy,1.0,flat2x,Pacing + reserve + abstain (ours),0.0065316901408449726,0.0,0.00020219281589929826,0.0,10
+20,hard_heavy,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.0,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.0,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.0,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.0,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.05,measured,Cheapest model,0.055737704918032774,0.0,0.0,0.0,10
+20,hard_heavy,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.05,measured,Pacing + reserve (no price history),0.0013114754098360268,0.0,0.0,0.0,10
+20,hard_heavy,0.05,measured,Pacing + reserve (ours),0.0013114754098360268,0.0,0.0,0.0,10
+20,hard_heavy,0.05,measured,Pacing + reserve + abstain (no price history),0.0013114754098360268,0.0,0.0,0.0,10
+20,hard_heavy,0.05,measured,Pacing + reserve + abstain (ours),0.0013114754098360268,0.0,0.0,0.0,10
+20,hard_heavy,0.2,measured,Cheapest model,0.19101123595505615,0.0,0.0,0.0,10
+20,hard_heavy,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.2,measured,Pacing + reserve (no price history),0.0011235955056179442,0.0,0.0,0.0,10
+20,hard_heavy,0.2,measured,Pacing + reserve (ours),0.0011235955056179442,0.0,0.0,0.0,10
+20,hard_heavy,0.2,measured,Pacing + reserve + abstain (no price history),0.0011235955056179442,0.0,0.0,0.0,10
+20,hard_heavy,0.2,measured,Pacing + reserve + abstain (ours),0.0011235955056179442,0.0,0.0,0.0,10
+20,hard_heavy,0.5,measured,Cheapest model,0.3711790393013101,0.0,0.0,0.0,10
+20,hard_heavy,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,hard_heavy,0.5,measured,Pacing + reserve (no price history),0.0008733624454149499,0.0,0.0,0.0,10
+20,hard_heavy,0.5,measured,Pacing + reserve (ours),0.0008733624454149499,0.0,0.0,0.0,10
+20,hard_heavy,0.5,measured,Pacing + reserve + abstain (no price history),0.0008733624454149499,0.0,0.0,0.0,10
+20,hard_heavy,0.5,measured,Pacing + reserve + abstain (ours),0.0008733624454149499,0.0,0.0,0.0,10
+20,hard_heavy,1.0,measured,Cheapest model,0.4929577464788732,0.0,0.0,0.0,10
+20,hard_heavy,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,hard_heavy,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,hard_heavy,1.0,measured,Pacing + reserve (no price history),0.0032394366197182967,0.0,0.0002682785378849014,0.0,10
+20,hard_heavy,1.0,measured,Pacing + reserve (ours),0.0032394366197182967,0.0,0.0002682785378849014,0.0,10
+20,hard_heavy,1.0,measured,Pacing + reserve + abstain (no price history),0.0032394366197182967,0.0,0.0002682785378849014,0.0,10
+20,hard_heavy,1.0,measured,Pacing + reserve + abstain (ours),0.0032394366197182967,0.0,0.0002682785378849014,0.0,10
+20,hard_heavy,0.0,steep10x,Cheapest model,0.0027700831024931962,0.0,0.0,0.0,10
+20,hard_heavy,0.0,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+20,hard_heavy,0.0,steep10x,MCKP (serve all),0.0027700831024931962,0.0,0.0,0.0,10
+20,hard_heavy,0.0,steep10x,Pacing + reserve (no price history),0.0027700831024931962,0.0,0.0,0.0,10
+20,hard_heavy,0.0,steep10x,Pacing + reserve (ours),0.0027700831024931962,0.0,0.0,0.0,10
+20,hard_heavy,0.0,steep10x,Pacing + reserve + abstain (no price history),0.0027700831024931962,0.0,0.0,0.0,10
+20,hard_heavy,0.0,steep10x,Pacing + reserve + abstain (ours),0.015318559556786862,0.06,6.649584343289624e-05,0.0,10
+20,hard_heavy,0.05,steep10x,Cheapest model,0.05820797907128852,0.0,0.0,0.0,10
+20,hard_heavy,0.05,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+20,hard_heavy,0.05,steep10x,MCKP (serve all),0.0026160889470243135,0.0,0.0,0.0,10
+20,hard_heavy,0.05,steep10x,Pacing + reserve (no price history),0.003924133420536374,0.0,0.0,0.0,10
+20,hard_heavy,0.05,steep10x,Pacing + reserve (ours),0.003924133420536374,0.0,0.0,0.0,10
+20,hard_heavy,0.05,steep10x,Pacing + reserve + abstain (no price history),0.003924133420536374,0.0,0.0,0.0,10
+20,hard_heavy,0.05,steep10x,Pacing + reserve + abstain (ours),0.003924133420536374,0.0,0.0,0.0,10
+20,hard_heavy,0.2,steep10x,Cheapest model,0.19282511210762324,0.0,0.0,0.0,10
+20,hard_heavy,0.2,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+20,hard_heavy,0.2,steep10x,MCKP (serve all),0.0022421524663676466,0.0,0.0,0.0,10
+20,hard_heavy,0.2,steep10x,Pacing + reserve (no price history),0.0033632286995514704,0.0,0.0,0.0,10
+20,hard_heavy,0.2,steep10x,Pacing + reserve (ours),0.0033632286995514704,0.0,0.0,0.0,10
+20,hard_heavy,0.2,steep10x,Pacing + reserve + abstain (no price history),0.0033632286995514704,0.0,0.0,0.0,10
+20,hard_heavy,0.2,steep10x,Pacing + reserve + abstain (ours),0.0033632286995514704,0.0,0.0,0.0,10
+20,hard_heavy,0.5,steep10x,Cheapest model,0.37227550130775944,0.0,0.0,0.0,10
+20,hard_heavy,0.5,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+20,hard_heavy,0.5,steep10x,MCKP (serve all),0.001743679163034078,0.0,0.0,0.0,10
+20,hard_heavy,0.5,steep10x,Pacing + reserve (no price history),0.0026155187445511814,0.0,0.0,0.0,10
+20,hard_heavy,0.5,steep10x,Pacing + reserve (ours),0.0026155187445511814,0.0,0.0,0.0,10
+20,hard_heavy,0.5,steep10x,Pacing + reserve + abstain (no price history),0.0026155187445511814,0.0,0.0,0.0,10
+20,hard_heavy,0.5,steep10x,Pacing + reserve + abstain (ours),0.0026155187445511814,0.0,0.0,0.0,10
+20,hard_heavy,1.0,steep10x,Cheapest model,0.4929577464788732,0.0,0.0,0.0,10
+20,hard_heavy,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,hard_heavy,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,hard_heavy,1.0,steep10x,Pacing + reserve (no price history),0.0037500000000000623,0.0,0.00028198351311476484,0.0,10
+20,hard_heavy,1.0,steep10x,Pacing + reserve (ours),0.0037500000000000623,0.0,0.00028198351311476484,0.0,10
+20,hard_heavy,1.0,steep10x,Pacing + reserve + abstain (no price history),0.0037500000000000623,0.0,0.00028198351311476484,0.0,10
+20,hard_heavy,1.0,steep10x,Pacing + reserve + abstain (ours),0.0037500000000000623,0.0,0.00028198351311476484,0.0,10
+50,hard_heavy,0.0,flat2x,Cheapest model,0.24449108079748166,0.0,0.0,0.0,10
+50,hard_heavy,0.0,flat2x,MCKP (optimal),0.0,0.404,0.0,0.0,10
+50,hard_heavy,0.0,flat2x,MCKP (serve all),0.24449108079748166,0.0,0.0,0.0,10
+50,hard_heavy,0.0,flat2x,Pacing + reserve (no price history),0.24449108079748166,0.0,0.0,0.0,10
+50,hard_heavy,0.0,flat2x,Pacing + reserve (ours),0.24449108079748166,0.0,0.0,0.0,10
+50,hard_heavy,0.0,flat2x,Pacing + reserve + abstain (no price history),0.24449108079748166,0.0,0.0,0.0,10
+50,hard_heavy,0.0,flat2x,Pacing + reserve + abstain (ours),0.05199790136411338,0.44800000000000006,3.4167854714196405e-05,0.0,10
+50,hard_heavy,0.05,flat2x,Cheapest model,0.26612985424523494,0.0,0.0,0.0,10
+50,hard_heavy,0.05,flat2x,MCKP (optimal),0.0,0.376,0.0,0.0,10
+50,hard_heavy,0.05,flat2x,MCKP (serve all),0.2203648965446947,0.0,0.0,0.0,10
+50,hard_heavy,0.05,flat2x,Pacing + reserve (no price history),0.22179186627255126,0.0,0.0,0.0,10
+50,hard_heavy,0.05,flat2x,Pacing + reserve (ours),0.2203648965446947,0.0,0.0,0.0,10
+50,hard_heavy,0.05,flat2x,Pacing + reserve + abstain (no price history),0.02261543165834264,0.33808000000000005,0.0008646124287952166,0.0012190576761489907,10
+50,hard_heavy,0.05,flat2x,Pacing + reserve + abstain (ours),0.024054632555295143,0.4,0.0,0.0,10
+50,hard_heavy,0.2,flat2x,Cheapest model,0.3242609103707181,0.0,0.0,0.0,10
+50,hard_heavy,0.2,flat2x,MCKP (optimal),0.0,0.304,0.0,0.0,10
+50,hard_heavy,0.2,flat2x,MCKP (serve all),0.16283435007038954,0.0,0.0,0.0,10
+50,hard_heavy,0.2,flat2x,Pacing + reserve (no price history),0.16283435007038954,0.0,0.0,0.0,10
+50,hard_heavy,0.2,flat2x,Pacing + reserve (ours),0.16405443453777585,0.0,0.0,0.0,10
+50,hard_heavy,0.2,flat2x,Pacing + reserve + abstain (no price history),0.007061473486626101,0.29136,0.000396728521834457,0.0006095288380745035,10
+50,hard_heavy,0.2,flat2x,Pacing + reserve + abstain (ours),0.025340215861098147,0.328,0.0,0.0,10
+50,hard_heavy,0.5,flat2x,Cheapest model,0.4167206740116656,0.0,0.0,0.0,10
+50,hard_heavy,0.5,flat2x,MCKP (optimal),0.0,0.152,0.0,0.0,10
+50,hard_heavy,0.5,flat2x,MCKP (serve all),0.07080362929358396,0.0,0.0,0.0,10
+50,hard_heavy,0.5,flat2x,Pacing + reserve (no price history),0.0710774465327285,0.0,0.00013829705704588167,0.0,10
+50,hard_heavy,0.5,flat2x,Pacing + reserve (ours),0.0710774465327285,0.0,0.00013829705704588167,0.0,10
+50,hard_heavy,0.5,flat2x,Pacing + reserve + abstain (no price history),0.002709008425145705,0.14855999999999997,0.00013759442880176994,0.0003346699601431587,10
+50,hard_heavy,0.5,flat2x,Pacing + reserve + abstain (ours),0.002709008425145705,0.14855999999999997,0.00013759442880176994,0.0003346699601431587,10
+50,hard_heavy,1.0,flat2x,Cheapest model,0.49295774647887336,0.0,0.0,0.0,10
+50,hard_heavy,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,1.0,flat2x,Pacing + reserve (no price history),0.0063802816901409685,0.0,0.00015148202892481698,0.0,10
+50,hard_heavy,1.0,flat2x,Pacing + reserve (ours),0.0063802816901409685,0.0,0.00015148202892481698,0.0,10
+50,hard_heavy,1.0,flat2x,Pacing + reserve + abstain (no price history),0.0063802816901409685,0.0,0.00015148202892481698,0.0,10
+50,hard_heavy,1.0,flat2x,Pacing + reserve + abstain (ours),0.0063802816901409685,0.0,0.00015148202892481698,0.0,10
+50,hard_heavy,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.0,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.0,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.0,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.0,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,measured,Cheapest model,0.06286606794221014,0.0,0.0,0.0,10
+50,hard_heavy,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,measured,Cheapest model,0.19472094843977192,0.0,0.0,0.0,10
+50,hard_heavy,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.5,measured,Cheapest model,0.37342267861804895,0.0,0.0,0.0,10
+50,hard_heavy,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.5,measured,Pacing + reserve (no price history),1.280171880278768e-16,0.0,0.0,0.0,10
+50,hard_heavy,0.5,measured,Pacing + reserve (ours),1.280171880278768e-16,0.0,0.0,0.0,10
+50,hard_heavy,0.5,measured,Pacing + reserve + abstain (no price history),1.280171880278768e-16,0.0,0.0,0.0,10
+50,hard_heavy,0.5,measured,Pacing + reserve + abstain (ours),1.280171880278768e-16,0.0,0.0,0.0,10
+50,hard_heavy,1.0,measured,Cheapest model,0.49295774647887336,0.0,0.0,0.0,10
+50,hard_heavy,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,1.0,measured,Pacing + reserve (no price history),0.0033732394366198177,0.0,0.00010174214788617344,0.0,10
+50,hard_heavy,1.0,measured,Pacing + reserve (ours),0.0033732394366198177,0.0,0.00010174214788617344,0.0,10
+50,hard_heavy,1.0,measured,Pacing + reserve + abstain (no price history),0.0033732394366198177,0.0,0.00010174214788617344,0.0,10
+50,hard_heavy,1.0,measured,Pacing + reserve + abstain (ours),0.0033732394366198177,0.0,0.00010174214788617344,0.0,10
+50,hard_heavy,0.0,steep10x,Cheapest model,0.002770083102492993,0.0,0.0,0.0,10
+50,hard_heavy,0.0,steep10x,MCKP (optimal),0.0,0.02,0.0,0.0,10
+50,hard_heavy,0.0,steep10x,MCKP (serve all),0.002770083102492993,0.0,0.0,0.0,10
+50,hard_heavy,0.0,steep10x,Pacing + reserve (no price history),0.002770083102492993,0.0,0.0,0.0,10
+50,hard_heavy,0.0,steep10x,Pacing + reserve (ours),0.002770083102492993,0.0,0.0,0.0,10
+50,hard_heavy,0.0,steep10x,Pacing + reserve + abstain (no price history),0.002770083102492993,0.0,0.0,0.0,10
+50,hard_heavy,0.0,steep10x,Pacing + reserve + abstain (ours),0.013390581717451389,0.05496000000000001,0.0001849528578425629,0.0005749333333333343,10
+50,hard_heavy,0.05,steep10x,Cheapest model,0.0621336459554514,0.0,0.0,0.0,10
+50,hard_heavy,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,steep10x,Pacing + reserve (ours),0.0018236290217532925,0.0,0.00038422708977175503,0.0,10
+50,hard_heavy,0.05,steep10x,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.05,steep10x,Pacing + reserve + abstain (ours),0.0018236290217532925,0.0,0.00038422708977175503,0.0,10
+50,hard_heavy,0.2,steep10x,Cheapest model,0.19472094843977192,0.0,0.0,0.0,10
+50,hard_heavy,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,steep10x,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,steep10x,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.2,steep10x,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.5,steep10x,Cheapest model,0.37342267861804895,0.0,0.0,0.0,10
+50,hard_heavy,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,0.5,steep10x,Pacing + reserve (no price history),1.280171880278768e-16,0.0,0.0,0.0,10
+50,hard_heavy,0.5,steep10x,Pacing + reserve (ours),1.280171880278768e-16,0.0,0.0,0.0,10
+50,hard_heavy,0.5,steep10x,Pacing + reserve + abstain (no price history),1.280171880278768e-16,0.0,0.0,0.0,10
+50,hard_heavy,0.5,steep10x,Pacing + reserve + abstain (ours),1.280171880278768e-16,0.0,0.0,0.0,10
+50,hard_heavy,1.0,steep10x,Cheapest model,0.49295774647887336,0.0,0.0,0.0,10
+50,hard_heavy,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,hard_heavy,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,hard_heavy,1.0,steep10x,Pacing + reserve (no price history),0.0035633802816903474,0.0,0.00010731141515398183,0.0,10
+50,hard_heavy,1.0,steep10x,Pacing + reserve (ours),0.0035633802816903474,0.0,0.00010731141515398183,0.0,10
+50,hard_heavy,1.0,steep10x,Pacing + reserve + abstain (no price history),0.0035633802816903474,0.0,0.00010731141515398183,0.0,10
+50,hard_heavy,1.0,steep10x,Pacing + reserve + abstain (ours),0.0035633802816903474,0.0,0.00010731141515398183,0.0,10
+5,uniform,0.0,flat2x,Cheapest model,0.04878048780487816,0.0,0.0,0.0,10
+5,uniform,0.0,flat2x,MCKP (optimal),0.0,0.16,0.0,0.0,10
+5,uniform,0.0,flat2x,MCKP (serve all),0.04878048780487816,0.0,0.0,0.0,10
+5,uniform,0.0,flat2x,Pacing + reserve (no price history),0.04878048780487816,0.0,0.0,0.0,10
+5,uniform,0.0,flat2x,Pacing + reserve (ours),0.04878048780487816,0.0,0.0,0.0,10
+5,uniform,0.0,flat2x,Pacing + reserve + abstain (no price history),0.04878048780487816,0.0,0.0,0.0,10
+5,uniform,0.0,flat2x,Pacing + reserve + abstain (ours),0.012534464475079558,0.2,0.0005669318372447787,0.0,10
+5,uniform,0.05,flat2x,Cheapest model,0.06073298429319377,0.0,0.0,0.0,10
+5,uniform,0.05,flat2x,MCKP (optimal),0.0,0.16,0.0,0.0,10
+5,uniform,0.05,flat2x,MCKP (serve all),0.0366492146596857,0.0,0.0,0.0,10
+5,uniform,0.05,flat2x,Pacing + reserve (no price history),0.03710994764397889,0.0,0.0006020244328097718,0.0,10
+5,uniform,0.05,flat2x,Pacing + reserve (ours),0.03757068062827208,0.0,0.0007373263365361977,0.0,10
+5,uniform,0.05,flat2x,Pacing + reserve + abstain (no price history),0.019162303664921394,0.09680000000000001,0.003986715878156165,0.014112000000000001,10
+5,uniform,0.05,flat2x,Pacing + reserve + abstain (ours),0.0,0.16,0.0,0.0,10
+5,uniform,0.2,flat2x,Cheapest model,0.10300000000000017,0.0,0.0,0.0,10
+5,uniform,0.2,flat2x,MCKP (optimal),0.0,0.08,0.0,0.0,10
+5,uniform,0.2,flat2x,MCKP (serve all),0.018000000000000054,0.0,0.0,0.0,10
+5,uniform,0.2,flat2x,Pacing + reserve (no price history),0.0230000000000002,0.0,0.0,0.0,10
+5,uniform,0.2,flat2x,Pacing + reserve (ours),0.0230000000000002,0.0,0.0,0.0,10
+5,uniform,0.2,flat2x,Pacing + reserve + abstain (no price history),0.002299999999999946,0.072,0.0009503698461359145,0.0033056342474293457,10
+5,uniform,0.2,flat2x,Pacing + reserve + abstain (ours),0.01619999999999993,0.10879999999999998,0.0019501753767289481,0.0034669784475181713,10
+5,uniform,0.5,flat2x,Cheapest model,0.1497630331753556,0.0,0.0,0.0,10
+5,uniform,0.5,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,0.5,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,0.5,flat2x,Pacing + reserve (no price history),0.005308056872038008,0.0,0.00023171085238789444,0.0,10
+5,uniform,0.5,flat2x,Pacing + reserve (ours),0.005308056872038008,0.0,0.00023171085238789444,0.0,10
+5,uniform,0.5,flat2x,Pacing + reserve + abstain (no price history),0.005308056872038008,0.0,0.00023171085238789444,0.0,10
+5,uniform,0.5,flat2x,Pacing + reserve + abstain (ours),0.005308056872038008,0.0,0.00023171085238789444,0.0,10
+5,uniform,1.0,flat2x,Cheapest model,0.1577464788732396,0.0,0.0,0.0,10
+5,uniform,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,1.0,flat2x,Pacing + reserve (no price history),0.005117370892018745,0.0,0.0009646135517775422,0.0,10
+5,uniform,1.0,flat2x,Pacing + reserve (ours),0.005117370892018745,0.0,0.0009646135517775422,0.0,10
+5,uniform,1.0,flat2x,Pacing + reserve + abstain (no price history),0.005117370892018745,0.0,0.0009646135517775422,0.0,10
+5,uniform,1.0,flat2x,Pacing + reserve + abstain (ours),0.005117370892018745,0.0,0.0009646135517775422,0.0,10
+5,uniform,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+5,uniform,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,0.0,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+5,uniform,0.0,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+5,uniform,0.0,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+5,uniform,0.0,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+5,uniform,0.05,measured,Cheapest model,0.03131749460043215,0.0,0.0,0.0,10
+5,uniform,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,0.05,measured,Pacing + reserve (no price history),0.003963282937365146,0.0,0.0014637435908026134,0.0,10
+5,uniform,0.05,measured,Pacing + reserve (ours),0.004697624190064869,0.0,0.00046613955150400204,0.0,10
+5,uniform,0.05,measured,Pacing + reserve + abstain (no price history),0.00862850971922256,0.033600000000000005,0.0016354158735361324,0.008992297345815227,10
+5,uniform,0.05,measured,Pacing + reserve + abstain (ours),0.014546436285097237,0.06960000000000001,0.000873877716002975,0.006631896527808281,10
+5,uniform,0.2,measured,Cheapest model,0.08655804480651744,0.0,0.0,0.0,10
+5,uniform,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,0.2,measured,Pacing + reserve (no price history),0.008044806517311714,0.0,0.0014945035532819174,0.0,10
+5,uniform,0.2,measured,Pacing + reserve (ours),0.007158859470468551,0.0,0.001506906285059497,0.0,10
+5,uniform,0.2,measured,Pacing + reserve + abstain (no price history),0.008044806517311714,0.0,0.0014945035532819174,0.0,10
+5,uniform,0.2,measured,Pacing + reserve + abstain (ours),0.007158859470468551,0.0,0.001506906285059497,0.0,10
+5,uniform,0.5,measured,Cheapest model,0.1497630331753556,0.0,0.0,0.0,10
+5,uniform,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,0.5,measured,Pacing + reserve (no price history),0.002227488151658778,0.0,0.00036767315151019583,0.0,10
+5,uniform,0.5,measured,Pacing + reserve (ours),0.002227488151658778,0.0,0.00036767315151019583,0.0,10
+5,uniform,0.5,measured,Pacing + reserve + abstain (no price history),0.002227488151658778,0.0,0.00036767315151019583,0.0,10
+5,uniform,0.5,measured,Pacing + reserve + abstain (ours),0.002227488151658778,0.0,0.00036767315151019583,0.0,10
+5,uniform,1.0,measured,Cheapest model,0.1577464788732396,0.0,0.0,0.0,10
+5,uniform,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,1.0,measured,Pacing + reserve (no price history),0.0023474178403755587,0.0,0.0006434007331497322,0.0,10
+5,uniform,1.0,measured,Pacing + reserve (ours),0.0023474178403755587,0.0,0.0006434007331497322,0.0,10
+5,uniform,1.0,measured,Pacing + reserve + abstain (no price history),0.0023474178403755587,0.0,0.0006434007331497322,0.0,10
+5,uniform,1.0,measured,Pacing + reserve + abstain (ours),0.0023474178403755587,0.0,0.0006434007331497322,0.0,10
+5,uniform,0.0,steep10x,Cheapest model,0.002224694104560884,0.0,0.0,0.0,10
+5,uniform,0.0,steep10x,MCKP (optimal),0.0,0.04,0.0,0.0,10
+5,uniform,0.0,steep10x,MCKP (serve all),0.002224694104560884,0.0,0.0,0.0,10
+5,uniform,0.0,steep10x,Pacing + reserve (no price history),0.002224694104560884,0.0,0.0,0.0,10
+5,uniform,0.0,steep10x,Pacing + reserve (ours),0.002224694104560884,0.0,0.0,0.0,10
+5,uniform,0.0,steep10x,Pacing + reserve + abstain (no price history),0.002224694104560884,0.0,0.0,0.0,10
+5,uniform,0.0,steep10x,Pacing + reserve + abstain (ours),0.007263626251390612,0.11039999999999998,0.0004503988557270715,0.002090666666666662,10
+5,uniform,0.05,steep10x,Cheapest model,0.03131749460043215,0.0,0.0,0.0,10
+5,uniform,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,0.05,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+5,uniform,0.05,steep10x,Pacing + reserve (ours),0.0036609071274298762,0.0,0.00039086094182217204,0.0,10
+5,uniform,0.05,steep10x,Pacing + reserve + abstain (no price history),0.0023758099352052245,0.016,0.0008501726666531037,0.005725526467787335,10
+5,uniform,0.05,steep10x,Pacing + reserve + abstain (ours),0.012473002159827265,0.06720000000000001,0.0005050923197267962,0.004181333333333332,10
+5,uniform,0.2,steep10x,Cheapest model,0.08841463414634167,0.0,0.0,0.0,10
+5,uniform,0.2,steep10x,MCKP (optimal),0.0,0.04,0.0,0.0,10
+5,uniform,0.2,steep10x,MCKP (serve all),0.002032520325203341,0.0,0.0,0.0,10
+5,uniform,0.2,steep10x,Pacing + reserve (no price history),0.009471544715447356,0.0,0.0016785895389623865,0.0,10
+5,uniform,0.2,steep10x,Pacing + reserve (ours),0.007703252032520554,0.0,0.0007701897018970079,0.0,10
+5,uniform,0.2,steep10x,Pacing + reserve + abstain (no price history),0.009471544715447356,0.0,0.0016785895389623865,0.0,10
+5,uniform,0.2,steep10x,Pacing + reserve + abstain (ours),0.007703252032520554,0.0,0.0007701897018970079,0.0,10
+5,uniform,0.5,steep10x,Cheapest model,0.1497630331753556,0.0,0.0,0.0,10
+5,uniform,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,0.5,steep10x,Pacing + reserve (no price history),0.002227488151658778,0.0,0.00036767315151019583,0.0,10
+5,uniform,0.5,steep10x,Pacing + reserve (ours),0.002227488151658778,0.0,0.00036767315151019583,0.0,10
+5,uniform,0.5,steep10x,Pacing + reserve + abstain (no price history),0.002227488151658778,0.0,0.00036767315151019583,0.0,10
+5,uniform,0.5,steep10x,Pacing + reserve + abstain (ours),0.002227488151658778,0.0,0.00036767315151019583,0.0,10
+5,uniform,1.0,steep10x,Cheapest model,0.1577464788732396,0.0,0.0,0.0,10
+5,uniform,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+5,uniform,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+5,uniform,1.0,steep10x,Pacing + reserve (no price history),0.003568075117370897,0.0,0.0007412447608214634,0.0,10
+5,uniform,1.0,steep10x,Pacing + reserve (ours),0.003568075117370897,0.0,0.0007412447608214634,0.0,10
+5,uniform,1.0,steep10x,Pacing + reserve + abstain (no price history),0.003568075117370897,0.0,0.0007412447608214634,0.0,10
+5,uniform,1.0,steep10x,Pacing + reserve + abstain (ours),0.003568075117370897,0.0,0.0007412447608214634,0.0,10
+10,uniform,0.0,flat2x,Cheapest model,0.0532168387609213,0.0,0.0,0.0,10
+10,uniform,0.0,flat2x,MCKP (optimal),0.0,0.16,0.0,0.0,10
+10,uniform,0.0,flat2x,MCKP (serve all),0.0532168387609213,0.0,0.0,0.0,10
+10,uniform,0.0,flat2x,Pacing + reserve (no price history),0.0532168387609213,0.0,0.0,0.0,10
+10,uniform,0.0,flat2x,Pacing + reserve (ours),0.0532168387609213,0.0,0.0,0.0,10
+10,uniform,0.0,flat2x,Pacing + reserve + abstain (no price history),0.0532168387609213,0.0,0.0,0.0,10
+10,uniform,0.0,flat2x,Pacing + reserve + abstain (ours),0.027598623245962444,0.21960000000000002,0.0003631029615217383,0.000784000000000001,10
+10,uniform,0.05,flat2x,Cheapest model,0.06680584551148212,0.0,0.0,0.0,10
+10,uniform,0.05,flat2x,MCKP (optimal),0.0,0.14,0.0,0.0,10
+10,uniform,0.05,flat2x,MCKP (serve all),0.04201461377870558,0.0,0.0,0.0,10
+10,uniform,0.05,flat2x,Pacing + reserve (no price history),0.04201461377870558,0.0,0.0,0.0,10
+10,uniform,0.05,flat2x,Pacing + reserve (ours),0.04441544885177462,0.0,0.00022618596343412358,0.0,10
+10,uniform,0.05,flat2x,Pacing + reserve + abstain (no price history),0.017959290187891407,0.0908,0.0017689005749918524,0.005611064624669923,10
+10,uniform,0.05,flat2x,Pacing + reserve + abstain (ours),0.005480167014613885,0.16,0.0,0.0,10
+10,uniform,0.2,flat2x,Cheapest model,0.10644677661169402,0.0,0.0,0.0,10
+10,uniform,0.2,flat2x,MCKP (optimal),0.0,0.06,0.0,0.0,10
+10,uniform,0.2,flat2x,MCKP (serve all),0.01724137931034487,0.0,0.0,0.0,10
+10,uniform,0.2,flat2x,Pacing + reserve (no price history),0.01724137931034487,0.0,0.0,0.0,10
+10,uniform,0.2,flat2x,Pacing + reserve (ours),0.01843078460769625,0.0,0.0005087170486621219,0.0,10
+10,uniform,0.2,flat2x,Pacing + reserve + abstain (no price history),0.001979010494752559,0.0744,0.00032916985501667024,0.002395159563230252,10
+10,uniform,0.2,flat2x,Pacing + reserve + abstain (ours),0.014442778610694687,0.1008,0.000587706146926548,0.001045333333333335,10
+10,uniform,0.5,flat2x,Cheapest model,0.15079553550225588,0.0,0.0,0.0,10
+10,uniform,0.5,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,0.5,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,0.5,flat2x,Pacing + reserve (no price history),0.0057468534789835764,0.0,0.00018093351878250208,0.0,10
+10,uniform,0.5,flat2x,Pacing + reserve (ours),0.0057468534789835764,0.0,0.00018093351878250208,0.0,10
+10,uniform,0.5,flat2x,Pacing + reserve + abstain (no price history),0.0057468534789835764,0.0,0.00018093351878250208,0.0,10
+10,uniform,0.5,flat2x,Pacing + reserve + abstain (ours),0.0057468534789835764,0.0,0.00018093351878250208,0.0,10
+10,uniform,1.0,flat2x,Cheapest model,0.1597744360902255,0.0,0.0,0.0,10
+10,uniform,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,1.0,flat2x,Pacing + reserve (no price history),0.00509868421052641,0.0,0.0004856800181442619,0.0,10
+10,uniform,1.0,flat2x,Pacing + reserve (ours),0.00509868421052641,0.0,0.0004856800181442619,0.0,10
+10,uniform,1.0,flat2x,Pacing + reserve + abstain (no price history),0.00509868421052641,0.0,0.0004856800181442619,0.0,10
+10,uniform,1.0,flat2x,Pacing + reserve + abstain (ours),0.00509868421052641,0.0,0.0004856800181442619,0.0,10
+10,uniform,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+10,uniform,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,0.0,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+10,uniform,0.0,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+10,uniform,0.0,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+10,uniform,0.0,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+10,uniform,0.05,measured,Cheapest model,0.032205683355886215,0.0,0.0,0.0,10
+10,uniform,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,0.05,measured,Pacing + reserve (no price history),0.0004276048714479002,0.0,0.0003833105930732421,0.0,10
+10,uniform,0.05,measured,Pacing + reserve (ours),6.495263870094849e-05,0.0,5.197293527312717e-05,0.0,10
+10,uniform,0.05,measured,Pacing + reserve + abstain (no price history),0.0004871447902570977,0.0004,0.0004675424881455578,0.0007840000000000002,10
+10,uniform,0.05,measured,Pacing + reserve + abstain (ours),0.00012449255751014596,0.0004,0.0001458486878827553,0.000784,10
+10,uniform,0.2,measured,Cheapest model,0.09077040427154826,0.0,0.0,0.0,10
+10,uniform,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,0.2,measured,Pacing + reserve (no price history),0.0017696414950419722,0.0,0.0012033754936146112,0.0,10
+10,uniform,0.2,measured,Pacing + reserve (ours),0.0006407322654462367,0.0,0.0006951821037936267,0.0,10
+10,uniform,0.2,measured,Pacing + reserve + abstain (no price history),0.0017696414950419722,0.0,0.0012033754936146112,0.0,10
+10,uniform,0.2,measured,Pacing + reserve + abstain (ours),0.0006407322654462367,0.0,0.0006951821037936267,0.0,10
+10,uniform,0.5,measured,Cheapest model,0.15079553550225588,0.0,0.0,0.0,10
+10,uniform,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,0.5,measured,Pacing + reserve (no price history),0.0016813108525291509,0.0,0.0002659168790300385,0.0,10
+10,uniform,0.5,measured,Pacing + reserve (ours),0.0016813108525291509,0.0,0.0002659168790300385,0.0,10
+10,uniform,0.5,measured,Pacing + reserve + abstain (no price history),0.0016813108525291509,0.0,0.0002659168790300385,0.0,10
+10,uniform,0.5,measured,Pacing + reserve + abstain (ours),0.0016813108525291509,0.0,0.0002659168790300385,0.0,10
+10,uniform,1.0,measured,Cheapest model,0.1597744360902255,0.0,0.0,0.0,10
+10,uniform,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,1.0,measured,Pacing + reserve (no price history),0.0026785714285715357,0.0,0.00022975089217033875,0.0,10
+10,uniform,1.0,measured,Pacing + reserve (ours),0.0026785714285715357,0.0,0.00022975089217033875,0.0,10
+10,uniform,1.0,measured,Pacing + reserve + abstain (no price history),0.0026785714285715357,0.0,0.00022975089217033875,0.0,10
+10,uniform,1.0,measured,Pacing + reserve + abstain (ours),0.0026785714285715357,0.0,0.00022975089217033875,0.0,10
+10,uniform,0.0,steep10x,Cheapest model,0.0033444816053509073,0.0,0.0,0.0,10
+10,uniform,0.0,steep10x,MCKP (optimal),0.0,0.06,0.0,0.0,10
+10,uniform,0.0,steep10x,MCKP (serve all),0.0033444816053509073,0.0,0.0,0.0,10
+10,uniform,0.0,steep10x,Pacing + reserve (no price history),0.0033444816053509073,0.0,0.0,0.0,10
+10,uniform,0.0,steep10x,Pacing + reserve (ours),0.0033444816053509073,0.0,0.0,0.0,10
+10,uniform,0.0,steep10x,Pacing + reserve + abstain (no price history),0.0033444816053509073,0.0,0.0,0.0,10
+10,uniform,0.0,steep10x,Pacing + reserve + abstain (ours),0.005418060200668707,0.0984,0.00028896466349133664,0.0017334892237590895,10
+10,uniform,0.05,steep10x,Cheapest model,0.032205683355886215,0.0,0.0,0.0,10
+10,uniform,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,0.05,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+10,uniform,0.05,steep10x,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+10,uniform,0.05,steep10x,Pacing + reserve + abstain (no price history),0.00041677943166439817,0.0028,0.00035009472259810766,0.002352,10
+10,uniform,0.05,steep10x,Pacing + reserve + abstain (ours),0.0011312584573748635,0.0076,0.0004748278557965224,0.0031899798675784075,10
+10,uniform,0.2,steep10x,Cheapest model,0.09077040427154826,0.0,0.0,0.0,10
+10,uniform,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,0.2,steep10x,Pacing + reserve (no price history),0.0008848207475209636,0.0,0.0006390946794941882,0.0,10
+10,uniform,0.2,steep10x,Pacing + reserve (ours),0.0005186880244088733,0.0,0.0005176419091649663,0.0,10
+10,uniform,0.2,steep10x,Pacing + reserve + abstain (no price history),0.0008848207475209636,0.0,0.0006390946794941882,0.0,10
+10,uniform,0.2,steep10x,Pacing + reserve + abstain (ours),0.0005186880244088733,0.0,0.0005176419091649663,0.0,10
+10,uniform,0.5,steep10x,Cheapest model,0.15079553550225588,0.0,0.0,0.0,10
+10,uniform,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,0.5,steep10x,Pacing + reserve (no price history),0.0016813108525291509,0.0,0.0002659168790300385,0.0,10
+10,uniform,0.5,steep10x,Pacing + reserve (ours),0.0016813108525291509,0.0,0.0002659168790300385,0.0,10
+10,uniform,0.5,steep10x,Pacing + reserve + abstain (no price history),0.0016813108525291509,0.0,0.0002659168790300385,0.0,10
+10,uniform,0.5,steep10x,Pacing + reserve + abstain (ours),0.0016813108525291509,0.0,0.0002659168790300385,0.0,10
+10,uniform,1.0,steep10x,Cheapest model,0.1597744360902255,0.0,0.0,0.0,10
+10,uniform,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+10,uniform,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+10,uniform,1.0,steep10x,Pacing + reserve (no price history),0.0031954887218046376,0.0,0.0003160939078372993,0.0,10
+10,uniform,1.0,steep10x,Pacing + reserve (ours),0.0031954887218046376,0.0,0.0003160939078372993,0.0,10
+10,uniform,1.0,steep10x,Pacing + reserve + abstain (no price history),0.0031954887218046376,0.0,0.0003160939078372993,0.0,10
+10,uniform,1.0,steep10x,Pacing + reserve + abstain (ours),0.0031954887218046376,0.0,0.0003160939078372993,0.0,10
+20,uniform,0.0,flat2x,Cheapest model,0.056334267788012225,0.0,0.0,0.0,10
+20,uniform,0.0,flat2x,MCKP (optimal),0.0,0.17,0.0,0.0,10
+20,uniform,0.0,flat2x,MCKP (serve all),0.056334267788012225,0.0,0.0,0.0,10
+20,uniform,0.0,flat2x,Pacing + reserve (no price history),0.056334267788012225,0.0,0.0,0.0,10
+20,uniform,0.0,flat2x,Pacing + reserve (ours),0.056334267788012225,0.0,0.0,0.0,10
+20,uniform,0.0,flat2x,Pacing + reserve + abstain (no price history),0.056334267788012225,0.0,0.0,0.0,10
+20,uniform,0.0,flat2x,Pacing + reserve + abstain (ours),0.0258657055132826,0.22000000000000003,0.0001590677930369843,0.0,10
+20,uniform,0.05,flat2x,Cheapest model,0.07170059093893631,0.0,0.0,0.0,10
+20,uniform,0.05,flat2x,MCKP (optimal),0.0,0.15,0.0,0.0,10
+20,uniform,0.05,flat2x,MCKP (serve all),0.04530531845042682,0.0,0.0,0.0,10
+20,uniform,0.05,flat2x,Pacing + reserve (no price history),0.04680236375574517,0.0,0.00010295469468156096,0.0,10
+20,uniform,0.05,flat2x,Pacing + reserve (ours),0.04530531845042682,0.0,0.0,0.0,10
+20,uniform,0.05,flat2x,Pacing + reserve + abstain (no price history),0.009549573210768235,0.12,0.0009595367725078866,0.00325357376160772,10
+20,uniform,0.05,flat2x,Pacing + reserve + abstain (ours),0.011818778726198367,0.17,0.0,0.0,10
+20,uniform,0.2,flat2x,Cheapest model,0.10980984762624355,0.0,0.0,0.0,10
+20,uniform,0.2,flat2x,MCKP (optimal),0.0,0.07,0.0,0.0,10
+20,uniform,0.2,flat2x,MCKP (serve all),0.020274524619065582,0.0,0.0,0.0,10
+20,uniform,0.2,flat2x,Pacing + reserve (no price history),0.0210225412416572,0.0,0.00021492743600434074,0.0,10
+20,uniform,0.2,flat2x,Pacing + reserve (ours),0.021130839944591376,0.0,0.0006128570076337245,0.0,10
+20,uniform,0.2,flat2x,Pacing + reserve + abstain (no price history),0.0009066868152625938,0.0722,0.000327939882096753,0.0010853988514212896,10
+20,uniform,0.2,flat2x,Pacing + reserve + abstain (ours),0.013852159677622478,0.10200000000000001,0.000811134274809337,0.001431381616946839,10
+20,uniform,0.5,flat2x,Cheapest model,0.1554360812425328,0.0,0.0,0.0,10
+20,uniform,0.5,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,0.5,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,0.5,flat2x,Pacing + reserve (no price history),0.006475507765830411,0.0,0.00022837378035143007,0.0,10
+20,uniform,0.5,flat2x,Pacing + reserve (ours),0.006475507765830411,0.0,0.00022837378035143007,0.0,10
+20,uniform,0.5,flat2x,Pacing + reserve + abstain (no price history),0.006475507765830411,0.0,0.00022837378035143007,0.0,10
+20,uniform,0.5,flat2x,Pacing + reserve + abstain (ours),0.006475507765830411,0.0,0.00022837378035143007,0.0,10
+20,uniform,1.0,flat2x,Cheapest model,0.163926670609107,0.0,0.0,0.0,10
+20,uniform,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,1.0,flat2x,Pacing + reserve (no price history),0.004222353636901219,0.0,0.00022673720064811387,0.0,10
+20,uniform,1.0,flat2x,Pacing + reserve (ours),0.004222353636901219,0.0,0.00022673720064811387,0.0,10
+20,uniform,1.0,flat2x,Pacing + reserve + abstain (no price history),0.004222353636901219,0.0,0.00022673720064811387,0.0,10
+20,uniform,1.0,flat2x,Pacing + reserve + abstain (ours),0.004222353636901219,0.0,0.00022673720064811387,0.0,10
+20,uniform,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+20,uniform,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,0.0,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.0,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+20,uniform,0.0,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.0,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,measured,Cheapest model,0.03217415115005472,0.0,0.0,0.0,10
+20,uniform,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,measured,Cheapest model,0.09534169439467623,0.0,0.0,0.0,10
+20,uniform,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,measured,Pacing + reserve (ours),0.0006091630406961629,0.0,0.0004440534411760084,0.0,10
+20,uniform,0.2,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,measured,Pacing + reserve + abstain (ours),0.0006091630406961629,0.0,0.0004440534411760084,0.0,10
+20,uniform,0.5,measured,Cheapest model,0.1554360812425328,0.0,0.0,0.0,10
+20,uniform,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,0.5,measured,Pacing + reserve (no price history),0.0019474313022700336,0.0,0.0001747142070879069,0.0,10
+20,uniform,0.5,measured,Pacing + reserve (ours),0.0019474313022700336,0.0,0.0001747142070879069,0.0,10
+20,uniform,0.5,measured,Pacing + reserve + abstain (no price history),0.0019474313022700336,0.0,0.0001747142070879069,0.0,10
+20,uniform,0.5,measured,Pacing + reserve + abstain (ours),0.0019474313022700336,0.0,0.0001747142070879069,0.0,10
+20,uniform,1.0,measured,Cheapest model,0.163926670609107,0.0,0.0,0.0,10
+20,uniform,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,1.0,measured,Pacing + reserve (no price history),0.002164399763453585,0.0,0.00019866526204672294,0.0,10
+20,uniform,1.0,measured,Pacing + reserve (ours),0.002164399763453585,0.0,0.00019866526204672294,0.0,10
+20,uniform,1.0,measured,Pacing + reserve + abstain (no price history),0.002164399763453585,0.0,0.00019866526204672294,0.0,10
+20,uniform,1.0,measured,Pacing + reserve + abstain (ours),0.002164399763453585,0.0,0.00019866526204672294,0.0,10
+20,uniform,0.0,steep10x,Cheapest model,0.003383617651205314,0.0,0.0,0.0,10
+20,uniform,0.0,steep10x,MCKP (optimal),0.0,0.06,0.0,0.0,10
+20,uniform,0.0,steep10x,MCKP (serve all),0.003383617651205314,0.0,0.0,0.0,10
+20,uniform,0.0,steep10x,Pacing + reserve (no price history),0.003383617651205314,0.0,0.0,0.0,10
+20,uniform,0.0,steep10x,Pacing + reserve (ours),0.003383617651205314,0.0,0.0,0.0,10
+20,uniform,0.0,steep10x,Pacing + reserve + abstain (no price history),0.003383617651205314,0.0,0.0,0.0,10
+20,uniform,0.0,steep10x,Pacing + reserve + abstain (ours),0.004920344001127799,0.0974,0.00023781405130908842,0.001551580699372956,10
+20,uniform,0.05,steep10x,Cheapest model,0.03217415115005472,0.0,0.0,0.0,10
+20,uniform,0.05,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,steep10x,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,steep10x,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.05,steep10x,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,steep10x,Cheapest model,0.09534169439467623,0.0,0.0,0.0,10
+20,uniform,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,steep10x,Pacing + reserve (ours),0.0011313027898643027,0.0,0.0008060618206640947,0.0,10
+20,uniform,0.2,steep10x,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+20,uniform,0.2,steep10x,Pacing + reserve + abstain (ours),0.0011313027898643027,0.0,0.0008060618206640947,0.0,10
+20,uniform,0.5,steep10x,Cheapest model,0.1554360812425328,0.0,0.0,0.0,10
+20,uniform,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,0.5,steep10x,Pacing + reserve (no price history),0.002258064516128971,0.0,0.00020784159962689697,0.0,10
+20,uniform,0.5,steep10x,Pacing + reserve (ours),0.002258064516128971,0.0,0.00020784159962689697,0.0,10
+20,uniform,0.5,steep10x,Pacing + reserve + abstain (no price history),0.002258064516128971,0.0,0.00020784159962689697,0.0,10
+20,uniform,0.5,steep10x,Pacing + reserve + abstain (ours),0.002258064516128971,0.0,0.00020784159962689697,0.0,10
+20,uniform,1.0,steep10x,Cheapest model,0.163926670609107,0.0,0.0,0.0,10
+20,uniform,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+20,uniform,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+20,uniform,1.0,steep10x,Pacing + reserve (no price history),0.0024837374334712972,0.0,0.00019240530819678543,0.0,10
+20,uniform,1.0,steep10x,Pacing + reserve (ours),0.0024837374334712972,0.0,0.00019240530819678543,0.0,10
+20,uniform,1.0,steep10x,Pacing + reserve + abstain (no price history),0.0024837374334712972,0.0,0.00019240530819678543,0.0,10
+20,uniform,1.0,steep10x,Pacing + reserve + abstain (ours),0.0024837374334712972,0.0,0.00019240530819678543,0.0,10
+50,uniform,0.0,flat2x,Cheapest model,0.05831106360235182,0.0,0.0,0.0,10
+50,uniform,0.0,flat2x,MCKP (optimal),0.0,0.176,0.0,0.0,10
+50,uniform,0.0,flat2x,MCKP (serve all),0.05831106360235182,0.0,0.0,0.0,10
+50,uniform,0.0,flat2x,Pacing + reserve (no price history),0.05831106360235182,0.0,0.0,0.0,10
+50,uniform,0.0,flat2x,Pacing + reserve (ours),0.05831106360235182,0.0,0.0,0.0,10
+50,uniform,0.0,flat2x,Pacing + reserve + abstain (no price history),0.05831106360235182,0.0,0.0,0.0,10
+50,uniform,0.0,flat2x,Pacing + reserve + abstain (ours),0.02660074826296095,0.22000000000000003,5.2378407268834785e-05,0.0,10
+50,uniform,0.05,flat2x,Cheapest model,0.07195154069001863,0.0,0.0,0.0,10
+50,uniform,0.05,flat2x,MCKP (optimal),0.0,0.148,0.0,0.0,10
+50,uniform,0.05,flat2x,MCKP (serve all),0.044824861732947106,0.0,0.0,0.0,10
+50,uniform,0.05,flat2x,Pacing + reserve (no price history),0.04832235975770347,0.0,0.00014037859006784856,0.0,10
+50,uniform,0.05,flat2x,Pacing + reserve (ours),0.044824861732947106,0.0,0.0,0.0,10
+50,uniform,0.05,flat2x,Pacing + reserve + abstain (no price history),0.006268106399789408,0.12912,0.0007143622712260881,0.0022565645314159416,10
+50,uniform,0.05,flat2x,Pacing + reserve + abstain (ours),0.012114827495391126,0.172,0.0,0.0,10
+50,uniform,0.2,flat2x,Cheapest model,0.11172170405848267,0.0,0.0,0.0,10
+50,uniform,0.2,flat2x,MCKP (optimal),0.0,0.076,0.0,0.0,10
+50,uniform,0.2,flat2x,MCKP (serve all),0.021981346105369327,0.0,0.0,0.0,10
+50,uniform,0.2,flat2x,Pacing + reserve (no price history),0.022969498361482387,0.0,7.09515033827653e-05,0.0,10
+50,uniform,0.2,flat2x,Pacing + reserve (ours),0.022100327703554412,0.0,8.959247122091832e-05,0.0,10
+50,uniform,0.2,flat2x,Pacing + reserve + abstain (no price history),0.0018008570708344493,0.07103999999999999,0.0002993041249071015,0.0007681599833368063,10
+50,uniform,0.2,flat2x,Pacing + reserve + abstain (ours),0.014020670531888199,0.10072,0.00024624627332472504,0.0004341595405685149,10
+50,uniform,0.5,flat2x,Cheapest model,0.15638017716064176,0.0,0.0,0.0,10
+50,uniform,0.5,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,0.5,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,0.5,flat2x,Pacing + reserve (no price history),0.006401723725161662,0.0,6.106084708329184e-05,0.0,10
+50,uniform,0.5,flat2x,Pacing + reserve (ours),0.006401723725161662,0.0,6.106084708329184e-05,0.0,10
+50,uniform,0.5,flat2x,Pacing + reserve + abstain (no price history),0.006401723725161662,0.0,6.106084708329184e-05,0.0,10
+50,uniform,0.5,flat2x,Pacing + reserve + abstain (ours),0.006401723725161662,0.0,6.106084708329184e-05,0.0,10
+50,uniform,1.0,flat2x,Cheapest model,0.16517412935323397,0.0,0.0,0.0,10
+50,uniform,1.0,flat2x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,1.0,flat2x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,1.0,flat2x,Pacing + reserve (no price history),0.004188580904998808,0.0,0.00016739332818957524,0.0,10
+50,uniform,1.0,flat2x,Pacing + reserve (ours),0.004188580904998808,0.0,0.00016739332818957524,0.0,10
+50,uniform,1.0,flat2x,Pacing + reserve + abstain (no price history),0.004188580904998808,0.0,0.00016739332818957524,0.0,10
+50,uniform,1.0,flat2x,Pacing + reserve + abstain (ours),0.004188580904998808,0.0,0.00016739332818957524,0.0,10
+50,uniform,0.0,measured,Cheapest model,0.0,0.0,0.0,0.0,10
+50,uniform,0.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,0.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,0.0,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,uniform,0.0,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+50,uniform,0.0,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,uniform,0.0,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+50,uniform,0.05,measured,Cheapest model,0.03415195702225646,0.0,0.0,0.0,10
+50,uniform,0.05,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,0.05,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,0.05,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,uniform,0.05,measured,Pacing + reserve (ours),0.0,0.0,0.0,0.0,10
+50,uniform,0.05,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,uniform,0.05,measured,Pacing + reserve + abstain (ours),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,measured,Cheapest model,0.0980341967850928,0.0,0.0,0.0,10
+50,uniform,0.2,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,measured,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,measured,Pacing + reserve (ours),0.0003829220845704989,0.0,0.00021455940160411717,0.0,10
+50,uniform,0.2,measured,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,measured,Pacing + reserve + abstain (ours),0.0003829220845704989,0.0,0.00021455940160411717,0.0,10
+50,uniform,0.5,measured,Cheapest model,0.15678391959799015,0.0,0.0,0.0,10
+50,uniform,0.5,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,0.5,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,0.5,measured,Pacing + reserve (no price history),0.002321129456807945,0.0,5.460625097758756e-05,0.0,10
+50,uniform,0.5,measured,Pacing + reserve (ours),0.002321129456807945,0.0,5.460625097758756e-05,0.0,10
+50,uniform,0.5,measured,Pacing + reserve + abstain (no price history),0.002321129456807945,0.0,5.460625097758756e-05,0.0,10
+50,uniform,0.5,measured,Pacing + reserve + abstain (ours),0.002321129456807945,0.0,5.460625097758756e-05,0.0,10
+50,uniform,1.0,measured,Cheapest model,0.16517412935323397,0.0,0.0,0.0,10
+50,uniform,1.0,measured,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,1.0,measured,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,1.0,measured,Pacing + reserve (no price history),0.0022553897180763102,0.0,7.220194717774748e-05,0.0,10
+50,uniform,1.0,measured,Pacing + reserve (ours),0.0022553897180763102,0.0,7.220194717774748e-05,0.0,10
+50,uniform,1.0,measured,Pacing + reserve + abstain (no price history),0.0022553897180763102,0.0,7.220194717774748e-05,0.0,10
+50,uniform,1.0,measured,Pacing + reserve + abstain (ours),0.0022553897180763102,0.0,7.220194717774748e-05,0.0,10
+50,uniform,0.0,steep10x,Cheapest model,0.003788307135587599,0.0,0.0,0.0,10
+50,uniform,0.0,steep10x,MCKP (optimal),0.0,0.064,0.0,0.0,10
+50,uniform,0.0,steep10x,MCKP (serve all),0.003788307135587599,0.0,0.0,0.0,10
+50,uniform,0.0,steep10x,Pacing + reserve (no price history),0.003788307135587599,0.0,0.0,0.0,10
+50,uniform,0.0,steep10x,Pacing + reserve (ours),0.003788307135587599,0.0,0.0,0.0,10
+50,uniform,0.0,steep10x,Pacing + reserve + abstain (no price history),0.003788307135587599,0.0,0.0,0.0,10
+50,uniform,0.0,steep10x,Pacing + reserve + abstain (ours),0.005249349768178263,0.09896,6.631242657879734e-05,0.0004082157163940533,10
+50,uniform,0.05,steep10x,Cheapest model,0.032401559668296144,0.0,0.0,0.0,10
+50,uniform,0.05,steep10x,MCKP (optimal),0.0,0.012,0.0,0.0,10
+50,uniform,0.05,steep10x,MCKP (serve all),5.491789774292932e-05,0.0,0.0,0.0,10
+50,uniform,0.05,steep10x,Pacing + reserve (no price history),0.0004942610796858792,0.0,0.0,0.0,10
+50,uniform,0.05,steep10x,Pacing + reserve (ours),5.491789774292932e-05,0.0,0.0,0.0,10
+50,uniform,0.05,steep10x,Pacing + reserve + abstain (no price history),0.0004942610796858792,0.0,0.0,0.0,10
+50,uniform,0.05,steep10x,Pacing + reserve + abstain (ours),5.491789774292932e-05,0.0,0.0,0.0,10
+50,uniform,0.2,steep10x,Cheapest model,0.09646153846153867,0.0,0.0,0.0,10
+50,uniform,0.2,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,steep10x,Pacing + reserve (no price history),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,steep10x,Pacing + reserve (ours),0.0002789743589743965,0.0,0.00017049165692625573,0.0,10
+50,uniform,0.2,steep10x,Pacing + reserve + abstain (no price history),0.0,0.0,0.0,0.0,10
+50,uniform,0.2,steep10x,Pacing + reserve + abstain (ours),0.0002789743589743965,0.0,0.00017049165692625573,0.0,10
+50,uniform,0.5,steep10x,Cheapest model,0.15678391959799015,0.0,0.0,0.0,10
+50,uniform,0.5,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,0.5,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,0.5,steep10x,Pacing + reserve (no price history),0.0026992103374014003,0.0,7.019524745706438e-05,0.0,10
+50,uniform,0.5,steep10x,Pacing + reserve (ours),0.0026992103374014003,0.0,7.019524745706438e-05,0.0,10
+50,uniform,0.5,steep10x,Pacing + reserve + abstain (no price history),0.0026992103374014003,0.0,7.019524745706438e-05,0.0,10
+50,uniform,0.5,steep10x,Pacing + reserve + abstain (ours),0.0026992103374014003,0.0,7.019524745706438e-05,0.0,10
+50,uniform,1.0,steep10x,Cheapest model,0.16517412935323397,0.0,0.0,0.0,10
+50,uniform,1.0,steep10x,MCKP (optimal),0.0,0.0,0.0,0.0,10
+50,uniform,1.0,steep10x,MCKP (serve all),0.0,0.0,0.0,0.0,10
+50,uniform,1.0,steep10x,Pacing + reserve (no price history),0.002383321487799155,0.0,5.881702598117808e-05,0.0,10
+50,uniform,1.0,steep10x,Pacing + reserve (ours),0.002383321487799155,0.0,5.881702598117808e-05,0.0,10
+50,uniform,1.0,steep10x,Pacing + reserve + abstain (no price history),0.002383321487799155,0.0,5.881702598117808e-05,0.0,10
+50,uniform,1.0,steep10x,Pacing + reserve + abstain (ours),0.002383321487799155,0.0,5.881702598117808e-05,0.0,10

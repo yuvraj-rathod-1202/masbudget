@@ -60,7 +60,7 @@ experiments:
 | `decentralized.arrival_policy` | no | `null` | Arrival factory name. `null` = no coordinator: uncoordinated FCFS (`fcfs`), round-robin over agents. |
 | `decentralized.arrival_params` | no | `{}` | Arrival policy parameters. |
 | `decentralized.policy` | no | `sequential_best_response` | Decentralized engine factory name. |
-| `decentralized.params` | no | `{}` | Engine parameters. |
+| `decentralized.params` | no | `{}` | Engine parameters: `reserve: true` (a call may not leave less than c_min per waiting job), `abstain: true` (agents may decline a call). |
 | `metrics` | no | none | Metric names, or `{name: {param: value}}`, e.g. `- success_rate: {tau: 0.8}`. |
 
 ## Metrics

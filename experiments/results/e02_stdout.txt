@@ -1,0 +1,151 @@
+20160 runs in 164s
+
+### difficulty, tau=0.0
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| Cheapest model | 0.666 | 0.676 | 0.000 | 0.000 | 0.000 | 1.000 | 0.957 | nan |
+| Cascade (verified) | 0.666 | 0.676 | 0.000 | 0.000 | 0.000 | 1.000 | 0.957 | nan |
+| Predictive router | 0.666 | 0.676 | 0.000 | 0.000 | 0.000 | 1.000 | 0.957 | nan |
+| MCKP (optimal) | 0.666 | 0.676 | 0.000 | 0.000 | 0.000 | 1.000 | 0.957 | nan |
+| Static equal quota | 0.666 | 0.676 | 0.000 | 0.000 | 0.000 | 1.000 | 0.957 | nan |
+| Marginal ROI ratio | 0.113 | 0.110 | 0.831 | 0.007 | 0.849 | 0.998 | 0.555 | inf |
+| Best model (round-robin) | 0.093 | 0.093 | 0.860 | 0.006 | 0.873 | 0.997 | 0.707 | inf |
+| Shadow price (repo p0=0.1, a=1.5) | 0.093 | 0.091 | 0.861 | 0.001 | 0.873 | 0.997 | 0.516 | inf |
+| Quasi-linear (repo lambda=0.5) | 0.092 | 0.091 | 0.861 | 0.001 | 0.873 | 0.998 | 0.515 | inf |
+| Best model | 0.092 | 0.091 | 0.861 | 0.001 | 0.873 | 0.998 | 0.515 | inf |
+| Shapley share (repo lambda=0.5, g=1) | 0.092 | 0.091 | 0.861 | 0.001 | 0.873 | 0.998 | 0.515 | inf |
+
+### difficulty, tau=0.05
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| Predictive router | 0.690 | 0.671 | 0.000 | 0.000 | 0.000 | 0.988 | 0.955 | nan |
+| MCKP (optimal) | 0.690 | 0.674 | 0.000 | 0.000 | 0.000 | 0.988 | 0.954 | nan |
+| Cascade (verified) | 0.682 | 0.726 | 0.012 | 0.000 | 0.000 | 0.984 | 0.965 | nan |
+| Static equal quota | 0.676 | 0.657 | 0.021 | 0.000 | 0.000 | 0.491 | 0.951 | nan |
+| Cheapest model | 0.666 | 0.676 | 0.035 | 0.000 | 0.000 | 0.448 | 0.957 | nan |
+| Marginal ROI ratio | 0.221 | 0.218 | 0.680 | 0.009 | 0.707 | 0.999 | 0.735 | inf |
+| Shadow price (repo p0=0.1, a=1.5) | 0.152 | 0.152 | 0.780 | 0.009 | 0.798 | 0.999 | 0.638 | inf |
+| Best model | 0.126 | 0.127 | 0.817 | 0.007 | 0.835 | 0.999 | 0.592 | inf |
+| Shapley share (repo lambda=0.5, g=1) | 0.126 | 0.127 | 0.817 | 0.007 | 0.835 | 0.999 | 0.592 | inf |
+| Quasi-linear (repo lambda=0.5) | 0.126 | 0.127 | 0.817 | 0.007 | 0.835 | 0.999 | 0.592 | inf |
+| Best model (round-robin) | 0.121 | 0.123 | 0.824 | 0.024 | 0.843 | 0.999 | 0.792 | inf |
+
+### difficulty, tau=0.2
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| Predictive router | 0.738 | 0.718 | 0.000 | 0.000 | 0.000 | 0.995 | 0.964 | nan |
+| MCKP (optimal) | 0.738 | 0.726 | 0.000 | 0.000 | 0.000 | 0.995 | 0.965 | nan |
+| Static equal quota | 0.728 | 0.736 | 0.014 | 0.001 | 0.000 | 0.956 | 0.962 | nan |
+| Cascade (verified) | 0.728 | 0.782 | 0.014 | 0.000 | 0.000 | 0.993 | 0.974 | nan |
+| Cheapest model | 0.666 | 0.676 | 0.098 | 0.000 | 0.000 | 0.169 | 0.957 | nan |
+| Marginal ROI ratio | 0.530 | 0.519 | 0.283 | 0.008 | 0.313 | 1.000 | 0.916 | inf |
+| Shadow price (repo p0=0.1, a=1.5) | 0.397 | 0.396 | 0.462 | 0.010 | 0.473 | 1.000 | 0.872 | inf |
+| Best model (round-robin) | 0.301 | 0.303 | 0.592 | 0.018 | 0.612 | 1.000 | 0.923 | inf |
+| Quasi-linear (repo lambda=0.5) | 0.296 | 0.297 | 0.600 | 0.004 | 0.621 | 1.000 | 0.812 | inf |
+| Best model | 0.296 | 0.297 | 0.600 | 0.004 | 0.621 | 1.000 | 0.812 | inf |
+| Shapley share (repo lambda=0.5, g=1) | 0.296 | 0.297 | 0.600 | 0.004 | 0.621 | 1.000 | 0.812 | inf |
+
+### difficulty, tau=0.5
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| Predictive router | 0.789 | 0.788 | 0.000 | 0.000 | 0.000 | 0.994 | 0.974 | nan |
+| MCKP (optimal) | 0.789 | 0.785 | 0.000 | 0.000 | 0.000 | 0.994 | 0.974 | nan |
+| Static equal quota | 0.783 | 0.783 | 0.008 | 0.001 | 0.000 | 0.911 | 0.971 | nan |
+| Marginal ROI ratio | 0.782 | 0.767 | 0.010 | 0.000 | 0.000 | 0.693 | 0.970 | 1.000 |
+| Shadow price (repo p0=0.1, a=1.5) | 0.772 | 0.772 | 0.022 | 0.000 | 0.000 | 0.978 | 0.972 | 1.138 |
+| Cascade (verified) | 0.761 | 0.828 | 0.037 | 0.002 | 0.000 | 0.641 | 0.980 | nan |
+| Cheapest model | 0.666 | 0.676 | 0.156 | 0.000 | 0.000 | 0.075 | 0.957 | nan |
+| Best model | 0.658 | 0.662 | 0.167 | 0.007 | 0.163 | 1.000 | 0.953 | inf |
+| Shapley share (repo lambda=0.5, g=1) | 0.658 | 0.662 | 0.167 | 0.007 | 0.163 | 1.000 | 0.953 | inf |
+| Quasi-linear (repo lambda=0.5) | 0.658 | 0.662 | 0.167 | 0.007 | 0.163 | 1.000 | 0.953 | inf |
+| Best model (round-robin) | 0.639 | 0.643 | 0.190 | 0.025 | 0.186 | 1.000 | 0.967 | inf |
+
+### difficulty, tau=1.0
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| Best model | 0.797 | 0.807 | 0.000 | 0.000 | 0.000 | 0.678 | 0.977 | 1.000 |
+| Best model (round-robin) | 0.797 | 0.807 | 0.000 | 0.000 | 0.000 | 0.678 | 0.977 | 0.985 |
+| Predictive router | 0.797 | 0.807 | 0.000 | 0.000 | 0.000 | 0.678 | 0.977 | nan |
+| MCKP (optimal) | 0.797 | 0.807 | 0.000 | 0.000 | 0.000 | 0.678 | 0.977 | nan |
+| Quasi-linear (repo lambda=0.5) | 0.797 | 0.807 | 0.000 | 0.000 | 0.000 | 0.678 | 0.977 | 1.000 |
+| Static equal quota | 0.797 | 0.807 | 0.000 | 0.000 | 0.000 | 0.678 | 0.977 | nan |
+| Shapley share (repo lambda=0.5, g=1) | 0.797 | 0.807 | 0.000 | 0.000 | 0.000 | 0.678 | 0.977 | 1.000 |
+| Shadow price (repo p0=0.1, a=1.5) | 0.797 | 0.807 | 0.000 | 0.000 | 0.000 | 0.678 | 0.977 | 1.000 |
+| Marginal ROI ratio | 0.782 | 0.767 | 0.020 | 0.000 | 0.000 | 0.360 | 0.970 | 1.000 |
+| Cascade (verified) | 0.761 | 0.828 | 0.046 | 0.002 | 0.000 | 0.333 | 0.980 | nan |
+| Cheapest model | 0.666 | 0.676 | 0.164 | 0.000 | 0.000 | 0.039 | 0.957 | nan |
+
+### oracle, tau=0.0
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| MCKP (optimal) | 0.776 | 0.776 | 0.000 | 0.000 | 0.224 | 0.949 | 0.974 | nan |
+| Static equal quota | 0.751 | 0.751 | 0.032 | 0.003 | 0.249 | 0.784 | 0.972 | nan |
+| Predictive router | 0.676 | 0.676 | 0.129 | 0.007 | 0.000 | 1.000 | 0.957 | nan |
+| Cheapest model | 0.676 | 0.676 | 0.129 | 0.007 | 0.000 | 1.000 | 0.957 | nan |
+| Cascade (verified) | 0.676 | 0.676 | 0.129 | 0.007 | 0.000 | 1.000 | 0.957 | nan |
+| Marginal ROI ratio | 0.342 | 0.342 | 0.559 | 0.021 | 0.581 | 0.997 | 0.836 | inf |
+| Quasi-linear (repo lambda=0.5) | 0.342 | 0.342 | 0.559 | 0.021 | 0.581 | 0.997 | 0.836 | inf |
+| Best model | 0.342 | 0.342 | 0.559 | 0.021 | 0.581 | 0.997 | 0.836 | inf |
+| Shapley share (repo lambda=0.5, g=1) | 0.342 | 0.342 | 0.559 | 0.021 | 0.581 | 0.997 | 0.836 | inf |
+| Shadow price (repo p0=0.1, a=1.5) | 0.342 | 0.342 | 0.559 | 0.021 | 0.581 | 0.997 | 0.836 | inf |
+| Best model (round-robin) | 0.336 | 0.336 | 0.568 | 0.047 | 0.591 | 0.998 | 0.938 | inf |
+
+### oracle, tau=0.05
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| MCKP (optimal) | 0.822 | 0.822 | 0.000 | 0.000 | 0.178 | 0.956 | 0.980 | nan |
+| Predictive router | 0.816 | 0.816 | 0.007 | 0.002 | 0.000 | 0.973 | 0.978 | nan |
+| Static equal quota | 0.773 | 0.773 | 0.060 | 0.002 | 0.227 | 0.390 | 0.973 | nan |
+| Cascade (verified) | 0.754 | 0.754 | 0.083 | 0.019 | 0.000 | 0.962 | 0.971 | nan |
+| Best model (round-robin) | 0.722 | 0.722 | 0.122 | 0.041 | 0.129 | 0.992 | 0.975 | inf |
+| Marginal ROI ratio | 0.713 | 0.713 | 0.132 | 0.035 | 0.140 | 0.991 | 0.961 | inf |
+| Quasi-linear (repo lambda=0.5) | 0.713 | 0.713 | 0.132 | 0.035 | 0.140 | 0.991 | 0.961 | inf |
+| Best model | 0.713 | 0.713 | 0.132 | 0.035 | 0.140 | 0.991 | 0.961 | inf |
+| Shapley share (repo lambda=0.5, g=1) | 0.713 | 0.713 | 0.132 | 0.035 | 0.140 | 0.991 | 0.961 | inf |
+| Shadow price (repo p0=0.1, a=1.5) | 0.713 | 0.713 | 0.132 | 0.035 | 0.140 | 0.991 | 0.961 | inf |
+| Cheapest model | 0.676 | 0.676 | 0.178 | 0.006 | 0.000 | 0.448 | 0.957 | nan |
+
+### oracle, tau=0.2
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| Best model | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.450 | 0.981 | 0.997 |
+| Marginal ROI ratio | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.450 | 0.981 | 0.997 |
+| Quasi-linear (repo lambda=0.5) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.450 | 0.981 | 0.997 |
+| Shadow price (repo p0=0.1, a=1.5) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.450 | 0.981 | 0.997 |
+| Shapley share (repo lambda=0.5, g=1) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.450 | 0.981 | 0.997 |
+| Predictive router | 0.837 | 0.837 | 0.000 | 0.000 | 0.000 | 0.450 | 0.981 | nan |
+| MCKP (optimal) | 0.837 | 0.837 | 0.000 | 0.000 | 0.163 | 0.423 | 0.981 | nan |
+| Best model (round-robin) | 0.837 | 0.837 | 0.000 | 0.000 | 0.000 | 0.450 | 0.981 | 0.981 |
+| Cascade (verified) | 0.831 | 0.831 | 0.007 | 0.004 | 0.000 | 0.695 | 0.981 | nan |
+| Static equal quota | 0.830 | 0.830 | 0.008 | 0.004 | 0.170 | 0.401 | 0.981 | nan |
+| Cheapest model | 0.676 | 0.676 | 0.192 | 0.006 | 0.000 | 0.169 | 0.957 | nan |
+
+### oracle, tau=0.5
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| Best model | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.200 | 0.981 | 0.997 |
+| Marginal ROI ratio | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.200 | 0.981 | 0.997 |
+| Quasi-linear (repo lambda=0.5) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.200 | 0.981 | 0.997 |
+| Shadow price (repo p0=0.1, a=1.5) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.200 | 0.981 | 0.997 |
+| Shapley share (repo lambda=0.5, g=1) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.200 | 0.981 | 0.997 |
+| Predictive router | 0.837 | 0.837 | 0.000 | 0.000 | 0.000 | 0.200 | 0.981 | nan |
+| MCKP (optimal) | 0.837 | 0.837 | 0.000 | 0.000 | 0.163 | 0.188 | 0.981 | nan |
+| Best model (round-robin) | 0.837 | 0.837 | 0.000 | 0.000 | 0.000 | 0.200 | 0.981 | 0.981 |
+| Static equal quota | 0.837 | 0.837 | 0.000 | 0.000 | 0.163 | 0.188 | 0.981 | nan |
+| Cascade (verified) | 0.831 | 0.831 | 0.007 | 0.004 | 0.000 | 0.309 | 0.981 | nan |
+| Cheapest model | 0.676 | 0.676 | 0.192 | 0.006 | 0.000 | 0.075 | 0.957 | nan |
+
+### oracle, tau=1.0
+| policy | q_exp | q_real | gap_exp | gap_exp_ci | task_starve | bur | jain_real | fma_jobs |
+|---|---|---|---|---|---|---|---|---|
+| Best model | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.104 | 0.981 | 0.997 |
+| Marginal ROI ratio | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.104 | 0.981 | 0.997 |
+| Quasi-linear (repo lambda=0.5) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.104 | 0.981 | 0.997 |
+| Shadow price (repo p0=0.1, a=1.5) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.104 | 0.981 | 0.997 |
+| Shapley share (repo lambda=0.5, g=1) | 0.837 | 0.837 | -0.000 | 0.000 | 0.000 | 0.104 | 0.981 | 0.997 |
+| Predictive router | 0.837 | 0.837 | 0.000 | 0.000 | 0.000 | 0.104 | 0.981 | nan |
+| MCKP (optimal) | 0.837 | 0.837 | 0.000 | 0.000 | 0.163 | 0.098 | 0.981 | nan |
+| Best model (round-robin) | 0.837 | 0.837 | 0.000 | 0.000 | 0.000 | 0.104 | 0.981 | 0.981 |
+| Static equal quota | 0.837 | 0.837 | 0.000 | 0.000 | 0.163 | 0.098 | 0.981 | nan |
+| Cascade (verified) | 0.831 | 0.831 | 0.007 | 0.004 | 0.000 | 0.161 | 0.981 | nan |
+| Cheapest model | 0.676 | 0.676 | 0.192 | 0.006 | 0.000 | 0.039 | 0.957 | nan |

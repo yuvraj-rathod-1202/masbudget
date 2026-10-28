@@ -5,6 +5,10 @@ Experiment framework for **multi-agent model/API selection under a shared budget
 It compares centralized allocation with the decentralized sequential resource-allocation game
 on the same agents, models, costs and budget.
 
+**Results:** the experiment study on real LiveCodeBench data and its findings are in
+[results.md](results.md); per-experiment notes, scripts and reproduction steps in
+[experiments/](experiments/README.md), analysis notebooks in [notebooks/](notebooks/).
+
 ## How an experiment is set up
 
 - You give a dataset of tasks and `num_agents` (N). Each agent gets

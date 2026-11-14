@@ -1,0 +1,111 @@
+{
+  "experiment": "livecodebench_uniform_mckp_vs_dsp",
+  "timestamp": "20261114-193406",
+  "config": {
+    "dataset_path": "data/llmrouterbench_livecodebench_uniform.json",
+    "seed": 42,
+    "num_runs": 5,
+    "models": {
+      "deepseek-v3.1-terminus": 0.0011249379,
+      "deepseek-v3-0324": 0.0014471013,
+      "gemini-2.5-flash": 0.0058342806,
+      "claude-sonnet-4": 0.0134617223,
+      "deepseek-r1-0528": 0.0288723124,
+      "gemini-2.5-pro": 0.1351539171
+    },
+    "name": "livecodebench_uniform_mckp_vs_dsp",
+    "description": "Uniform difficulty mix comparing optimal MCKP solver against dynamic shadow price utility",
+    "mode": "both",
+    "num_agents": 10,
+    "tasks_per_agent": 20,
+    "budget": 0.28942,
+    "centralized": {
+      "policy": "optimal_mckp",
+      "params": {}
+    },
+    "decentralized": {
+      "arrival_policy": "random_fcfs",
+      "arrival_params": {},
+      "utility": "dynamic_shadow_price",
+      "utility_params": {
+        "p0": 0.1,
+        "alpha": 1.5
+      }
+    }
+  },
+  "num_agents": 10,
+  "num_jobs": 200,
+  "runs": {
+    "centralized": 5,
+    "decentralized": 5
+  },
+  "metrics": {
+    "average_quality": {
+      "centralized": {
+        "mean": 0.755,
+        "std": 0.0,
+        "n": 5
+      },
+      "decentralized": {
+        "mean": 0.33399999999999996,
+        "std": 0.08805679985100526,
+        "n": 5
+      }
+    },
+    "total_cost": {
+      "centralized": {
+        "mean": 0.2683314646,
+        "std": 0.0,
+        "n": 5
+      },
+      "decentralized": {
+        "mean": 0.28893615912000004,
+        "std": 0.00032566360977868785,
+        "n": 5
+      }
+    },
+    "budget_utilization": {
+      "centralized": {
+        "mean": 0.9271351827793518,
+        "std": 0.0,
+        "n": 5
+      },
+      "decentralized": {
+        "mean": 0.9983282396517172,
+        "std": 0.001125228421597291,
+        "n": 5
+      }
+    },
+    "jains_fairness": {
+      "centralized": {
+        "mean": 0.9798452943704341,
+        "std": 1.1102230246251565e-16,
+        "n": 5
+      },
+      "decentralized": {
+        "mean": 0.8943719423553672,
+        "std": 0.03642421792676403,
+        "n": 5
+      }
+    },
+    "optimality_gap": {
+      "decentralized": {
+        "mean": 0.5576158940397351,
+        "std": 0.11663152298146391,
+        "n": 5
+      }
+    },
+    "starvation_rate": {
+      "centralized": {
+        "mean": 0.9,
+        "std": 0.0,
+        "n": 5
+      },
+      "decentralized": {
+        "mean": 1.0,
+        "std": 0.0,
+        "n": 5
+      }
+    }
+  }
+}

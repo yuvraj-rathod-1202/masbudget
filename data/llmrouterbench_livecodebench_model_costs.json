@@ -26,6 +26,15 @@
     "source": "per-record cost from LLMRouterBench livecodebench/test",
     "archive_member": "bench-release/livecodebench/test/gemini-2.5-flash/livecodebench-test-gemini-2.5-flash-20251013_003249.json"
   },
+  "claude-sonnet-4": {
+    "mean_cost_usd": 0.013461722274881517,
+    "min_cost_usd": 0.002757,
+    "max_cost_usd": 0.074493,
+    "median_cost_usd": 0.011259,
+    "n_observations": 1055,
+    "source": "per-record cost from LLMRouterBench livecodebench/test",
+    "archive_member": "bench-release/livecodebench/test/claude-sonnet-4/livecodebench-test-claude-sonnet-4-20251013_031811.json"
+  },
   "deepseek-r1-0528": {
     "mean_cost_usd": 0.028872312369668245,
     "min_cost_usd": 0.00123215,
@@ -34,5 +43,14 @@
     "n_observations": 1055,
     "source": "per-record cost from LLMRouterBench livecodebench/test",
     "archive_member": "bench-release/livecodebench/test/deepseek-r1-0528/livecodebench-test-deepseek-r1-0528-20251018_090719.json"
+  },
+  "gemini-2.5-pro": {
+    "mean_cost_usd": 0.13515391706161137,
+    "min_cost_usd": 0.0,
+    "max_cost_usd": 0.32236625,
+    "median_cost_usd": 0.13892625,
+    "n_observations": 1055,
+    "source": "per-record cost from LLMRouterBench livecodebench/test",
+    "archive_member": "bench-release/livecodebench/test/gemini-2.5-pro/livecodebench-test-gemini-2.5-pro-20251013_130201.json"
   }
 }

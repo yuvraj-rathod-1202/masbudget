@@ -36,34 +36,46 @@ The official LLMRouterBench documentation distinguishes two experimental routing
 ### Replacement of `Llama-3.1-8B-Instruct`
 In earlier iterations, `Llama-3.1-8B-Instruct` was evaluated as a low-cost baseline. However, in LLMRouterBench it belongs to the Performance pool and had incomplete token billing representation relative to flagship models. Following Section 1 requirements, it was replaced by **`deepseek-v3.1-terminus`**, an eligible flagship model from the Performance-Cost regime with complete evaluation coverage (1,055 tasks) and realistic token-based API cost tracking.
 
-### Selected 4-Model Flagship Pool
-We selected four flagship models representing distinct capability and cost tiers across the Performance-Cost spectrum:
+### Selected 6-Model Flagship Pool
+We selected six flagship models spanning the complete cost and capability spectrum in the Performance-Cost regime, covering fast low-cost models, mid-tier commercial APIs, and high-performance frontier reasoning models:
 
-1. **`deepseek-v3.1-terminus`** (Cheapest flagship tier):
+1. **`deepseek-v3.1-terminus`** (Ultra-low cost tier):
    - Archive Member: `bench-release/livecodebench/test/deepseek-v3.1-terminus/livecodebench-test-deepseek-v3.1-terminus-20251024_102915.json`
    - Total source records: 1,055
    - Benchmark pass@1 performance: 0.6730 (67.30%)
    - Mean measured cost: \$0.0011249379 / request
 
-2. **`deepseek-v3-0324`** (Mid-low flagship tier):
+2. **`deepseek-v3-0324`** (Low cost tier):
    - Archive Member: `bench-release/livecodebench/test/deepseek-v3-0324/livecodebench-test-deepseek-v3-0324-20251017_111427.json`
    - Total source records: 1,055
    - Benchmark pass@1 performance: 0.6664 (66.64%)
    - Mean measured cost: \$0.0014471013 / request
 
-3. **`gemini-2.5-flash`** (Mid-high flagship flash tier):
+3. **`gemini-2.5-flash`** (Mid-tier flash API):
    - Archive Member: `bench-release/livecodebench/test/gemini-2.5-flash/livecodebench-test-gemini-2.5-flash-20251013_003249.json`
    - Total source records: 1,055
    - Benchmark pass@1 performance: 0.6000 (60.00%)
    - Mean measured cost: \$0.0058342806 / request
 
-4. **`deepseek-r1-0528`** (Frontier reasoning flagship tier):
+4. **`claude-sonnet-4`** (Commercial flagship API tier):
+   - Archive Member: `bench-release/livecodebench/test/claude-sonnet-4/livecodebench-test-claude-sonnet-4-20251013_031811.json`
+   - Total source records: 1,055
+   - Benchmark pass@1 performance: 0.5810 (58.10%)
+   - Mean measured cost: \$0.0134617223 / request
+
+5. **`deepseek-r1-0528`** (Frontier reasoning flagship tier):
    - Archive Member: `bench-release/livecodebench/test/deepseek-r1-0528/livecodebench-test-deepseek-r1-0528-20251018_090719.json`
    - Total source records: 1,055
    - Benchmark pass@1 performance: 0.8009 (80.09%)
    - Mean measured cost: \$0.0288723124 / request
 
-All four models share the exact same 1,055 source evaluation instances.
+6. **`gemini-2.5-pro`** (Frontier reasoning/large multimodal flagship tier):
+   - Archive Member: `bench-release/livecodebench/test/gemini-2.5-pro/livecodebench-test-gemini-2.5-pro-20251013_130201.json`
+   - Total source records: 1,055
+   - Benchmark pass@1 performance: 0.7915 (79.15%)
+   - Mean measured cost: \$0.1351539171 / request
+
+All six models share the exact same 1,055 source evaluation instances.
 
 ---
 
@@ -80,7 +92,7 @@ All four models share the exact same 1,055 source evaluation instances.
 
 ### Alignment and Intersection
 - Tasks were joined on the composite key `(benchmark, split, source_index)`.
-- All 4 models had complete coverage of all 1,055 instances.
+- All 6 models had complete coverage of all 1,055 instances.
 - Zero tasks were excluded due to missing records; intersection size is exactly 1,055.
 
 ---
@@ -96,7 +108,9 @@ For each model, we computed descriptive statistics over all 1,055 common instanc
 | `deepseek-v3.1-terminus` | 1,055 | \$0.0011249379 | \$0.0005266800 | \$0.0000945600 | \$0.0103390300 |
 | `deepseek-v3-0324` | 1,055 | \$0.0014471013 | \$0.0008674900 | \$0.0000789800 | \$0.0141064700 |
 | `gemini-2.5-flash` | 1,055 | \$0.0058342806 | \$0.0007185000 | \$0.0000600000 | \$0.0631679000 |
+| `claude-sonnet-4` | 1,055 | \$0.0134617223 | \$0.0112590000 | \$0.0027570000 | \$0.0744930000 |
 | `deepseek-r1-0528` | 1,055 | \$0.0288723124 | \$0.0255947000 | \$0.0012321500 | \$0.0699975000 |
+| `gemini-2.5-pro` | 1,055 | \$0.1351539171 | \$0.1389262500 | \$0.0000000000 | \$0.3223662500 |
 
 These mean costs are directly utilized in `configs/llmrouterbench_livecodebench.yaml`.
 
@@ -105,9 +119,9 @@ These mean costs are directly utilized in `configs/llmrouterbench_livecodebench.
 ## 6. Task Difficulty Methodology & Experimental Caveats
 
 ### Difficulty Assignment
-The MASBudget dataset loader requires each task to have a `difficulty` field in `{"easy", "medium", "hard"}`. Because raw benchmark instances in LLMRouterBench do not carry an official tripartite difficulty tag, we derived an **explicit proxy** from observed performance across the four selected models:
+The MASBudget dataset loader requires each task to have a `difficulty` field in `{"easy", "medium", "hard"}`. Because raw benchmark instances in LLMRouterBench do not carry an official tripartite difficulty tag, we derived an **explicit proxy** from observed performance across the six selected models:
 
-1. For each task $i$, compute the mean score $\bar{q}_i = \frac{1}{4} \sum_{m \in \mathcal{M}} q_{i,m}$.
+1. For each task $i$, compute the mean score $\bar{q}_i = \frac{1}{6} \sum_{m \in \mathcal{M}} q_{i,m}$.
 2. Sort tasks descending by $\bar{q}_i$, breaking ties deterministically by task index $i$ ascending.
 3. Partition the sorted array into tertiles:
    - Top tertile (ranks 0 to 350, 351 tasks): labeled `"easy"` (highest consensus pass rate)
@@ -156,13 +170,15 @@ python scripts/convert_llmrouterbench_real.py \
 ```
 
 **Audit Results:**
-- **Task-Model Pairs Checked:** Exactly **4,220 out of 4,220** (1,055 tasks $\times$ 4 models).
+- **Task-Model Pairs Checked:** Exactly **6,330 out of 6,330** (1,055 tasks $\times$ 6 models).
   - `deepseek-v3.1-terminus`: 1,055/1,055 verified
-  - `gemini-2.5-flash`: 1,055/1,055 verified
-  - `deepseek-r1-0528`: 1,055/1,055 verified
   - `deepseek-v3-0324`: 1,055/1,055 verified
+  - `gemini-2.5-flash`: 1,055/1,055 verified
+  - `claude-sonnet-4`: 1,055/1,055 verified
+  - `deepseek-r1-0528`: 1,055/1,055 verified
+  - `gemini-2.5-pro`: 1,055/1,055 verified
 - **Score Mismatches:** 0 (all scores match the source archive records to floating-point precision).
-- **Cost Statistics Validation:** 4/4 models validated against per-record costs; min, max, mean, median, and observation count match with zero error.
+- **Cost Statistics Validation:** 6/6 models validated against per-record costs; min, max, mean, median, and observation count match with zero error.
 
 ---
 
@@ -175,22 +191,22 @@ To reproduce all datasets and audit from scratch:
 python scripts/convert_llmrouterbench_real.py \
     --archive <PATH_TO_BLOB_OR_TAR_GZ> \
     --benchmark livecodebench --split test \
-    --models deepseek-v3.1-terminus deepseek-v3-0324 gemini-2.5-flash deepseek-r1-0528 \
+    --models deepseek-v3.1-terminus deepseek-v3-0324 gemini-2.5-flash claude-sonnet-4 deepseek-r1-0528 gemini-2.5-pro \
     --output data/llmrouterbench_livecodebench.json
 
 # 2. Generate difficulty mix files
 python scripts/convert_llmrouterbench_real.py \
     --create-mixes data/llmrouterbench_livecodebench.json
 
-# 3. Run exhaustive source-trace audit (all 4,220 pairs)
+# 3. Run exhaustive source-trace audit (all 6,330 pairs)
 python scripts/convert_llmrouterbench_real.py \
     --archive <PATH_TO_BLOB_OR_TAR_GZ> \
     --audit data/llmrouterbench_livecodebench.json \
     --audit-full
 
 # 4. Run test suite
-python -m pytest tests/test_llmrouterbench_conversion.py -v
+python -m pytest tests/ -v
 
-# 5. Run smoke experiment
-python -m masbudget configs/llmrouterbench_livecodebench.yaml --only smoke_livecodebench_mckp_vs_dsp
+# 5. Run full benchmark experiments
+python -m masbudget configs/llmrouterbench_livecodebench.yaml
 ```

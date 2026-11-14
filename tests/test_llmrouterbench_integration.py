@@ -21,7 +21,14 @@ def test_generated_base_dataset_structure():
     tasks = load_dataset(BASE_DATASET)
     assert len(tasks) == 1055
 
-    expected_models = {"deepseek-v3.1-terminus", "deepseek-v3-0324", "gemini-2.5-flash", "deepseek-r1-0528"}
+    expected_models = {
+        "deepseek-v3.1-terminus",
+        "deepseek-v3-0324",
+        "gemini-2.5-flash",
+        "claude-sonnet-4",
+        "deepseek-r1-0528",
+        "gemini-2.5-pro",
+    }
     task_ids = set()
     diff_counts = {"easy": 0, "medium": 0, "hard": 0}
 

@@ -52,7 +52,7 @@ Agents arrive asynchronously in an arrival sequence $\pi = (\pi_1, \pi_2, \dots,
 
 ### C. Decentralized Utility Function Designs (Local Payoff Engineering)
 
-In addition to arrival ordering policies, we investigate **utility function design**—systematically altering how individual agents evaluate model choices so that decentralized best-response choices approach the centralized knapsack optimum. We compare four distinct utility formulations:
+In addition to arrival ordering policies, we investigate **utility function design**-systematically altering how individual agents evaluate model choices so that decentralized best-response choices approach the centralized knapsack optimum. We compare four distinct utility formulations:
 
 #### U1. Baseline Quasi-Linear Utility
 * **Formulation:**
@@ -93,7 +93,7 @@ In addition to arrival ordering policies, we investigate **utility function desi
 * **Concept:** Directly asks: *"How much additional task quality do I get for the additional budget I consume?"* This reflects the incremental benefit of resource consumption. Under monotone submodular utility structures, decentralized methods achieve provable constant-factor approximation guarantees (such as $1 - 1/e \approx 63.2\%$).
 * **Paper References:**
   * Williams, R. K., et al. (2017). *"Decentralised Submodular Multi-Robot Task Allocation."* *IEEE Transactions on Robotics / Robotics: Science and Systems*.
-  * Nemhauser, G. L., Wolsey, L. A., & Fisher, M. L. (1978). *"An analysis of approximations for maximizing submodular set functions—I."* *Mathematical Programming*, 14(1), 265-294.
+  * Nemhauser, G. L., Wolsey, L. A., & Fisher, M. L. (1978). *"An analysis of approximations for maximizing submodular set functions-I."* *Mathematical Programming*, 14(1), 265-294.
 
 ---
 

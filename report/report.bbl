@@ -1,0 +1,96 @@
+\begin{thebibliography}{10}
+
+\bibitem{ong2024routellm}
+Isaac Ong, Amjad Almahairi, Vincent Wu, Wei-Lin Chiang, Tianhao Wu, Joseph~E.
+  Gonzalez, M.~Waleed Kadous, and Ion Stoica.
+\newblock Routellm: Learning to route llms with preference data.
+\newblock {\em arXiv preprint arXiv:2406.18665}, 2024.
+
+\bibitem{chen2023frugalgpt}
+Lingjiao Chen, Matei Zaharia, and James Zou.
+\newblock {FrugalGPT}: How to use large language models while reducing cost and
+  improving performance.
+\newblock {\em arXiv preprint arXiv:2305.05176}, 2023.
+
+\bibitem{yue2025masrouter}
+Yanwei Yue, Guibin Zhang, Boyang Liu, Guancheng Wan, Kun Wang, Dawei Cheng, and
+  Yiyan Qi.
+\newblock Masrouter: Learning to route llms for multi-agent systems.
+\newblock In {\em Proceedings of the 63rd Annual Meeting of the Association for
+  Computational Linguistics}, pages 15549--15572. Association for Computational
+  Linguistics, 2025.
+
+\bibitem{zhang2026mtrouter}
+Yiqun Zhang, Hao Li, Zihan Wang, Shi Feng, Xiaocui Yang, Daling Wang, Bo~Zhang,
+  Lei Bai, and Shuyue Hu.
+\newblock Mtrouter: Cost-aware multi-turn llm routing with history--model joint
+  embeddings.
+\newblock In {\em Proceedings of the 64th Annual Meeting of the Association for
+  Computational Linguistics}, pages 44206--44226. Association for Computational
+  Linguistics, 2026.
+
+\bibitem{nisan2007algorithmic}
+Noam Nisan, Tim Roughgarden, {\'E}va Tardos, and Vijay~V. Vazirani.
+\newblock {\em Algorithmic Game Theory}.
+\newblock Cambridge University Press, 2007.
+
+\bibitem{llmrouterbench}
+{LLMRouterBench authors}.
+\newblock {LLMRouterBench}: A benchmark for llm routing.
+\newblock \url{https://github.com/ynulihao/LLMRouterBench}, dataset
+  \url{https://huggingface.co/datasets/NPULH/LLMRouterBench}, 2025.
+
+\bibitem{jain2024livecodebench}
+Naman Jain, King Han, Alex Gu, Wen-Ding Li, Fanjia Yan, Tianjun Zhang, Sida
+  Wang, Armando Solar-Lezama, Koushik Sen, and Ion Stoica.
+\newblock Livecodebench: Holistic and contamination free evaluation of large
+  language models for code.
+\newblock {\em arXiv preprint arXiv:2403.07974}, 2024.
+
+\bibitem{kelly1998rate}
+Frank~P. Kelly, Aman~K. Maulloo, and David~K.H. Tan.
+\newblock Rate control for communication networks: shadow prices, proportional
+  fairness and stability.
+\newblock {\em Journal of the Operational Research Society}, 49(3):237--252,
+  1998.
+
+\bibitem{balseiro2019learning}
+Santiago~R. Balseiro and Yonatan Gur.
+\newblock Learning in repeated auctions with budgets: Regret minimization and
+  equilibrium.
+\newblock {\em Management Science}, 65(9):3952--3968, 2019.
+
+\bibitem{marden2013distributed}
+Jason~R. Marden and Adam Wierman.
+\newblock Distributed welfare games.
+\newblock {\em Operations Research}, 61(1):155--168, 2013.
+
+\bibitem{chandan2019optimal}
+Rahul Chandan, Dario Paccagnan, and Jason~R. Marden.
+\newblock Optimal price of anarchy in cost-sharing games.
+\newblock In {\em American Control Conference (ACC)}. IEEE, 2019.
+\newblock arXiv:1903.06288.
+
+\bibitem{nemhauser1978analysis}
+George~L. Nemhauser, Laurence~A. Wolsey, and Marshall~L. Fisher.
+\newblock An analysis of approximations for maximizing submodular set
+  functions---{I}.
+\newblock {\em Mathematical Programming}, 14(1):265--294, 1978.
+
+\bibitem{williams2017decentralised}
+Ryan~K. Williams, Andrea Gasparri, and Gaurav~S. Sukhatme.
+\newblock Decentralised submodular multi-robot task allocation.
+\newblock {\em IEEE Transactions on Robotics}, 2017.
+
+\bibitem{kellerer2004knapsack}
+Hans Kellerer, Ulrich Pferschy, and David Pisinger.
+\newblock {\em Knapsack Problems}.
+\newblock Springer, 2004.
+
+\bibitem{jain1984fairness}
+Raj Jain, Dah-Ming Chiu, and William~R. Hawe.
+\newblock A quantitative measure of fairness and discrimination for resource
+  allocation in shared computer systems.
+\newblock Technical Report DEC-TR-301, Digital Equipment Corporation, 1984.
+
+\end{thebibliography}

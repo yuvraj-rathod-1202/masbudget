@@ -1,0 +1,26 @@
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{2}{c}{Mean pass@1} & \multicolumn{4}{c}{Gap to MCKP (\%)} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-7}
+Setting & MCKP & FSSP & FSSP & FSSP+ETF & Shadow price$^*$ & Greedy \\
+\midrule
+Uniform mix (main setting) & 0.746 & 0.745 & 0.0 & -0.2 & 0.0 & 48.3 \\
+Easy-heavy mix (main setting) & 0.926 & 0.923 & 0.4 & 0.0 & 0.3 & 28.1 \\
+Hard-heavy mix (main setting) & 0.402 & 0.406 & -0.8 & -0.5 & 0.8 & 59.5 \\
+\midrule
+Steep pool \{v3.1, r1, gemini-pro\} & 0.691 & 0.693 & -0.5 & -0.5 & 0.1 & 44.3 \\
+Oracle information (true pass/fail known) & 0.791 & 0.778 & 2.2 & 1.4 & 7.5 & 16.6 \\
+\midrule
+$N=5$ agents (budgets $\times$3, $\times$12) & 0.670 & 0.664 & 0.6 & 0.1 & 0.3 & 52.5 \\
+$N=20$ agents (budgets $\times$3, $\times$12) & 0.676 & 0.674 & 0.1 & -0.3 & 0.1 & 62.1 \\
+$N=50$ agents (budgets $\times$3, $\times$12) & 0.676 & 0.673 & 0.3 & -0.1 & 0.2 & 64.7 \\
+\midrule
+Correct labels, budgets $\times$3, 12, 50 & 0.758 & 0.759 & 0.0 & 0.0 & -0.1 & 43.9 \\
+Noisy difficulty labels, $\epsilon=0.2$ & 0.748 & 0.749 & -0.2 & 0.0 & -0.2 & 43.0 \\
+Noisy difficulty labels, $\epsilon=0.4$ & 0.738 & 0.740 & -0.1 & -0.1 & -0.2 & 43.1 \\
+\midrule
+$n$ unknown: online estimate of $R_k$, no prior & 0.691 & 0.690 & 0.1 & -- & -- & 45.3 \\
+$n$ unknown: fixed forecast $2n$ (too high) & 0.691 & 0.671 & 3.7 & -- & -- & 45.3 \\
+$n$ unknown: fixed forecast $0.5n$ (too low) & 0.691 & 0.597 & 15.9 & -- & -- & 45.3 \\
+\bottomrule
+\end{tabular}

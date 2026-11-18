@@ -1,0 +1,19 @@
+\begin{tabular}{llcccccc}
+\toprule
+ & Method & Mean pass@1 & Gap (\%) & Gap, tight (\%) & Starved tasks (\%) & Jain & Budget used (\%) \\
+\midrule
+Centralized & Optimal MCKP (exact ILP) & 0.691 & 0.0 & 0.0 & 0.0 & 0.943 & 84 \\
+ & Predictive router & 0.691 & -0.1 & -0.3 & 0.0 & 0.944 & 83 \\
+ & Static equal quota & 0.688 & 0.5 & 1.0 & 0.0 & 0.941 & 68 \\
+ & Cheapest model & 0.626 & 11.1 & 4.2 & 0.0 & 0.919 & 29 \\
+\midrule
+Decentralized & \textbf{FSSP (ours)}, random arrival & 0.691 & -0.1 & 0.8 & 0.0 & 0.945 & 67 \\
+ & \textbf{FSSP (ours)}, easiest-first & 0.692 & -0.2 & 0.2 & 0.0 & 0.944 & 73 \\
+ & FSSP with $\alpha=0$ (fixed price) & 0.678 & 2.6 & 4.9 & 1.5 & 0.940 & 48 \\
+ & Shadow price, tuned per budget$^*$ & 0.689 & 0.4 & 0.9 & 0.0 & 0.944 & 69 \\
+ & Quasi-linear, tuned per budget$^*$ & 0.680 & 2.7 & 6.0 & 3.4 & 0.938 & 57 \\
+ & Shapley share, tuned per budget$^*$ & 0.682 & 2.0 & 4.0 & 1.5 & 0.939 & 54 \\
+ & Marginal ratio & 0.515 & 28.1 & 31.4 & 19.9 & 0.872 & 57 \\
+ & Greedy best-model & 0.419 & 45.3 & 71.1 & 45.5 & 0.767 & 84 \\
+\bottomrule
+\end{tabular}

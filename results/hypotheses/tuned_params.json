@@ -1,0 +1,435 @@
+{
+  "global": {
+    "best_model": {},
+    "quasi_linear": {
+      "lambda_cost": 1000
+    },
+    "dynamic_shadow_price": {
+      "alpha": 0.5,
+      "p0": 100
+    },
+    "shapley_budget_share": {
+      "gamma": 1.0,
+      "lambda_cost": 1000,
+      "num_samples": 100,
+      "seed": 42
+    },
+    "marginal_roi_ratio": {}
+  },
+  "per_budget": {
+    "full": {
+      "1.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 1000
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 100
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 1000,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "1.5": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 20
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 10
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 1000,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "3.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 20
+        },
+        "dynamic_shadow_price": {
+          "alpha": 1.5,
+          "p0": 3
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 100,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "6.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 10
+        },
+        "dynamic_shadow_price": {
+          "alpha": 1,
+          "p0": 3
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 100,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "12.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 3
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 50,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "25.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 1.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 20,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "50.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 3,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 20,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "120.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.3
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 20,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      }
+    },
+    "flat": {
+      "1.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 1000
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 100
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 1000,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "1.5": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 0.5,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "3.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 0.5,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "6.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 0.5,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "12.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 0.5,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "25.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 0.5,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "50.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 0.5,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "120.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 0.5,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      }
+    },
+    "steep": {
+      "1.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 1000
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 100
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 1000,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "1.5": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 1000
+        },
+        "dynamic_shadow_price": {
+          "alpha": 1,
+          "p0": 10
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 1000,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "3.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 1000
+        },
+        "dynamic_shadow_price": {
+          "alpha": 1.5,
+          "p0": 3
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 100,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "6.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 1000
+        },
+        "dynamic_shadow_price": {
+          "alpha": 1,
+          "p0": 3
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 100,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "12.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 3
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 50,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "25.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 1.5,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 20,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "50.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 3,
+          "p0": 0.1
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 20,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      },
+      "120.0": {
+        "best_model": {},
+        "quasi_linear": {
+          "lambda_cost": 0.5
+        },
+        "dynamic_shadow_price": {
+          "alpha": 0.5,
+          "p0": 0.3
+        },
+        "shapley_budget_share": {
+          "gamma": 1.0,
+          "lambda_cost": 20,
+          "num_samples": 100,
+          "seed": 42
+        },
+        "marginal_roi_ratio": {}
+      }
+    }
+  }
+}

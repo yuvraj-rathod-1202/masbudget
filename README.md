@@ -1,28 +1,157 @@
-# masbudget
+# MasBudget: Fair-Share Shadow Pricing for LLM Agents Sharing One Budget
 
-Experiment framework for **multi-agent model/API selection under a shared budget**
-(see [project_proposal/project_proposal.tex](project_proposal/project_proposal.tex)).
-It compares centralized allocation with the decentralized sequential resource-allocation game
-on the same agents, models, costs and budget.
+Many AI agents can share **one API budget** and each pick its own LLM, **without a central controller**,
+and still do as well as the best centralized plan.
 
-**Final paper:** [report/report.pdf](report/report.pdf) (source: [report/report.tex](report/report.tex)).
-It proposes **Fair-Share Shadow Pricing (FSSP)**, a decentralized utility in which each arriving
-agent prices money by the inverse of the budget still available per waiting request,
-`p_k = κ · (n − k) / B_k`, and picks `argmax_m  q̂_m − p_k · c_m`. With one setting
-(κ = 0.1, α = 1) it matches the exact centralized knapsack optimum on held-out data.
-How to reproduce every number, plot and table in the paper is described in
-[Reproducing the paper](#reproducing-the-paper) below.
+- **Paper:** [report/report.pdf](report/report.pdf) (source: [report/report.tex](report/report.tex))
+- **Full results and discussion:** [results.md](results.md)
+- **Proposal:** [project_proposal/project_proposal.tex](project_proposal/project_proposal.tex)
 
-## Reproduce
+Contents: [Problem](#1-problem) · [Methodology](#2-methodology-the-fssp-algorithm) ·
+[Results](#3-results) · [Reproduce](#4-reproduce) · [Framework usage](#how-an-experiment-is-set-up)
 
-All results come from offline simulation on measured LLMRouterBench data. There are no API calls
-and no keys are needed.
+---
 
-### 1. Setup
+## 1. Problem
 
-Tested with Python 3.12 on Windows 11 (12 cores): numpy 2.5, pandas 3.0, matplotlib 3.11,
-ortools 9.15, PyYAML 6.0, pillow 12.3. To compile the paper and render table screenshots you also
-need a LaTeX distribution with `pdflatex`, `bibtex` and `pdftoppm` (MiKTeX or TeX Live).
+- *N* agents each have tasks. Every task needs one LLM call.
+- There are 6 models, from \$0.001 to \$0.135 per call. Expensive models are better only on hard tasks.
+- All calls are paid from **one shared budget B**.
+
+There are two ways to decide which model each task gets:
+
+| | Centralized | Decentralized (our focus) |
+|---|---|---|
+| Who decides | one controller that sees all tasks | each agent, when its request arrives |
+| How | solves a knapsack problem (MCKP), which is optimal | picks the model with the best utility for itself |
+| Downside | must wait for all tasks; single point of control | greedy agents waste the budget |
+
+**Question:** which utility should decentralized agents use so that they match the centralized optimum?
+
+---
+
+## 2. Methodology: the FSSP algorithm
+
+### What we learned first
+
+We tested 5 arrival orders × 5 utility functions on real data (1,055 coding tasks, 6 models, LLMRouterBench):
+
+1. **Greedy agents fail.** They buy the most expensive model and lose **71 %** of the achievable quality at tight budgets.
+2. **Agents must pay a price for money**, and that price must match the budget size. Existing price-based utilities
+   work only if someone re-tunes the price for **every** budget.
+3. **Arrival order matters much less than the utility.**
+
+### Fair-Share Shadow Pricing (FSSP)
+
+FSSP measures cost in units of the agent's **fair share**: the budget still left per request still to come.
+
+```
+fair share   f = B_k / R_k          B_k = remaining budget,  R_k = requests still to be served (incl. this one)
+price        p = κ / f              κ = 0.1  (one setting for every budget)
+choice       argmax over affordable models of   q̂_m − p · c_m
+             q̂_m = agent's estimated chance that model m solves its task,  c_m = price of model m
+```
+
+In words: **upgrade to a more expensive model only if the gain in success probability is at least
+0.1 for every extra fair share it costs.**
+
+- When earlier agents overspent, the fair share shrinks, so the price rises.
+- When earlier agents underspent, the price falls and later agents can upgrade.
+- Because the price is relative to the budget, the same κ works for every budget size.
+
+### Step by step (run by each agent, on its own)
+
+When a request arrives:
+
+1. **Read the shared ledger:** the remaining budget `B_k` and how many requests `k` came before this one.
+   The ledger is just a counter, like a prepaid account balance. It never makes decisions.
+2. **Estimate how many requests are still to come (`R_k`).**
+   - If the total number of requests `n` is known: `R_k = n − k`.
+   - In practice `n` is unknown. The budget covers a period (for example one month), and `t` is the
+     fraction of it that has passed. So far `k + 1` requests have arrived, so:
+     ```
+     arrival rate     r = (k + 1) / t
+     still to come    R_k = 1 + r · (1 − t)        (this request + the expected later ones)
+     ```
+     Optionally, start from a forecast `n0` with weight `w`: `r = (k + 1 + w·n0) / (t + w)`.
+3. **Compute the price:** `f = B_k / R_k`, then `p = κ / f`.
+4. **Pick a model:** the affordable model with the highest `q̂_m − p · c_m`. If none is affordable, the request gets no model.
+5. **Pay:** `B_k` decreases by the model's cost.
+
+No scheduler, no central solver and no knowledge of other agents' tasks are needed. Each decision is a
+few arithmetic operations per model.
+
+**Code:** [scripts/hypotheses/fair_share.py](scripts/hypotheses/fair_share.py) (known *n*),
+[scripts/hypotheses/fssp_unknown_n.py](scripts/hypotheses/fssp_unknown_n.py) (unknown *n*).
+
+### How we evaluated it
+
+- κ was chosen **once** on 20 tuning seeds. All results below use 50 different test seeds.
+- Agents see only the estimated success rate of each model on the task's difficulty level, not the real outcome.
+- Compared against 5 centralized methods (including the exact optimum, MCKP) and the other decentralized utilities.
+- Settings: 3 task mixes, 8 budget levels, 2 model pools, 5–50 agents, noisy labels and unknown *n*.
+  In total there are 351,900 simulated runs.
+
+---
+
+## 3. Results
+
+**Key numbers** (mean pass@1, i.e. the share of tasks solved):
+
+| Method | Pass@1 | Gap to optimum | Tasks with no model |
+|---|---|---|---|
+| Centralized optimum (MCKP) | 0.691 | 0 % | 0 % |
+| **FSSP (ours), random arrival** | **0.691** | **−0.1 %** | **0 %** |
+| **FSSP, number of requests unknown** | **0.690** | **0.1 %** | **0.1 %** |
+| Shadow price, re-tuned for every budget | 0.689 | 0.4 % | 0 % |
+| Greedy agents | 0.419 | 45.3 % | 45.5 % |
+
+- FSSP matches the centralized optimum with **one** parameter setting.
+- Arrival order barely matters (gap between −0.2 % and 1.4 % over 5 orders). Plain random arrival needs no scheduler and is already at the optimum.
+- It stays within about 1 % of the optimum across task mixes, model pools, 5–50 agents and noisy labels.
+- It is as fair as the central planner (Jain index 0.96). Greedy agents give almost everything to whoever arrives first.
+
+### Plots and tables
+
+**Quality vs. budget.** FSSP (green) lies on the optimum (blue). Greedy agents (orange) collapse.
+
+![Quality vs budget](figures/paper/fig_budget_sweep.png)
+
+**Main comparison** (\* = re-tuned for every budget).
+
+![Main table](figures/paper/table_main.png)
+
+**Design space:** gap to the optimum (%) for every arrival order × utility, at tight budgets.
+
+![Design space](figures/paper/fig_design_space.png)
+
+**One setting for every budget.** Left: the baselines need per-budget tuning, FSSP does not. Right: FSSP is
+insensitive to κ.
+
+![Calibration](figures/paper/fig_calibration.png)
+
+**Robustness**, including the unknown number of requests (last rows).
+
+![Robustness table](figures/paper/table_robustness.png)
+
+**Fairness:** agents arrive in random order with all their tasks.
+
+![Fairness](figures/paper/fig_fairness.png)
+
+**Model pool** (cost and pass@1 per difficulty level).
+
+![Models](figures/paper/table_models.png)
+
+---
+
+## 4. Reproduce
+
+All results come from offline simulation on recorded benchmark data. No API calls or keys are needed.
+
+### Setup
+
+Tested with Python 3.12 on Windows 11. To build the paper and the table images you also need LaTeX
+(`pdflatex`, `bibtex`, `pdftoppm`, from MiKTeX or TeX Live).
 
 ```bash
 python -m venv .venv
@@ -31,72 +160,62 @@ pip install -r requirements.txt
 python -m pytest -q               # 230 tests, all should pass
 ```
 
-### 2. Run the experiments (from the repository root)
+### Run (from the repository root, in this order)
 
-| Step | Command | What it does |
-|---|---|---|
-| 1 | `python scripts/hypotheses/run_all.py tune` | tunes the baseline utilities (λ, p₀, α), per budget level, on tuning seeds 1000–1019 |
-| 2 | `python scripts/hypotheses/run_all.py main scale disparity noise` | design space: 5 centralized methods + 5 arrival orders × 5 utilities, 3 mixes × 8 budgets × 50 test seeds × {expected, oracle} information, plus agent count, model-pool and label-noise variants |
-| 3 | `python scripts/hypotheses/burst_stage.py` | agents arrive in random order and submit all their tasks at once (first-mover test) |
-| 4 | `python scripts/hypotheses/fssp_stage.py tune` | picks the **single** FSSP setting (κ, α) on the tuning seeds and writes `results/hypotheses/fssp_params.json` |
-| 5 | `python scripts/hypotheses/fssp_stage.py test scale` | FSSP vs. all baselines on the 50 test seeds: 3 mixes × 8 budgets × 2 model pools × 2 information settings, and N ∈ {5, 10, 20, 50} |
-| 6 | `python scripts/hypotheses/fssp_extra.py noise burst` | FSSP with noisy difficulty labels and agent-burst arrival |
-| 6b | `python scripts/hypotheses/fssp_unknown_n.py` | FSSP when agents do **not** know the total number of requests n: online estimate of the remaining demand vs. wrong fixed forecasts |
-| 7 | `python scripts/hypotheses/paper_figures.py` | writes the paper figures (`report/figures/*.pdf`), tables and numbers (`report/generated/*.tex`) and PNG copies (`figures/paper/`) |
-| 8 | `python scripts/hypotheses/table_screenshots.py` | renders the generated tables as PNG (`figures/paper/table_*.png`) |
-| 9 | `cd report && pdflatex report && bibtex report && pdflatex report && pdflatex report` | builds `report/report.pdf` |
+```bash
+# 1. baselines: tune, then run the full design space
+python scripts/hypotheses/run_all.py tune
+python scripts/hypotheses/run_all.py main scale disparity noise
+python scripts/hypotheses/burst_stage.py
 
-\*Wall-clock on a 12-core laptop. Every run writes one row per (instance, policy) to
-`results/hypotheses/<stage>.csv.gz`, 351,900 rows in total. The paper does not contain a single
-hand-typed result. Every number in its Results section is a LaTeX macro in
-`report/generated/numbers.tex`, and every table is a `.tex` file in `report/generated/`, all written
-by `paper_figures.py` from those CSV files.
+# 2. FSSP: pick the one setting, then test it
+python scripts/hypotheses/fssp_stage.py tune
+python scripts/hypotheses/fssp_stage.py test scale
+python scripts/hypotheses/fssp_extra.py noise burst
+python scripts/hypotheses/fssp_unknown_n.py
 
-Code for the proposed method and the evaluation harness:
+# 3. figures, tables and the paper
+python scripts/hypotheses/paper_figures.py
+python scripts/hypotheses/table_screenshots.py
+cd report && pdflatex report && bibtex report && pdflatex report && pdflatex report
+```
+
+| Script | What it does |
+|---|---|
+| `run_all.py tune` | tunes the baseline utilities separately for each budget |
+| `run_all.py main scale disparity noise` | all centralized methods + all arrival × utility pairs, plus agent-count, model-pool and label-noise variants |
+| `burst_stage.py` | agents arrive with all their tasks at once (fairness test) |
+| `fssp_stage.py tune` | picks the single FSSP setting → `results/hypotheses/fssp_params.json` |
+| `fssp_stage.py test scale` | FSSP vs. all baselines on the test seeds, and for 5–50 agents |
+| `fssp_extra.py noise burst` | FSSP with noisy difficulty labels and burst arrival |
+| `fssp_unknown_n.py` | FSSP when the number of requests is unknown |
+| `paper_figures.py` | paper figures, tables and numbers (`report/figures/`, `report/generated/`, `figures/paper/`) |
+| `table_screenshots.py` | table images for this README (`figures/paper/table_*.png`) |
+
+Every run is saved as one row in `results/hypotheses/<stage>.csv.gz`. No number in the paper is typed
+by hand: all of them are generated from these files.
+
+### Code layout
 
 ```
 scripts/hypotheses/
-  fair_share.py          FSSP utility (registered as "fair_share_price")
-  harness.py             information models (expected / oracle), sampling, re-scoring, exact grouped MCKP
-  run_all.py             baseline tuning + design-space stages
-  burst_stage.py         "random agent burst" arrival order
-  fssp_stage.py          FSSP tuning, test and scale stages
-  fssp_extra.py          FSSP label-noise and burst stages
-  fssp_unknown_n.py      FSSP with an estimated (unknown) number of requests
+  fair_share.py          FSSP utility
+  fssp_unknown_n.py      FSSP with an estimated number of requests
+  harness.py             what agents know, instance sampling, scoring, exact MCKP solver
+  run_all.py             baseline tuning and design-space experiments
+  burst_stage.py         "all tasks at once" arrival order
+  fssp_stage.py          FSSP tuning and test experiments
+  fssp_extra.py          FSSP noise and burst experiments
   paper_figures.py       figures, tables and numbers for the paper
-  table_screenshots.py   PNG renders of the tables
-  make_figures.py        figures for the earlier analysis in results.md
+  table_screenshots.py   table images
+  make_figures.py        figures for results.md
 ```
 
-### 3. Results (screenshots)
+---
 
-**Quality vs. budget.** FSSP with one setting (green) lies on the centralized optimum (blue); greedy agents (orange) collapse.
+# Framework usage
 
-![Quality vs budget](figures/paper/fig_budget_sweep.png)
-
-**Main comparison** (expected-quality information, full model pool, mean over 3 mixes × 8 budgets × 50 test seeds; * = re-tuned for every budget).
-
-![Main table](figures/paper/table_main.png)
-
-**Design space**: gap to the optimum (%) for every arrival order × utility at tight budgets.
-
-![Design space](figures/paper/fig_design_space.png)
-
-**One setting for every budget.** Left: baselines need per-budget tuning, FSSP does not. Right: sensitivity to κ and α.
-
-![Calibration](figures/paper/fig_calibration.png)
-
-**Robustness** of the single FSSP setting (mixes, steeper model pool, oracle information, 5–50 agents, noisy labels, unknown number of requests).
-
-![Robustness table](figures/paper/table_robustness.png)
-
-**Fairness**: agents arrive in random order with all their tasks.
-
-![Fairness](figures/paper/fig_fairness.png)
-
-**Model pool** (per-tier pass@1 and cost, from the dataset).
-
-![Models](figures/paper/table_models.png)
+The sections below describe the general `masbudget` framework that the experiments are built on.
 
 ## How an experiment is set up
 

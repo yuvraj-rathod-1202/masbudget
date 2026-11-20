@@ -80,7 +80,7 @@ The problem changes when \emph{many autonomous agents} share \emph{one} budget (
 \node[draw=corange, fill=corange!8, rounded corners=3pt, minimum width=3.1cm, minimum height=1.25cm, align=center] (bud) at (5.1, 0.75)
   {\textbf{Shared budget ledger}\\ total $B$, remaining $B_k$\\ requests served so far $k$};
 \node[draw=ours, fill=ours!8, rounded corners=3pt, minimum width=3.1cm, align=center, font=\footnotesize] (price) at (5.1, -0.85)
-  {\textbf{FSSP price} $p_k = \kappa\,\hat R_k/B_k$\\ $\hat R_k$: requests still to come};
+  {\textbf{FSSP price} $p_k = \eta\,\hat R_k/B_k$\\ $\hat R_k$: requests still to come};
 \draw[arr, ours] (bud.south) -- (price.north);
 % ---- model pool (right column)
 \node[font=\footnotesize\bfseries] at (11.7, 2.05) {Model pool (cheap $\rightarrow$ frontier)};
@@ -162,16 +162,16 @@ f_k = \frac{B_k}{n-k}
 \end{equation}
 be the budget still available per waiting request (when $n$ is unknown, $n-k$ is replaced by an estimate $\hat R_k$, see below). The agent that owns request $k$ (its task is job $i$) measures cost in units of this fair share:
 \begin{equation}
-U_k(m) = \hat q_{i,m} - p_k\,c_m, \qquad p_k = \frac{\kappa}{b}\left(\frac{b}{f_k}\right)^{\alpha},
+U_k(m) = \hat q_{i,m} - p_k\,c_m, \qquad p_k = \frac{\eta}{b}\left(\frac{b}{f_k}\right)^{\alpha},
 \label{eq:fssp}
 \end{equation}
-where $B_k$ is the remaining budget at step $k$, $c_m$ the price of model $m$, $\kappa>0$ the price scale and $\alpha\ge0$ the strength of the scarcity feedback. With the selected $\alpha=\nalpha$ the initial share $b$ cancels and the price is simply $p_k = \kappa/f_k = \kappa\,(n-k)/B_k$. An agent then upgrades from model $m'$ to $m$ only if the quality gain pays for the extra cost measured in fair shares: $\hat q_m - \hat q_{m'} \ge \kappa\,(c_m - c_{m'})/f_k$. With $\alpha=0$, FSSP reduces to a quasi-linear utility whose price is normalized by the initial fair share. Algorithm~\ref{alg:fssp} gives the full procedure.
+where $B_k$ is the remaining budget at step $k$, $c_m$ the price of model $m$, $\eta>0$ the price scale and $\alpha\ge0$ the strength of the scarcity feedback. With the selected $\alpha=\nalpha$ the initial share $b$ cancels and the price is simply $p_k = \eta/f_k = \eta\,(n-k)/B_k$. An agent then upgrades from model $m'$ to $m$ only if the quality gain pays for the extra cost measured in fair shares: $\hat q_m - \hat q_{m'} \ge \eta\,(c_m - c_{m'})/f_k$. With $\alpha=0$, FSSP reduces to a quasi-linear utility whose price is normalized by the initial fair share. Algorithm~\ref{alg:fssp} gives the full procedure.
 
 \begin{algorithm}[t]
 \caption{Fair-Share Shadow Pricing (FSSP), run independently by each arriving agent}
 \label{alg:fssp}
 \begin{algorithmic}[1]
-\Require price scale $\kappa$ (one setting for all budgets: $\kappa=\nkappa$, $\alpha=\nalpha$); model prices $c_m$; own estimates $\hat q_{i,m}$
+\Require price scale $\eta$ (one setting for all budgets: $\eta=\nkappa$, $\alpha=\nalpha$); model prices $c_m$; own estimates $\hat q_{i,m}$
 \Require public state: remaining budget $B_k$, requests served so far $k$, elapsed fraction $t\in(0,1]$ of the budget period
 \Require optional prior guess $n_0$ of the period's demand, with weight $w\ge0$ ($w=0$: no prior)
 \If{the total number of requests $n$ is known} \State $\hat R_k \gets n-k$ \Comment{closed batch}
@@ -180,7 +180,7 @@ where $B_k$ is the remaining budget at step $k$, $c_m$ the price of model $m$, $
   \State $\hat R_k \gets 1+\hat r\,(1-t)$ \Comment{this request + expected later ones}
 \EndIf
 \State $f_k \gets B_k/\hat R_k$ \Comment{remaining fair share per request}
-\State $p_k \gets \kappa/f_k$ \Comment{price of one dollar in quality units ($\alpha=1$ in Eq.~\ref{eq:fssp})}
+\State $p_k \gets \eta/f_k$ \Comment{price of one dollar in quality units ($\alpha=1$ in Eq.~\ref{eq:fssp})}
 \State $\mathcal{M}_k \gets \{m \in \mathcal{M} : c_m \le B_k\}$ \Comment{affordable models}
 \If{$\mathcal{M}_k = \emptyset$} \State \Return no model (job starved) \EndIf
 \State $m^\star \gets \arg\max_{m\in\mathcal{M}_k}\ \hat q_{i,m} - p_k\,c_m$ \Comment{own estimated quality only}
@@ -198,9 +198,9 @@ where $B_k$ is the remaining budget at step $k$, $c_m$ the price of model $m$, $
 \end{itemize}
 The estimate corrects itself. If demand turns out higher than expected, $\hat r$ and $\hat R_k$ grow, the fair share $f_k$ shrinks and the price rises; if demand is lower, the price falls and later agents may upgrade. All inputs (remaining budget, request counter and clock) are public, so every agent still decides alone.
 
-\textbf{Properties.} (1)~\emph{Scale-free}: if all prices and the budget are multiplied by $s$, then $p_k$ is divided by $s$ and $p_k c_m$ does not change, so the same $\kappa$ works at any budget level and for any currency. (2)~\emph{Self-correcting}: if earlier agents spent more than their share, $f_k$ falls and the price rises; if they spent less, the price falls and later agents may upgrade. The plain shadow price only ever rises. (3)~\emph{Local information}: an agent needs only its own $\hat q$, the model prices, the remaining budget and an estimate of the remaining demand. It never sees other agents' tasks or choices. (4)~\emph{No coordinator}: the shared ledger is a passive counter, like the balance of a prepaid API account. It records payments but never chooses a model or an order. Requests are served in the order in which they happen, and FSSP needs no scheduler to reorder them (Section~\ref{sec:design}). (5)~\emph{Cost}: each decision takes $O(|\mathcal{M}|)$ time, against an integer program over all jobs for MCKP.
+\textbf{Properties.} (1)~\emph{Scale-free}: if all prices and the budget are multiplied by $s$, then $p_k$ is divided by $s$ and $p_k c_m$ does not change, so the same $\eta$ works at any budget level and for any currency. (2)~\emph{Self-correcting}: if earlier agents spent more than their share, $f_k$ falls and the price rises; if they spent less, the price falls and later agents may upgrade. The plain shadow price only ever rises. (3)~\emph{Local information}: an agent needs only its own $\hat q$, the model prices, the remaining budget and an estimate of the remaining demand. It never sees other agents' tasks or choices. (4)~\emph{No coordinator}: the shared ledger is a passive counter, like the balance of a prepaid API account. It records payments but never chooses a model or an order. Requests are served in the order in which they happen, and FSSP needs no scheduler to reorder them (Section~\ref{sec:design}). (5)~\emph{Cost}: each decision takes $O(|\mathcal{M}|)$ time, against an integer program over all jobs for MCKP.
 
-\textbf{Tuning protocol.} $\kappa$ and $\alpha$ were chosen \emph{once}, on 20 tuning seeds with the uniform mix and full pool, from $\kappa \in [0.01, 0.5]$, $\alpha\in\{0,\dots,3\}$, by mean pass@1 over all 8 budgets. The chosen $\kappa=\nkappa$, $\alpha=\nalpha$ is reused unchanged in every other experiment, and all reported numbers use 50 separate test seeds.
+\textbf{Tuning protocol.} $\eta$ and $\alpha$ were chosen \emph{once}, on 20 tuning seeds with the uniform mix and full pool, from $\eta \in [0.01, 0.5]$, $\alpha\in\{0,\dots,3\}$, by mean pass@1 over all 8 budgets. The chosen $\eta=\nkappa$, $\alpha=\nalpha$ is reused unchanged in every other experiment, and all reported numbers use 50 separate test seeds.
 
 \subsection{Exact optimum and experimental scale}
 With expected qualities all tasks of one tier share one $\hat q$ vector, and this symmetry made the 0/1 form of Eq.~\eqref{eq:mckp} stall in SCIP. We therefore solve the equivalent integer program over \emph{counts} $n_{g,m}$ (jobs of group $g$ given model $m$); it matched the 0/1 optimum on 60 test instances and solves in under 0.25\,s. In total we ran \ntotalRuns{} policy runs. Besides the main grid (3 mixes $\times$ 8 budgets $\times$ 50 seeds $\times$ 2 information settings) we test a second model pool with a steeper price ladder (\texttt{deepseek-v3.1}, \texttt{deepseek-r1}, \texttt{gemini-2.5-pro}), agent counts $N\in\{5,10,20,50\}$, difficulty labels corrupted with probability $\epsilon \in\{0.2,0.4\}$, and an \emph{agent-burst} arrival order in which agents arrive in random order and submit all their tasks at once. Confidence intervals are 95\% bootstrap intervals, and paired differences are tested with a sign-flip permutation test.
@@ -249,11 +249,11 @@ Figure~\ref{fig:design} shows the whole design space at tight budgets.
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.8\linewidth]{fig_calibration.pdf}
-\caption{Left: on the tuning seeds, quasi-linear and shadow-price utilities match the optimum only when re-tuned for each budget (dashed). Their best single setting (dotted) collapses to the cheapest-model level. FSSP with one setting (green) follows the optimum everywhere. Right: FSSP quality averaged over all budgets is flat over a wide range of $\kappa$ for $\alpha\ge 1$. The fixed-price variant ($\alpha=0$) is more sensitive.}
+\caption{Left: on the tuning seeds, quasi-linear and shadow-price utilities match the optimum only when re-tuned for each budget (dashed). Their best single setting (dotted) collapses to the cheapest-model level. FSSP with one setting (green) follows the optimum everywhere. Right: FSSP quality averaged over all budgets is flat over a wide range of $\eta$ for $\alpha\ge 1$. The fixed-price variant ($\alpha=0$) is more sensitive.}
 \label{fig:calib}
 \end{figure}
 
-Figure~\ref{fig:calib} explains why FSSP needs no re-tuning. For the quasi-linear and shadow-price utilities, the best price at a budget of $1.5\times$ is wrong by an order of magnitude at $25\times$. Any single value starves tasks at tight budgets or wastes quality at loose ones, so the best compromise is the cheapest model. FSSP's parameter is dimension-free: $\kappa=0.1$ means "an upgrade must raise pass@1 by at least 0.1 per fair share of extra cost", and the optimum is wide and flat for $\alpha\ge1$ (right panel). The scarcity feedback also matters: the fixed-price variant ($\alpha=0$) has a gap of \nalphaZeroGap\% (Table~\ref{tab:main}).
+Figure~\ref{fig:calib} explains why FSSP needs no re-tuning. For the quasi-linear and shadow-price utilities, the best price at a budget of $1.5\times$ is wrong by an order of magnitude at $25\times$. Any single value starves tasks at tight budgets or wastes quality at loose ones, so the best compromise is the cheapest model. FSSP's parameter is dimension-free: $\eta=0.1$ means "an upgrade must raise pass@1 by at least 0.1 per fair share of extra cost", and the optimum is wide and flat for $\alpha\ge1$ (right panel). The scarcity feedback also matters: the fixed-price variant ($\alpha=0$) has a gap of \nalphaZeroGap\% (Table~\ref{tab:main}).
 
 \subsection{Robustness}
 

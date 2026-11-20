@@ -2,7 +2,7 @@
 
 **Question (proposal §3):** when *N* autonomous agents share one API budget *B* and each picks an LLM for its own task, how far is decentralized sequential best-response from the centralized optimum, and which ordering / utility designs close the gap?
 
-**Bottom line (final).** From these experiments we derived a new decentralized utility, **Fair-Share Shadow Pricing (FSSP)** ([§3](#3-proposed-algorithm-fair-share-shadow-pricing-fssp)). Each agent prices money by the inverse of the budget still available per request still to come, `p_k = κ · R̂_k / B_k`, and picks `argmax_m q̂_m − p_k·c_m`. With **one** setting (κ = 0.1) for every budget, mix, model pool and agent count, FSSP under plain random arrival reaches mean pass@1 **0.691, the same as the exact centralized optimum (MCKP, 0.691)**: gap −0.1 % [95 % CI −0.4, 0.1], no starved task, Jain 0.96. Every baseline utility needs its price re-tuned for each budget to get close. FSSP needs no scheduler, and it does not need to know the total number of requests: an online estimate of the remaining demand gives a 0.1 % gap. This is the method we recommend.
+**Bottom line (final).** From these experiments we derived a new decentralized utility, **Fair-Share Shadow Pricing (FSSP)** ([§3](#3-proposed-algorithm-fair-share-shadow-pricing-fssp)). Each agent prices money by the inverse of the budget still available per request still to come, `p_k = η · R̂_k / B_k`, and picks `argmax_m q̂_m − p_k·c_m`. With **one** setting (η = 0.1) for every budget, mix, model pool and agent count, FSSP under plain random arrival reaches mean pass@1 **0.691, the same as the exact centralized optimum (MCKP, 0.691)**: gap −0.1 % [95 % CI −0.4, 0.1], no starved task, Jain 0.96. Every baseline utility needs its price re-tuned for each budget to get close. FSSP needs no scheduler, and it does not need to know the total number of requests: an online estimate of the remaining demand gives a 0.1 % gap. This is the method we recommend.
 
 **Findings from the design-space study (§2, §4).** Naive decentralized selection (each agent buys its best affordable model) loses **54–90 %** of the achievable quality at tight budgets, which confirms a large price of anarchy (PoA). That loss is **not inherent to decentralization**. When agents use a *scarcity-aware* utility whose cost sensitivity is calibrated to the per-task budget, the best decentralized configuration comes within **0–3 %** of the exact centralized optimum (MCKP) at every mix and budget in the realistic information setting. The dynamic shadow price is the most robust utility: ≤ 2.1 % mean gap per mix and budget regime, 0.4 % overall, and 10.4 % in its single worst cell. The proposal's guesses about *which* mechanisms help were partly wrong. **Easiest-task-first is the best ordering, not the worst.** Hardest-first and marginal-ROI priority are *worse* than random arrival. Centralization keeps a real advantage only when (i) the planner sees per-task outcomes the agents can't estimate (up to 14 % gap with oracle information on hard-heavy work at tight budgets), or (ii) nobody calibrates the agents' cost sensitivity. FSSP (§3) removes (ii).
 
@@ -101,11 +101,11 @@ Notation: requests are numbered by arrival, k = 0, 1, 2, …, so when request k 
 
 ```
 f_k = B_k / R̂_k                 remaining fair share per request
-p_k = κ / f_k = κ · R̂_k / B_k    price of one dollar, in pass@1 units
+p_k = η / f_k = η · R̂_k / B_k    price of one dollar, in pass@1 units
 U_k(m) = q̂_{i,m} − p_k · c_m     the agent picks argmax over affordable models (c_m ≤ B_k)
 ```
 
-κ = 0.1 means "an upgrade must raise the pass probability by at least 0.1 for every extra fair share it costs". (The general form in the paper is p_k = (κ/b)(b/f_k)^α with b = B/n. The selected α = 1 makes b cancel, so n is never needed by itself.)
+η = 0.1 means "an upgrade must raise the pass probability by at least 0.1 for every extra fair share it costs". (The general form in the paper is p_k = (η/b)(b/f_k)^α with b = B/n. The selected α = 1 makes b cancel, so n is never needed by itself.)
 
 ### 3.2 Full algorithm, including the realistic case where n is unknown
 
@@ -117,17 +117,17 @@ When a request of agent *a* (task i) arrives at time t:
 2. **Estimate the remaining demand.**
    * If the total n is known (a fixed batch): R̂_k = n − k.
    * Otherwise (online): the arrival rate so far is r̂ = (k + 1 + w·n₀) / (t + w) requests per period, and the requests still to come are R̂_k = 1 + r̂·(1 − t), this one plus the expected future ones. Here n₀ is an optional prior guess of the period's demand and w its weight (in period units). With no guess, w = 0, so r̂ = (k + 1)/t.
-3. **Compute the price:** f_k = B_k / R̂_k and p_k = κ / f_k.
+3. **Compute the price:** f_k = B_k / R̂_k and p_k = η / f_k.
 4. **Choose:** among the models with c_m ≤ B_k, pick m* = argmax q̂_{i,m} − p_k·c_m. If none is affordable, the request is starved.
 5. **Pay:** B_{k+1} = B_k − c_{m*}, and the ledger counter becomes k + 1.
 
 Why this works online: if more requests arrive than expected, r̂ and R̂_k rise, f_k falls and the price rises automatically. If fewer arrive, the price falls and later agents may upgrade. Early in the period, when the rate estimate is noisy, the prior n₀ (if any) steadies it. Without a prior the first few requests see a noisy estimate, but their spending is small relative to B. Nothing is coordinated. Each agent runs this independently, in O(|models|) time.
 
-Implementation: [scripts/hypotheses/fair_share.py](scripts/hypotheses/fair_share.py) (known n) and [scripts/hypotheses/fssp_unknown_n.py](scripts/hypotheses/fssp_unknown_n.py) (online estimate and wrong forecasts).
+Implementation: [scripts/hypotheses/fair_share.py](scripts/hypotheses/fair_share.py) (known n) and [scripts/hypotheses/fssp_unknown_n.py](scripts/hypotheses/fssp_unknown_n.py) (online estimate and wrong forecasts). In the code and in `fssp_params.json`, η is the parameter `kappa`.
 
 ### 3.3 Tuning protocol
 
-(κ, α) was chosen **once**, on the 20 tuning seeds (uniform mix, full pool, expected information, random arrival), from κ ∈ {0.01 … 0.5} × α ∈ {0, 0.5, 1, 1.5, 2, 3}, by mean pass@1 over all 8 budgets. Selected: **κ = 0.1, α = 1** (mean Q 0.744 on tuning seeds; the top 10 settings are all within 0.004). This one setting is reused unchanged everywhere below, on the 50 test seeds. The baselines marked * get the advantage of per-budget re-tuning.
+(η, α) was chosen **once**, on the 20 tuning seeds (uniform mix, full pool, expected information, random arrival), from η ∈ {0.01 … 0.5} × α ∈ {0, 0.5, 1, 1.5, 2, 3}, by mean pass@1 over all 8 budgets. Selected: **η = 0.1, α = 1** (mean Q 0.744 on tuning seeds; the top 10 settings are all within 0.004). This one setting is reused unchanged everywhere below, on the 50 test seeds. The baselines marked * get the advantage of per-budget re-tuning.
 
 ### 3.4 Main result: FSSP matches the centralized optimum
 
@@ -191,7 +191,7 @@ The orders that need nobody to reorder requests (random, FCFS) are already at th
 
 ![Calibration](figures/paper/fig_calibration.png)
 
-**Fig. F3.** Left (tuning seeds): quasi-linear and shadow price match MCKP only when re-tuned per budget (dashed). Their best single setting (dotted) equals the cheapest-model baseline. FSSP with one setting follows MCKP. Right: FSSP mean Q is flat over a wide κ range for α ≥ 1. The fixed-price variant α = 0 is more sensitive (gap 2.6 %).
+**Fig. F3.** Left (tuning seeds): quasi-linear and shadow price match MCKP only when re-tuned per budget (dashed). Their best single setting (dotted) equals the cheapest-model baseline. FSSP with one setting follows MCKP. Right: FSSP mean Q is flat over a wide η range for α ≥ 1. The fixed-price variant α = 0 is more sensitive (gap 2.6 %).
 
 ### 3.7 Robustness of the single setting
 
@@ -475,12 +475,12 @@ Noise lowers *everyone's* quality by up to ~3 pp, centralized included. The best
 4. **Centralization still pays in two situations:** (a) when the planner has per-task information the agents lack (oracle: up to 14 % gap on hard-heavy work at tight budgets), and (b) when verification feedback is available (the test-driven cascade beats every planner by ~7 %). In both cases information, not coordination, is the bottleneck.
 5. **The problem's difficulty is driven by the cost ladder and the per-task budget, not by the number of agents.** Steep price ladders magnify the externality of each greedy choice (H7). Adding agents only widens the gap for scarcity-blind agents, through budget granularity (H2 partial). Expensive models are worth buying only for medium and hard tasks, and on this benchmark only deepseek-r1 is worth its price (H5).
 
-6. **Points 2–3 lead to a new utility, FSSP (§3), which closes the gap without per-budget tuning.** It prices money by the inverse of the remaining budget per request still to come. With one setting (κ = 0.1) it matches MCKP on held-out seeds (gap −0.1 %), beats even the per-budget re-tuned shadow price (+0.23 pp, worst cell 3.9 % vs. 10.4 %), removes the first-mover advantage, and works without knowing the total number of requests (online estimate: 0.1 % gap).
+6. **Points 2–3 lead to a new utility, FSSP (§3), which closes the gap without per-budget tuning.** It prices money by the inverse of the remaining budget per request still to come. With one setting (η = 0.1) it matches MCKP on held-out seeds (gap −0.1 %), beats even the per-budget re-tuned shadow price (+0.23 pp, worst cell 3.9 % vs. 10.4 %), removes the first-mover advantage, and works without knowing the total number of requests (online estimate: 0.1 % gap).
 
 **Recommendation for a decentralized orchestrator:** use **FSSP** (§3.2). Each agent, when its request arrives:
 1. reads the remaining budget B_k and the request count k from the shared ledger;
 2. estimates the requests still to come, R̂_k = n − k if n is known, otherwise R̂_k = 1 + r̂(1 − t) with r̂ = (k + 1)/t the arrival rate so far in the budget period;
-3. picks argmax q̂_m − κ·(R̂_k/B_k)·c_m over the affordable models, with κ = 0.1.
+3. picks argmax q̂_m − η·(R̂_k/B_k)·c_m over the affordable models, with η = 0.1.
 
 No central solver, scheduler or per-budget tuning is needed. If the demand forecast is uncertain, err on the high side.
 

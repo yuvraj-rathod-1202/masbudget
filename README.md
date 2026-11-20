@@ -47,7 +47,7 @@ FSSP measures cost in units of the agent's **fair share**: the budget still left
 
 ```
 fair share   f = B_k / R_k          B_k = remaining budget,  R_k = requests still to be served (incl. this one)
-price        p = κ / f              κ = 0.1  (one setting for every budget)
+price        p = η / f              η = 0.1  (one setting for every budget)
 choice       argmax over affordable models of   q̂_m − p · c_m
              q̂_m = agent's estimated chance that model m solves its task,  c_m = price of model m
 ```
@@ -57,7 +57,7 @@ In words: **upgrade to a more expensive model only if the gain in success probab
 
 - When earlier agents overspent, the fair share shrinks, so the price rises.
 - When earlier agents underspent, the price falls and later agents can upgrade.
-- Because the price is relative to the budget, the same κ works for every budget size.
+- Because the price is relative to the budget, the same η works for every budget size.
 
 ### Step by step (run by each agent, on its own)
 
@@ -74,7 +74,7 @@ When a request arrives:
      still to come    R_k = 1 + r · (1 − t)        (this request + the expected later ones)
      ```
      Optionally, start from a forecast `n0` with weight `w`: `r = (k + 1 + w·n0) / (t + w)`.
-3. **Compute the price:** `f = B_k / R_k`, then `p = κ / f`.
+3. **Compute the price:** `f = B_k / R_k`, then `p = η / f`.
 4. **Pick a model:** the affordable model with the highest `q̂_m − p · c_m`. If none is affordable, the request gets no model.
 5. **Pay:** `B_k` decreases by the model's cost.
 
@@ -83,10 +83,11 @@ few arithmetic operations per model.
 
 **Code:** [scripts/hypotheses/fair_share.py](scripts/hypotheses/fair_share.py) (known *n*),
 [scripts/hypotheses/fssp_unknown_n.py](scripts/hypotheses/fssp_unknown_n.py) (unknown *n*).
+In the code and in `results/hypotheses/fssp_params.json`, η is the parameter `kappa`.
 
 ### How we evaluated it
 
-- κ was chosen **once** on 20 tuning seeds. All results below use 50 different test seeds.
+- η was chosen **once** on 20 tuning seeds. All results below use 50 different test seeds.
 - Agents see only the estimated success rate of each model on the task's difficulty level, not the real outcome.
 - Compared against 5 centralized methods (including the exact optimum, MCKP) and the other decentralized utilities.
 - Settings: 3 task mixes, 8 budget levels, 2 model pools, 5–50 agents, noisy labels and unknown *n*.
@@ -126,7 +127,7 @@ few arithmetic operations per model.
 ![Design space](figures/paper/fig_design_space.png)
 
 **One setting for every budget.** Left: the baselines need per-budget tuning, FSSP does not. Right: FSSP is
-insensitive to κ.
+insensitive to η.
 
 ![Calibration](figures/paper/fig_calibration.png)
 
